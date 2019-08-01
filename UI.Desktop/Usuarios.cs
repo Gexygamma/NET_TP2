@@ -22,20 +22,11 @@ namespace UI.Desktop
             
         }
 
-        private void tlUsuarios_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             Listar();
         }
-
-        private void dgvUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+        
         public void Listar()
         {
             UsuarioLogic ul = new UsuarioLogic();
@@ -47,14 +38,29 @@ namespace UI.Desktop
             Listar();
         }
 
-        private void tcUsuarios_TopToolStripPanel_Click(object sender, EventArgs e)
+        private void tsbNuevo_Click(object sender, EventArgs e)
         {
-
+            UsuarioDesktop formUsuario = new UsuarioDesktop(ApplicationForm.ModoForm.Alta);
+            formUsuario.ShowDialog();
+            this.Listar();
         }
 
-        private void toolStripLabel1_Click(object sender, EventArgs e)
+        private void tsbEditar_Click(object sender, EventArgs e)
         {
+            int ID = ((Usuario)dgvUsuarios.SelectedRows[0].DataBoundItem).ID;
 
+            UsuarioDesktop formUsuario = new UsuarioDesktop(ID, ApplicationForm.ModoForm.Modificacion);
+            formUsuario.ShowDialog();
+            this.Listar();
+        }
+
+        private void tsbEliminar_Click(object sender, EventArgs e)
+        {
+            int ID = ((Usuario)dgvUsuarios.SelectedRows[0].DataBoundItem).ID;
+
+            UsuarioDesktop formUsuario = new UsuarioDesktop(ID, ApplicationForm.ModoForm.Baja);
+            formUsuario.ShowDialog();
+            this.Listar();
         }
     }
 }
