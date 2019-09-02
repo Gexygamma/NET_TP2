@@ -100,7 +100,7 @@ namespace Data.Database
                 SqlCommand cmdUsuarios = new SqlCommand("select * from Usuario where idUsuario @id", sqlConn);
                 cmdUsuarios.Parameters.Add("@id", SqlDbType.Int).Value = ID;
                 SqlDataReader drUsuarios = cmdUsuarios.ExecuteReader();
-                while (drUsuarios.Read())
+                if (drUsuarios.Read())
                 {
                     Usuario usr = new Usuario();
                     usr.ID = (int)drUsuarios["idUsuario"];
@@ -109,7 +109,6 @@ namespace Data.Database
                     usr.Nombre = (string)drUsuarios["nombre"];
                     usr.Apellido = (string)drUsuarios["apellido"];
                     usr.Email = (string)drUsuarios["email"];
-                    usuarios.Add(usr);
                 }
                 drUsuarios.Close();
                 this.CloseConnection();
@@ -119,7 +118,7 @@ namespace Data.Database
                 Exception ExcepcionManejada = new Exception("Error al recuperar lista de usuarios", Ex);
                 throw ExcepcionManejada;
             }
-            return usuarios;
+            return usuario;
         }
 
         public void Delete(int ID)
@@ -130,8 +129,7 @@ namespace Data.Database
                 this.OpenConnection();
 
                 //creamos la sentencia sql y asignamos un valor al parametro
-                SqlDbType cmdDelete =
-                    new SqlCommand("delete usuarios where idUsuario=@id",sqlConn);
+                SqlCommand cmdDelete = new SqlCommand("delete usuarios where idUsuario=@id",sqlConn);
                 cmdDelete.Parameters.Add("@id",SqlDbType.Int).Value= ID;
 
                 //ejecutamos la sentencia sql
@@ -141,7 +139,7 @@ namespace Data.Database
             {
                 Exception ExcepcionManejada=
                     new Exception("Error al eliminar usuario", Ex);
-                trow ExcepcionManejada;
+                throw ExcepcionManejada;
             }
             finally
             {
@@ -187,7 +185,7 @@ namespace Data.Database
                    "select @@identity", //esta linea es para recuperar el ID que asigno el sql automaticamente
                    sqlConn);
                 cmdSave.Parameters.Add("@clave",SqlDbType.VarChar,50).Value=usuario.Clave;
-                cmdSave.Parameters.Add("@habilitado",SqlDbType.bit).Value=usuario.Habilitado;
+                cmdSave.Parameters.Add("@habilitado",SqlDbType.Bit).Value=usuario.Habilitado;
                 cmdSave.Parameters.Add("@nombre",SqlDbType.VarChar,50).Value=usuario.Nombre;
                 cmdSave.Parameters.Add("@apellido",SqlDbType.VarChar,50).Value=usuario.Apellido;
                 cmdSave.Parameters.Add("@email",SqlDbType.VarChar,50).Value=usuario.Email;
