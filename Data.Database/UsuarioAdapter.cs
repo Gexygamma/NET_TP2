@@ -97,7 +97,7 @@ namespace Data.Database
             try
             {
                 this.OpenConnection();
-                SqlCommand cmdUsuarios = new SqlCommand("select * from Usuario where idUsuario @id", sqlConn);
+                SqlCommand cmdUsuarios = new SqlCommand("select * from Usuario where idUsuario=@id", sqlConn);
                 cmdUsuarios.Parameters.Add("@id", SqlDbType.Int).Value = ID;
                 SqlDataReader drUsuarios = cmdUsuarios.ExecuteReader();
                 if (drUsuarios.Read())

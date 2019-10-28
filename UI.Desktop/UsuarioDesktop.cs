@@ -114,7 +114,7 @@ namespace UI.Desktop
                 try
                 {
                     var addr = new System.Net.Mail.MailAddress(this.txtEmail.Text);
-                    return addr.Address == this.txtEmail.Text;
+                    return addr.Address == this.txtEmail.Text; // pasarlo a utiles.Validaciones esMailValido o sino en negocio 
                 }
                 catch
                 {
