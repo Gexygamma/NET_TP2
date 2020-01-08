@@ -76,7 +76,51 @@ namespace UI.Web
             }
         }
 
+        protected void GridView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.SelectedID = (int)this.GridView.SelectedValue;
+        }
+        private void LoadForm(int id)
+        {
+            this.Entity = this.Logic.GetOne(id);
+            this.txtNombre.Text = this.Entity.Nombre;
+            this.txtApellido.Text = this.Entity.Apellido;
+            this.txtEmail.Text = this.Entity.Email;
+            this.ckbHabilitado.Checked = this.Entity.Habilitado;      
+        }
 
+        protected void btnEditarLink_Click(object sender, EventArgs e)
+        {
+            if (this.IsEntitySelected)
+            {
+                this.formPanel.Visible = true;
+                this.FormMode = FormModes.Modificacion;
+                this.LoadForm(this.SelectedID);
+            }
+        }
+        private void LoadEntity(Usuario usuario)
+        {
+            usuario.Nombre = this.txtNombre.Text;
+            usuario.Apellido = this.txtApellido.Text;
+            usuario.Email = this.txtEmail.Text;
+            usuario.Clave = this.txtClave.Text;
+            usuario.Habilitado = this.ckbHabilitado.Checked;
+        }
+        private void SaveEntity(Usuario usuario)
+        {
+            this.Logic.Save(usuario);
+        }
 
+        protected void btnAceptarLink_Click(object sender, EventArgs e)
+        {
+            this.Entity = new Usuario();
+            this.Entity.ID = this.SelectedID;
+            this.Entity.State = BusinessEntity.States.Modified;
+            this.LoadEntity(this.Entity);
+            this.SaveEntity(this.Entity);
+            this.LoadGrid();
+
+            this.formPanel.Visible = false;
+        }
     }
 }

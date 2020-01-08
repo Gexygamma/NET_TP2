@@ -6,7 +6,7 @@
      <asp:GridView ID="GridView" runat="server" AutoGenerateColumns="false"
          SelectedRowStyle-BackColor="Black" 
          SelectedRowStyle-ForeColor="White"
-         DataKeyNames="ID">
+         DataKeyNames="ID" OnSelectedIndexChanged="GridView_SelectedIndexChanged">
       <Columns>
           <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
           <asp:BoundField HeaderText="Apellido" DataField="Apellido"/>
@@ -17,7 +17,7 @@
     </asp:GridView>
     </asp:Panel>
 <asp:Panel ID="gridActionsPanel" runat="server">
-    <asp:LinkButton ID="btnEditarLink" runat="server">Editar</asp:LinkButton>
+    <asp:LinkButton ID="btnEditarLink" runat="server" OnClick="btnEditarLink_Click">Editar</asp:LinkButton>
     <asp:LinkButton ID="btnEliminarLink" runat="server">Eliminar</asp:LinkButton>
     <asp:LinkButton ID="btnNuevoLink" runat="server">Nuevo</asp:LinkButton>
 </asp:Panel>
@@ -41,7 +41,7 @@
     <asp:TextBox ID="txtRepetirClave" TextMode="Password" runat="server"></asp:TextBox>
     <br />
 <asp:Panel ID="formActionsPanel" runat="server">
-    <asp:LinkButton ID="btnAceptarLink" runat="server">Aceptar</asp:LinkButton>
+    <asp:LinkButton ID="btnAceptarLink" runat="server" OnClick="btnAceptarLink_Click">Aceptar</asp:LinkButton>
     <asp:LinkButton ID="btnCancelarLink" runat="server">Cancelar</asp:LinkButton>
 </asp:Panel>
 </asp:Panel>
