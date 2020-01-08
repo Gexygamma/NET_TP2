@@ -122,5 +122,27 @@ namespace UI.Web
 
             this.formPanel.Visible = false;
         }
+        
+        private void EnableForm(bool enable)
+        {
+            this.txtNombre.Enabled = enable;
+            this.txtApellido.Enabled = enable;
+            this.txtClave.Visible = enable;
+            this.lblClave.Visible = enable;
+            this.txtEmail.Enabled = enable;
+            this.txtRepetirClave.Visible = enable;
+            this.lblRepetirClave.Visible = enable;
+        }
+
+        protected void btnEliminarLink_Click(object sender, EventArgs e)
+        {
+            if (this.IsEntitySelected)
+            {
+                this.formPanel.Visible = true;
+                this.FormMode = FormModes.Baja;
+                this.EnableForm(false);
+                this.LoadForm(this.SelectedID);
+            }
+        }
     }
 }
