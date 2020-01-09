@@ -19,7 +19,7 @@
 <asp:Panel ID="gridActionsPanel" runat="server">
     <asp:LinkButton ID="btnEditarLink" runat="server" OnClick="btnEditarLink_Click">Editar</asp:LinkButton>
     <asp:LinkButton ID="btnEliminarLink" runat="server" OnClick="btnEliminarLink_Click">Eliminar</asp:LinkButton>
-    <asp:LinkButton ID="btnNuevoLink" runat="server">Nuevo</asp:LinkButton>
+    <asp:LinkButton ID="btnNuevoLink" runat="server" OnClick="btnNuevoLink_Click">Nuevo</asp:LinkButton>
 </asp:Panel>
 <asp:Panel ID="formPanel" Visible="false" runat="server">
     <asp:Label ID="lblNombre" runat="server" Text="Nombre: "></asp:Label>

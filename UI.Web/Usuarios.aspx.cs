@@ -127,6 +127,12 @@ namespace UI.Web
                     this.SaveEntity(this.Entity);
                     this.LoadGrid();
                     break;
+                case FormModes.Alta:
+                    this.Entity = new Usuario();
+                    this.LoadEntity(this.Entity);
+                    this.SaveEntity(this.Entity);
+                    this.LoadGrid();
+                    break;
                 default:
                     break;
             }
@@ -157,6 +163,22 @@ namespace UI.Web
         protected void DeleteEntity(int id)
         {
             this.Logic.Delete(id);
+        }
+
+        protected void btnNuevoLink_Click(object sender, EventArgs e)
+        {
+            this.formPanel.Visible = true;
+            this.FormMode = FormModes.Alta;
+            this.ClearForm();
+            this.EnableForm(true);
+        }
+        private void ClearForm()
+        {
+            this.txtNombre.Text = string.Empty;
+            this.txtApellido.Text = string.Empty;
+            this.txtEmail.Text = string.Empty;
+            this.ckbHabilitado.Checked = false;
+            //FALTA AGREGAR  NOMBRE USUARIO 
         }
     }
 }
