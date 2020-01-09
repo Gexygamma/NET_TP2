@@ -128,7 +128,7 @@ namespace Data.Database
             try
             {
                 this.OpenConnection();
-                SqlCommand cmdDelete = new SqlCommand("delete usuarios where idUsuario=@id",sqlConn);
+                SqlCommand cmdDelete = new SqlCommand("delete usuarios where id_usuario=@id",sqlConn);
                 cmdDelete.Parameters.Add("@id",SqlDbType.Int).Value= ID;
                 cmdDelete.ExecuteNonQuery();
             }
@@ -149,9 +149,9 @@ namespace Data.Database
             { 
                 this.OpenConnection();
                 SqlCommand cmdSave=new SqlCommand(
-                    "UPDATE usuario SET clave=@clave, "+ 
-                    "habilidato= @habilitado, nombre=@nombre, apellido=@apellido, email=@email"+
-                    "WHERE idUsuario=@id", sqlConn);
+                    "UPDATE usuarios SET clave=@clave, "+ 
+                    "habilitado= @habilitado, nombre=@nombre, apellido=@apellido, email=@email"+
+                    "WHERE id_usuario=@id", sqlConn);
                 cmdSave.Parameters.Add("@id", SqlDbType.Int).Value = usuario.ID;
                 cmdSave.Parameters.Add("@clave", SqlDbType.VarChar, 50).Value = usuario.Clave;
                 cmdSave.Parameters.Add("@habilitado", SqlDbType.Bit).Value = usuario.Habilitado;
