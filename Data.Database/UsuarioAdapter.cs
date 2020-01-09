@@ -67,12 +67,13 @@ namespace Data.Database
             try
             {
                 this.OpenConnection();
-                SqlCommand cmdUsuarios = new SqlCommand("select * from Usuario", sqlConn);
+                SqlCommand cmdUsuarios = new SqlCommand("select * from usuarios", sqlConn);
                 SqlDataReader drUsuarios = cmdUsuarios.ExecuteReader();
                 while (drUsuarios.Read())
                 {
                     Usuario usr = new Usuario();
-                    usr.ID = (int)drUsuarios["idUsuario"];
+                    usr.ID = (int)drUsuarios["id_usuario"];
+                    usr.NombreUsuario = (string)drUsuarios["nombre_usuario"];
                     usr.Clave = (string)drUsuarios["clave"];
                     usr.Habilitado = (bool)drUsuarios["habilitado"];
                     usr.Nombre = (string)drUsuarios["nombre"];
@@ -97,13 +98,14 @@ namespace Data.Database
             try
             {
                 this.OpenConnection();
-                SqlCommand cmdUsuarios = new SqlCommand("select * from Usuario where idUsuario=@id", sqlConn);
+                SqlCommand cmdUsuarios = new SqlCommand("select * from usuarios where id_usuario=@id", sqlConn);
                 cmdUsuarios.Parameters.Add("@id", SqlDbType.Int).Value = ID;
                 SqlDataReader drUsuarios = cmdUsuarios.ExecuteReader();
                 if (drUsuarios.Read())
                 {
                     Usuario usr = new Usuario();
-                    usr.ID = (int)drUsuarios["idUsuario"];
+                    usr.ID = (int)drUsuarios["id_usuario"];
+                    usr.NombreUsuario = (string)drUsuarios["nombre_usuario"];
                     usr.Clave = (string)drUsuarios["clave"];
                     usr.Habilitado = (bool)drUsuarios["habilitado"];
                     usr.Nombre = (string)drUsuarios["nombre"];
@@ -125,14 +127,9 @@ namespace Data.Database
         {
             try
             {
-                //abrimos la conexion
                 this.OpenConnection();
-
-                //creamos la sentencia sql y asignamos un valor al parametro
                 SqlCommand cmdDelete = new SqlCommand("delete usuarios where idUsuario=@id",sqlConn);
                 cmdDelete.Parameters.Add("@id",SqlDbType.Int).Value= ID;
-
-                //ejecutamos la sentencia sql
                 cmdDelete.ExecuteNonQuery();
             }
             catch (Exception Ex)
@@ -179,18 +176,19 @@ namespace Data.Database
             try
             {
                 this.OpenConnection();
-                SqlCommand cmdSave= new SqlCommand(
-                   "insert into usuarios(clave,habilitado,nombre,apellido,email)"+
-                   "values (@clave,@habilitado,@nombre,@apellido,@email)"+
-                   "select @@identity", //esta linea es para recuperar el ID que asigno el sql automaticamente
+                SqlCommand cmdSave = new SqlCommand(
+                   "insert into usuarios(nombre_usuario,clave,habilitado,nombre,apellido,email)"+
+                   "values (@nombre_usuario,@clave,@habilitado,@nombre,@apellido,@email)"+
+                   "select @@identity", // Esta línea es para recuperar el ID autogenerado desde la bd.
                    sqlConn);
-                cmdSave.Parameters.Add("@clave",SqlDbType.VarChar,50).Value=usuario.Clave;
-                cmdSave.Parameters.Add("@habilitado",SqlDbType.Bit).Value=usuario.Habilitado;
-                cmdSave.Parameters.Add("@nombre",SqlDbType.VarChar,50).Value=usuario.Nombre;
-                cmdSave.Parameters.Add("@apellido",SqlDbType.VarChar,50).Value=usuario.Apellido;
-                cmdSave.Parameters.Add("@email",SqlDbType.VarChar,50).Value=usuario.Email;
-                usuario.ID=Decimal.ToInt32((decimal)cmdSave.ExecuteScalar());
-                //asi se obtiene el ID que asigno al bd automaticamente
+                cmdSave.Parameters.Add("@nombre_usuario", SqlDbType.VarChar, 50).Value = usuario.NombreUsuario;
+                cmdSave.Parameters.Add("@clave", SqlDbType.VarChar, 50).Value = usuario.Clave;
+                cmdSave.Parameters.Add("@habilitado", SqlDbType.Bit).Value = usuario.Habilitado;
+                cmdSave.Parameters.Add("@nombre", SqlDbType.VarChar, 50).Value = usuario.Nombre;
+                cmdSave.Parameters.Add("@apellido", SqlDbType.VarChar, 50).Value = usuario.Apellido;
+                cmdSave.Parameters.Add("@email", SqlDbType.VarChar, 50).Value = usuario.Email;
+                // Se obtiene el ID autogenerado y se lo guarda a la entidad.
+                usuario.ID = Decimal.ToInt32((decimal)cmdSave.ExecuteScalar());
             }
             catch (Exception ex) 
             {
