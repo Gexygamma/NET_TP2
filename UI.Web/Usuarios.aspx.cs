@@ -113,13 +113,23 @@ namespace UI.Web
 
         protected void btnAceptarLink_Click(object sender, EventArgs e)
         {
-            this.Entity = new Usuario();
-            this.Entity.ID = this.SelectedID;
-            this.Entity.State = BusinessEntity.States.Modified;
-            this.LoadEntity(this.Entity);
-            this.SaveEntity(this.Entity);
-            this.LoadGrid();
-
+            switch (this.FormMode)
+            {
+                case FormModes.Baja:
+                    this.DeleteEntity(this.SelectedID);
+                    this.LoadGrid;
+                    break;
+                case FormModes.Modificacion:
+                    this.Entity = new Usuario();
+                    this.Entity.ID = this.SelectedID;
+                    this.Entity.State = BusinessEntity.States.Modified;
+                    this.LoadEntity(this.Entity);
+                    this.SaveEntity(this.Entity);
+                    this.LoadGrid();
+                    break;
+                default:
+                    break;
+            }
             this.formPanel.Visible = false;
         }
         
@@ -143,6 +153,10 @@ namespace UI.Web
                 this.EnableForm(false);
                 this.LoadForm(this.SelectedID);
             }
+        }
+        protected void DeleteEntity(int id)
+        {
+            this.Logic.Delete(id);
         }
     }
 }
