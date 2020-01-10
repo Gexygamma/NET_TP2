@@ -66,7 +66,7 @@ namespace Data.Database
             List<Usuario> usuarios = new List<Usuario>();
             try
             {
-                this.OpenConnection();
+                OpenConnection();
                 SqlCommand cmdUsuarios = new SqlCommand("select * from usuarios", sqlConn);
                 SqlDataReader drUsuarios = cmdUsuarios.ExecuteReader();
                 while (drUsuarios.Read())
@@ -82,7 +82,7 @@ namespace Data.Database
                     usuarios.Add(usr);
                 }
                 drUsuarios.Close();
-                this.CloseConnection();
+                CloseConnection();
             }
             catch (Exception Ex)
             {
@@ -92,28 +92,27 @@ namespace Data.Database
             return usuarios;
         }
 
-        public Business.Entities.Usuario GetOne(int ID)
+        public Usuario GetOne(int ID)
         {
             Usuario usuario = new Usuario();
             try
             {
-                this.OpenConnection();
+                OpenConnection();
                 SqlCommand cmdUsuarios = new SqlCommand("select * from usuarios where id_usuario=@id", sqlConn);
                 cmdUsuarios.Parameters.Add("@id", SqlDbType.Int).Value = ID;
                 SqlDataReader drUsuarios = cmdUsuarios.ExecuteReader();
                 if (drUsuarios.Read())
                 {
-                    Usuario usr = new Usuario();
-                    usr.ID = (int)drUsuarios["id_usuario"];
-                    usr.NombreUsuario = (string)drUsuarios["nombre_usuario"];
-                    usr.Clave = (string)drUsuarios["clave"];
-                    usr.Habilitado = (bool)drUsuarios["habilitado"];
-                    usr.Nombre = (string)drUsuarios["nombre"];
-                    usr.Apellido = (string)drUsuarios["apellido"];
-                    usr.Email = (string)drUsuarios["email"];
+                    usuario.ID = (int)drUsuarios["id_usuario"];
+                    usuario.NombreUsuario = (string)drUsuarios["nombre_usuario"];
+                    usuario.Clave = (string)drUsuarios["clave"];
+                    usuario.Habilitado = (bool)drUsuarios["habilitado"];
+                    usuario.Nombre = (string)drUsuarios["nombre"];
+                    usuario.Apellido = (string)drUsuarios["apellido"];
+                    usuario.Email = (string)drUsuarios["email"];
                 }
                 drUsuarios.Close();
-                this.CloseConnection();
+                CloseConnection();
             }
             catch (Exception Ex)
             {
@@ -127,7 +126,7 @@ namespace Data.Database
         {
             try
             {
-                this.OpenConnection();
+                OpenConnection();
                 SqlCommand cmdDelete = new SqlCommand("delete usuarios where id_usuario=@id",sqlConn);
                 cmdDelete.Parameters.Add("@id",SqlDbType.Int).Value= ID;
                 cmdDelete.ExecuteNonQuery();
@@ -140,14 +139,14 @@ namespace Data.Database
             }
             finally
             {
-                this.CloseConnection();
+                CloseConnection();
             }
         }
         protected void Update(Usuario usuario)
         {
             try
             { 
-                this.OpenConnection();
+                OpenConnection();
                 SqlCommand cmdSave=new SqlCommand(
                     "UPDATE usuarios SET clave=@clave, "+ 
                     "habilitado= @habilitado, nombre=@nombre, apellido=@apellido, email=@email"+
@@ -162,24 +161,23 @@ namespace Data.Database
             }
             catch (Exception ex)
             {
-                Exception ExcepcionManejada =
-                    new Exception("Error al modificar datos del usuario", ex);
+                Exception ExcepcionManejada = new Exception("Error al modificar datos del usuario", ex);
                 throw ExcepcionManejada;
             }
             finally
             {
-                this.CloseConnection();
+                CloseConnection();
             }
         }
         protected void Insert(Usuario usuario)
         {
             try
             {
-                this.OpenConnection();
+                OpenConnection();
                 SqlCommand cmdSave = new SqlCommand(
                    "insert into usuarios(nombre_usuario,clave,habilitado,nombre,apellido,email)"+
                    "values (@nombre_usuario,@clave,@habilitado,@nombre,@apellido,@email)"+
-                   "select @@identity", // Esta línea es para recuperar el ID autogenerado desde la bd.
+                   "select @@identity", // Esta última línea es para recuperar el ID autogenerado desde la bd.
                    sqlConn);
                 cmdSave.Parameters.Add("@nombre_usuario", SqlDbType.VarChar, 50).Value = usuario.NombreUsuario;
                 cmdSave.Parameters.Add("@clave", SqlDbType.VarChar, 50).Value = usuario.Clave;
@@ -197,7 +195,7 @@ namespace Data.Database
             }
             finally 
             {
-                this.CloseConnection();
+                CloseConnection();
             }
         }
 
@@ -205,17 +203,17 @@ namespace Data.Database
         {
             if (usuario.State == BusinessEntity.States.New)
             {
-                this.Insert(usuario);
+                Insert(usuario);
             }
             else if (usuario.State == BusinessEntity.States.Deleted)
             {
-                this.Delete(usuario.ID);
+                Delete(usuario.ID);
             }
             else if (usuario.State == BusinessEntity.States.Modified)
             {
-                this.Update(usuario);
+                Update(usuario);
             }
-            usuario.State = BusinessEntity.States.Unmodified;            
+            usuario.State = BusinessEntity.States.Unmodified;
         }
     }
 }
