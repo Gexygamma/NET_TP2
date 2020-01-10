@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace Business.Entities
 {
-    public class Persona : BusinessEntity
-    {
-		public enum TipoPersona 
-		{
-			Alumno,
-			Profesor,
-			Admin
-		}
+	public enum TipoPersona
+	{
+		Alumno,
+		Profesor,
+		Admin
+	}
 
+	public class Persona : BusinessEntity
+    {
 		private string _Nombre;
 		public string Nombre
 		{
