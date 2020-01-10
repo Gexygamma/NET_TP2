@@ -24,15 +24,5 @@ namespace UI.Desktop
         public virtual void MapearADatos() { }
         public virtual void GuardarCambios() { }
         public virtual bool Validar() { return false; }
-
-        public void Notificar(string titulo, string mensaje, MessageBoxButtons botones, MessageBoxIcon icono)
-        {
-            MessageBox.Show(titulo, mensaje, botones, icono);
-        }
-
-        public void Notificar(string mensaje, MessageBoxButtons botones, MessageBoxIcon icono)
-        {
-            Notificar(Text, mensaje, botones, icono);
-        }
     }
 }
