@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Business.Entities
 {
-    public class Usuario:BusinessEntity
+    public class Usuario : BusinessEntity
     {
         private string _NombreUsuario;
         public string NombreUsuario
@@ -50,5 +50,11 @@ namespace Business.Entities
             set { _Habilitado = value; }
         }
 
+        private int _IdPersona;
+        public int IdPersona
+        {
+            get { return _IdPersona; }
+            set { _IdPersona = value; }
+        }
     }
 }
