@@ -15,7 +15,7 @@ namespace UI.Desktop
 {
     public partial class Usuarios : Form
     {
-        private UsuarioLogic UsuarioLogic;
+        private readonly UsuarioLogic UsuarioLogic;
         
         public Usuarios()
         {
@@ -63,6 +63,11 @@ namespace UI.Desktop
             UsuarioDesktop formUsuario = new UsuarioDesktop(ApplicationForm.ModoForm.Baja, ID);
             formUsuario.ShowDialog();
             ActualizarListado();
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

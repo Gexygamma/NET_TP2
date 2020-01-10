@@ -16,6 +16,7 @@ namespace UI.Desktop
 {
     public partial class UsuarioDesktop : ApplicationForm
     {
+        private readonly UsuarioLogic UsuarioLogic;
         private Usuario UsuarioActual { get; set; }
 
         public UsuarioDesktop(ModoForm modo)
@@ -36,12 +37,24 @@ namespace UI.Desktop
                     btnAceptar.Text = "Aceptar";
                     break;
             }
+
+            if (Modo == ModoForm.Baja || Modo == ModoForm.Consulta)
+            {
+                chkHabilitado.Enabled = false;
+                txtNombre.ReadOnly = true;
+                txtApellido.ReadOnly = true;
+                txtEmail.ReadOnly = true;
+                txtUsuario.ReadOnly = true;
+                txtClave.ReadOnly = true;
+                txtConfirmarClave.ReadOnly = true;
+            }
+
+            UsuarioLogic = new UsuarioLogic();
         }
 
         public UsuarioDesktop(ModoForm modo, int id) : this(modo)
         {
-            UsuarioLogic ul = new UsuarioLogic();
-            UsuarioActual = ul.GetOne(id);
+            UsuarioActual = UsuarioLogic.GetOne(id);
             MapearDeDatos();
         }
 
@@ -92,8 +105,7 @@ namespace UI.Desktop
         public override void GuardarCambios()
         {
             MapearADatos();
-            UsuarioLogic ul = new UsuarioLogic();
-            ul.Save(UsuarioActual);
+            UsuarioLogic.Save(UsuarioActual);
         }
 
         public override bool Validar()
