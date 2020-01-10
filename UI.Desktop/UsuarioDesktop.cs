@@ -106,7 +106,9 @@ namespace UI.Desktop
                 !string.IsNullOrEmpty(txtConfirmarClave.Text);
             bool claveCoincide = string.Compare(txtClave.Text, txtConfirmarClave.Text) == 0;
 
-            return textoNoVacios && claveCoincide; // TODO: Validacion de email y contraseña.
+            return textoNoVacios && claveCoincide &&
+                Validacion.ValidarEmail(txtEmail.Text) &&
+                Validacion.ValidarContraseña(txtClave.Text);
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
