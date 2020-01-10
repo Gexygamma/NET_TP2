@@ -14,9 +14,10 @@ namespace Util
             return true; // Regex.IsMatch(email, EmailRegEx);
         }
 
-        public static bool ValidarContraseña(string contraseña)
+        public static bool ValidarClave(string clave, string confirmarClave)
         {
-            return contraseña.Length >= LongitudMinimaContraseña;
+            return string.Compare(clave, confirmarClave) == 0 &&
+                clave.Length >= LongitudMinimaContraseña;
         }
     }
 }

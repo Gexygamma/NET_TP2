@@ -104,11 +104,10 @@ namespace UI.Desktop
                 !string.IsNullOrEmpty(txtUsuario.Text) &&
                 !string.IsNullOrEmpty(txtClave.Text) &&
                 !string.IsNullOrEmpty(txtConfirmarClave.Text);
-            bool claveCoincide = string.Compare(txtClave.Text, txtConfirmarClave.Text) == 0;
 
-            return textoNoVacios && claveCoincide &&
+            return textoNoVacios &&
                 Validacion.ValidarEmail(txtEmail.Text) &&
-                Validacion.ValidarContraseña(txtClave.Text);
+                Validacion.ValidarClave(txtClave.Text, txtConfirmarClave.Text);
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
