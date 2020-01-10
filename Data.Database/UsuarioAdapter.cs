@@ -97,7 +97,7 @@ namespace Data.Database
                 OpenConnection();
                 SqlCommand cmdSave=new SqlCommand(
                     "UPDATE usuarios SET clave=@clave, "+ 
-                    "habilitado= @habilitado, nombre=@nombre, apellido=@apellido, email=@email"+
+                    "habilitado= @habilitado, nombre=@nombre, apellido=@apellido, email=@email "+
                     "WHERE id_usuario=@id", sqlConn);
                 cmdSave.Parameters.Add("@id", SqlDbType.Int).Value = usuario.ID;
                 cmdSave.Parameters.Add("@clave", SqlDbType.VarChar, 50).Value = usuario.Clave;
