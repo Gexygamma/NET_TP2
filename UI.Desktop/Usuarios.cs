@@ -15,52 +15,54 @@ namespace UI.Desktop
 {
     public partial class Usuarios : Form
     {
+        private UsuarioLogic UsuarioLogic;
+        
         public Usuarios()
         {
             InitializeComponent();
-            this.dgvUsuarios.AutoGenerateColumns = false;
-            
+            dgvUsuarios.AutoGenerateColumns = false;
+
+            UsuarioLogic = new UsuarioLogic();
+        }
+
+        public void ActualizarListado()
+        {
+            dgvUsuarios.DataSource = UsuarioLogic.GetAll();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Listar();
-        }
-        
-        public void Listar()
-        {
-            UsuarioLogic ul = new UsuarioLogic();
-            this.dgvUsuarios.DataSource = ul.GetAll();
+            ActualizarListado();
         }
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
-            Listar();
+            ActualizarListado();
         }
 
         private void tsbNuevo_Click(object sender, EventArgs e)
         {
             UsuarioDesktop formUsuario = new UsuarioDesktop(ApplicationForm.ModoForm.Alta);
             formUsuario.ShowDialog();
-            this.Listar();
+            ActualizarListado();
         }
 
         private void tsbEditar_Click(object sender, EventArgs e)
         {
             int ID = ((Usuario)dgvUsuarios.SelectedRows[0].DataBoundItem).ID;
 
-            UsuarioDesktop formUsuario = new UsuarioDesktop(ID, ApplicationForm.ModoForm.Modificacion);
+            UsuarioDesktop formUsuario = new UsuarioDesktop(ApplicationForm.ModoForm.Modificacion, ID);
             formUsuario.ShowDialog();
-            this.Listar();
+            ActualizarListado();
         }
 
         private void tsbEliminar_Click(object sender, EventArgs e)
         {
             int ID = ((Usuario)dgvUsuarios.SelectedRows[0].DataBoundItem).ID;
 
-            UsuarioDesktop formUsuario = new UsuarioDesktop(ID, ApplicationForm.ModoForm.Baja);
+            UsuarioDesktop formUsuario = new UsuarioDesktop(ApplicationForm.ModoForm.Baja, ID);
             formUsuario.ShowDialog();
-            this.Listar();
+            ActualizarListado();
         }
     }
 }

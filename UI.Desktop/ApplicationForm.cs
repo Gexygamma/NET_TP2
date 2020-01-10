@@ -12,15 +12,9 @@ namespace UI.Desktop
 {
     public partial class ApplicationForm : Form
     {
-
         public ApplicationForm()
         {
             InitializeComponent();
-        }
-
-        private void ApplicationForm_Load(object sender, EventArgs e)
-        {
-
         }
 
         public enum ModoForm { Alta, Baja, Modificacion, Consulta }
@@ -31,13 +25,14 @@ namespace UI.Desktop
         public virtual void GuardarCambios() { }
         public virtual bool Validar() { return false; }
 
-        public void Notificar(string titulo,string mensaje, MessageBoxButtons botones, MessageBoxIcon icono)
+        public void Notificar(string titulo, string mensaje, MessageBoxButtons botones, MessageBoxIcon icono)
         {
-            MessageBox.Show(mensaje, titulo, botones, icono);
+            MessageBox.Show(titulo, mensaje, botones, icono);
         }
+
         public void Notificar(string mensaje, MessageBoxButtons botones, MessageBoxIcon icono)
         {
-            this.Notificar(this.Text, mensaje, botones, icono);
+            Notificar(Text, mensaje, botones, icono);
         }
     }
 }

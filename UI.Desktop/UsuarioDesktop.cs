@@ -10,55 +10,51 @@ using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using Business.Logic;
 using Business.Entities;
+using Util;
 
 namespace UI.Desktop
 {
     public partial class UsuarioDesktop : ApplicationForm
     {
-        public UsuarioDesktop()
+        private Usuario UsuarioActual { get; set; }
+
+        public UsuarioDesktop(ModoForm modo)
         {
             InitializeComponent();
-        }
-
-        public UsuarioDesktop(ModoForm modo) : this()
-        {
             Modo = modo;
-        }
-
-        public UsuarioDesktop(int ID, ModoForm modo) : this()
-        {
-            Modo = modo;
-            UsuarioLogic ul = new UsuarioLogic();
-            UsuarioActual = ul.GetOne(ID);
-            this.MapearDeDatos();
-        }
-
-        public Usuario UsuarioActual { get; set; }
-
-        public override void MapearDeDatos()
-        {
-            this.txtID.Text = this.UsuarioActual.ID.ToString();
-            this.chkHabilitado.Checked = this.UsuarioActual.Habilitado;
-            this.txtNombre.Text = this.UsuarioActual.Nombre;
-            this.txtApellido.Text = this.UsuarioActual.Apellido;
-            this.txtEmail.Text = this.UsuarioActual.Email;
-            this.txtUsuario.Text = this.UsuarioActual.NombreUsuario;
-            this.txtClave.Text = this.UsuarioActual.Clave;
-            this.txtConfirmarClave.Text = this.UsuarioActual.Clave;
 
             switch (Modo)
             {
                 case ModoForm.Alta:
                 case ModoForm.Modificacion:
-                    this.btnAceptar.Text = "Guardar";
+                    btnAceptar.Text = "Guardar";
                     break;
                 case ModoForm.Baja:
-                    this.btnAceptar.Text = "Eliminar";
+                    btnAceptar.Text = "Eliminar";
                     break;
                 case ModoForm.Consulta:
-                    this.btnAceptar.Text = "Aceptar";
+                    btnAceptar.Text = "Aceptar";
                     break;
             }
+        }
+
+        public UsuarioDesktop(ModoForm modo, int id) : this(modo)
+        {
+            UsuarioLogic ul = new UsuarioLogic();
+            UsuarioActual = ul.GetOne(id);
+            MapearDeDatos();
+        }
+
+        public override void MapearDeDatos()
+        {
+            txtID.Text = UsuarioActual.ID.ToString();
+            chkHabilitado.Checked = UsuarioActual.Habilitado;
+            txtNombre.Text = UsuarioActual.Nombre;
+            txtApellido.Text = UsuarioActual.Apellido;
+            txtEmail.Text = UsuarioActual.Email;
+            txtUsuario.Text = UsuarioActual.NombreUsuario;
+            txtClave.Text = UsuarioActual.Clave;
+            txtConfirmarClave.Text = UsuarioActual.Clave;
         }
 
         public override void MapearADatos()
@@ -69,12 +65,12 @@ namespace UI.Desktop
             }
             if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion)
             {
-                this.UsuarioActual.Habilitado = this.chkHabilitado.Checked;
-                this.UsuarioActual.Nombre = this.txtNombre.Text;
-                this.UsuarioActual.Apellido = this.txtApellido.Text;
-                this.UsuarioActual.Email = this.txtEmail.Text;
-                this.UsuarioActual.NombreUsuario = this.txtUsuario.Text;
-                this.UsuarioActual.Clave = this.txtClave.Text;
+                UsuarioActual.Habilitado = chkHabilitado.Checked;
+                UsuarioActual.Nombre = txtNombre.Text;
+                UsuarioActual.Apellido = txtApellido.Text;
+                UsuarioActual.Email = txtEmail.Text;
+                UsuarioActual.NombreUsuario = txtUsuario.Text;
+                UsuarioActual.Clave = txtClave.Text;
             }
             switch (Modo)
             {
@@ -102,29 +98,15 @@ namespace UI.Desktop
 
         public override bool Validar()
         {
-            bool textoNoVacios = !string.IsNullOrEmpty(this.txtNombre.Text) &&
-                !string.IsNullOrEmpty(this.txtApellido.Text) &&
-                !string.IsNullOrEmpty(this.txtEmail.Text) &&
-                !string.IsNullOrEmpty(this.txtUsuario.Text) &&
-                !string.IsNullOrEmpty(this.txtClave.Text) &&
-                !string.IsNullOrEmpty(this.txtConfirmarClave.Text);
-            bool claveCoincide = string.Compare(this.txtClave.Text, this.txtConfirmarClave.Text) == 0;
-            if (textoNoVacios && claveCoincide)
-            {
-                try
-                {
-                    var addr = new System.Net.Mail.MailAddress(this.txtEmail.Text);
-                    return addr.Address == this.txtEmail.Text; // pasarlo a utiles.Validaciones esMailValido o sino en negocio 
-                }
-                catch
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                return false;
-            }
+            bool textoNoVacios = !string.IsNullOrEmpty(txtNombre.Text) &&
+                !string.IsNullOrEmpty(txtApellido.Text) &&
+                !string.IsNullOrEmpty(txtEmail.Text) &&
+                !string.IsNullOrEmpty(txtUsuario.Text) &&
+                !string.IsNullOrEmpty(txtClave.Text) &&
+                !string.IsNullOrEmpty(txtConfirmarClave.Text);
+            bool claveCoincide = string.Compare(txtClave.Text, txtConfirmarClave.Text) == 0;
+
+            return textoNoVacios && claveCoincide; // TODO: Validacion de email y contraseña.
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
