@@ -93,5 +93,11 @@ namespace UI.Desktop
         {
             Dispose();
         }
+
+        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Usuarios formUsuarios = new Usuarios();
+            formUsuarios.ShowDialog();
+        }
     }
 }

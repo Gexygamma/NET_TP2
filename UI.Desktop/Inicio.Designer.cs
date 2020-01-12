@@ -34,15 +34,15 @@
             this.toolStripSistema = new System.Windows.Forms.ToolStripDropDownButton();
             this.cerrarSesiónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lblVersion = new System.Windows.Forms.Label();
             this.ddAdministrador = new System.Windows.Forms.ToolStripDropDownButton();
-            this.ddAlumno = new System.Windows.Forms.ToolStripDropDownButton();
-            this.ddProfesor = new System.Windows.Forms.ToolStripDropDownButton();
             this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ddAlumno = new System.Windows.Forms.ToolStripDropDownButton();
             this.inscribirseACursadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registroDeNotasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ddProfesor = new System.Windows.Forms.ToolStripDropDownButton();
             this.reporteDeCursosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteDePlanesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblVersion = new System.Windows.Forms.Label();
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -85,7 +85,7 @@
             // cerrarSesiónToolStripMenuItem
             // 
             this.cerrarSesiónToolStripMenuItem.Name = "cerrarSesiónToolStripMenuItem";
-            this.cerrarSesiónToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cerrarSesiónToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.cerrarSesiónToolStripMenuItem.Text = "Cerrar Sesión";
             this.cerrarSesiónToolStripMenuItem.Click += new System.EventHandler(this.cerrarSesiónToolStripMenuItem_Click);
             // 
@@ -93,20 +93,9 @@
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
             this.salirToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
-            // 
-            // lblVersion
-            // 
-            this.lblVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblVersion.AutoSize = true;
-            this.lblVersion.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.lblVersion.Location = new System.Drawing.Point(751, 428);
-            this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(37, 13);
-            this.lblVersion.TabIndex = 2;
-            this.lblVersion.Text = "v4.2.0";
             // 
             // ddAdministrador
             // 
@@ -120,6 +109,13 @@
             this.ddAdministrador.Size = new System.Drawing.Size(87, 22);
             this.ddAdministrador.Text = "Administrador";
             this.ddAdministrador.Visible = false;
+            // 
+            // usuariosToolStripMenuItem
+            // 
+            this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
+            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.usuariosToolStripMenuItem.Text = "Usuarios...";
+            this.usuariosToolStripMenuItem.Click += new System.EventHandler(this.usuariosToolStripMenuItem_Click);
             // 
             // ddAlumno
             // 
@@ -135,6 +131,18 @@
             this.ddAlumno.Text = "Alumno";
             this.ddAlumno.Visible = false;
             // 
+            // inscribirseACursadoToolStripMenuItem
+            // 
+            this.inscribirseACursadoToolStripMenuItem.Name = "inscribirseACursadoToolStripMenuItem";
+            this.inscribirseACursadoToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.inscribirseACursadoToolStripMenuItem.Text = "Inscribirse a cursado";
+            // 
+            // registroDeNotasToolStripMenuItem
+            // 
+            this.registroDeNotasToolStripMenuItem.Name = "registroDeNotasToolStripMenuItem";
+            this.registroDeNotasToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.registroDeNotasToolStripMenuItem.Text = "Registro de notas";
+            // 
             // ddProfesor
             // 
             this.ddProfesor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -149,35 +157,28 @@
             this.ddProfesor.Text = "Profesor";
             this.ddProfesor.Visible = false;
             // 
-            // usuariosToolStripMenuItem
-            // 
-            this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
-            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.usuariosToolStripMenuItem.Text = "Usuarios...";
-            // 
-            // inscribirseACursadoToolStripMenuItem
-            // 
-            this.inscribirseACursadoToolStripMenuItem.Name = "inscribirseACursadoToolStripMenuItem";
-            this.inscribirseACursadoToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.inscribirseACursadoToolStripMenuItem.Text = "Inscribirse a cursado";
-            // 
-            // registroDeNotasToolStripMenuItem
-            // 
-            this.registroDeNotasToolStripMenuItem.Name = "registroDeNotasToolStripMenuItem";
-            this.registroDeNotasToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.registroDeNotasToolStripMenuItem.Text = "Registro de notas";
-            // 
             // reporteDeCursosToolStripMenuItem
             // 
             this.reporteDeCursosToolStripMenuItem.Name = "reporteDeCursosToolStripMenuItem";
-            this.reporteDeCursosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.reporteDeCursosToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.reporteDeCursosToolStripMenuItem.Text = "Reporte de cursos";
             // 
             // reporteDePlanesToolStripMenuItem
             // 
             this.reporteDePlanesToolStripMenuItem.Name = "reporteDePlanesToolStripMenuItem";
-            this.reporteDePlanesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.reporteDePlanesToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.reporteDePlanesToolStripMenuItem.Text = "Reporte de planes";
+            // 
+            // lblVersion
+            // 
+            this.lblVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.lblVersion.Location = new System.Drawing.Point(751, 428);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(37, 13);
+            this.lblVersion.TabIndex = 2;
+            this.lblVersion.Text = "v4.2.0";
             // 
             // Inicio
             // 
