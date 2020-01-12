@@ -135,7 +135,6 @@ namespace Data.Database
                    "VALUES (@nombre_usuario, @clave, @habilitado, @nombre, @apellido, @email, @id_persona)"+
                    "SELECT @@identity", // Esta última línea es para recuperar el ID autogenerado desde la bd.
                    SqlConn);
-                cmdInsert.Parameters.Add("@nombre_usuario", SqlDbType.VarChar, 50).Value = usuario.NombreUsuario;
                 CargarParametrosSql(cmdInsert, usuario);
                 // Se obtiene el ID autogenerado y se lo guarda a la entidad.
                 usuario.ID = decimal.ToInt32((decimal)cmdInsert.ExecuteScalar());
