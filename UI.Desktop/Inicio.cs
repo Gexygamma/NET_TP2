@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Business.Entities;
+using Business.Logic;
 
 namespace UI.Desktop
 {
@@ -31,6 +32,8 @@ namespace UI.Desktop
             if (loginForm.DialogResult == DialogResult.OK)
             {
                 UsuarioLogueado = loginForm.UsuarioLogueado;
+                PersonaLogic personaLogic = new PersonaLogic();
+                PersonaLogueada = personaLogic.GetOne(UsuarioLogueado.IdPersona);
             }
             else
             {
@@ -43,8 +46,30 @@ namespace UI.Desktop
         /// </summary>
         private void PersonalizarPantalla()
         {
-            lblTest.Text = string.Format("Bienvenido {0} {1}!", UsuarioLogueado.Nombre, UsuarioLogueado.Apellido);
-            // TODO: Hacer un switch case que muestre los menúes correspondientes a cada tipo de usuario.
+            lblTest.Text = string.Format("Bienvenido {0} {1}!", PersonaLogueada.Nombre, PersonaLogueada.Apellido);
+            switch (PersonaLogueada.TipoPersona)
+            {
+                case TipoPersona.Alumno:
+                    ddAlumno.Visible = true;
+                    ddProfesor.Visible = false;
+                    ddAdministrador.Visible = false;
+                    break;
+                case TipoPersona.Profesor:
+                    ddAlumno.Visible = false;
+                    ddProfesor.Visible = true;
+                    ddAdministrador.Visible = false;
+                    break;
+                case TipoPersona.Admin:
+                    ddAlumno.Visible = false;
+                    ddProfesor.Visible = false;
+                    ddAdministrador.Visible = true;
+                    break;
+                default:
+                    ddAlumno.Visible = false;
+                    ddProfesor.Visible = false;
+                    ddAdministrador.Visible = false;
+                    break;
+            }
         }
 
         private void Inicio_Shown(object sender, EventArgs e)
@@ -56,6 +81,10 @@ namespace UI.Desktop
         private void cerrarSesiónToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UsuarioLogueado = null;
+            PersonaLogueada = null;
+            ddAlumno.Visible = false;
+            ddProfesor.Visible = false;
+            ddAdministrador.Visible = false;
             InvocarLogin();
             PersonalizarPantalla();
         }
