@@ -65,6 +65,7 @@ namespace UI.Desktop
             cmbPlan.DataSource = PlanLogic.GetAll();
             cmbPlan.DisplayMember = "Descripcion";
             cmbPlan.ValueMember = "ID";
+            cmbPlan.SelectedIndex = -1;
         }
 
         public UsuarioDesktop(ModoForm modo, int id) : this(modo)
@@ -87,8 +88,16 @@ namespace UI.Desktop
             txtEmail.Text = PersonaActual.Email;
             txtTelefono.Text = PersonaActual.Telefono;
             dtFechaNacimiento.Value = PersonaActual.FechaNacimiento;
-            txtLegajo.Text = PersonaActual.Legajo.ToString();
-            cmbPlan.SelectedItem = PlanLogic.GetOne(PersonaActual.IdPlan);
+            if (PersonaActual.TipoPersona == TipoPersona.Admin)
+            {
+                txtLegajo.Text = "";
+                cmbPlan.SelectedIndex = -1;
+            }
+            else
+            {
+                txtLegajo.Text = PersonaActual.Legajo.ToString();
+                cmbPlan.SelectedItem = PlanLogic.GetOne(PersonaActual.IdPlan);
+            }
         }
 
         public override void MapearADatos()
@@ -106,15 +115,23 @@ namespace UI.Desktop
                 PersonaActual.Email = txtEmail.Text;
                 PersonaActual.Telefono = txtTelefono.Text;
                 PersonaActual.FechaNacimiento = dtFechaNacimiento.Value;
-                PersonaActual.Legajo = Int32.Parse(txtLegajo.Text);
                 PersonaActual.TipoPersona = (TipoPersona)cmbTipoUsuario.SelectedIndex;
-                PersonaActual.IdPlan = ((Plan)cmbPlan.SelectedItem).ID;
                 UsuarioActual.NombreUsuario = txtNombreUsuario.Text;
                 UsuarioActual.Clave = txtClave.Text;
                 UsuarioActual.Habilitado = chkHabilitado.Checked;
                 UsuarioActual.Nombre = txtNombre.Text;
                 UsuarioActual.Apellido = txtApellido.Text;
                 UsuarioActual.Email = txtEmail.Text;
+                if (PersonaActual.TipoPersona == TipoPersona.Admin)
+                {
+                    PersonaActual.Legajo = 0;
+                    PersonaActual.IdPlan = 0;
+                }
+                else
+                {
+                    PersonaActual.Legajo = Int32.Parse(txtLegajo.Text);
+                    PersonaActual.IdPlan = ((Plan)cmbPlan.SelectedItem).ID;
+                }
             }
             switch (Modo)
             {
@@ -145,9 +162,11 @@ namespace UI.Desktop
             UsuarioLogic.Save(UsuarioActual);
         }
 
-        private void btnConfirmar_Click(object sender, EventArgs e)
+        public bool CamposNoVacios()
         {
-            bool textoNoVacios = !string.IsNullOrEmpty(txtNombreUsuario.Text) &&
+            bool camposNoVacios1, camposNoVacios2;
+
+            camposNoVacios1 = !string.IsNullOrEmpty(txtNombreUsuario.Text) &&
                 !string.IsNullOrEmpty(txtClave.Text) &&
                 !string.IsNullOrEmpty(txtConfirmarClave.Text) &&
                 !string.IsNullOrEmpty(txtNombre.Text) &&
@@ -155,11 +174,19 @@ namespace UI.Desktop
                 !string.IsNullOrEmpty(txtDireccion.Text) &&
                 !string.IsNullOrEmpty(txtEmail.Text) &&
                 !string.IsNullOrEmpty(txtTelefono.Text) &&
-                !string.IsNullOrEmpty(txtLegajo.Text);
+                cmbTipoUsuario.SelectedIndex != -1;
 
-            if (!textoNoVacios)
+            camposNoVacios2 = (TipoPersona)cmbTipoUsuario.SelectedIndex == TipoPersona.Admin ? 
+                true : !string.IsNullOrEmpty(txtLegajo.Text) && cmbPlan.SelectedIndex != -1;
+
+            return camposNoVacios1 && camposNoVacios2;
+        }
+
+        private void btnConfirmar_Click(object sender, EventArgs e)
+        {
+            if (!CamposNoVacios())
             {
-                MessageBox.Show("Algunos campos están vacios. Por favor rellene con la información solicitada");
+                MessageBox.Show("Algunos campos están vacios. Por favor rellene con la información solicitada.");
             }
             else if (!Validacion.ValidarEmail(txtEmail.Text))
             {
@@ -179,6 +206,23 @@ namespace UI.Desktop
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void cmbTipoUsuario_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if ((TipoPersona)cmbTipoUsuario.SelectedIndex == TipoPersona.Admin)
+            {
+                chkHabilitado.Checked = true;
+                chkHabilitado.Enabled = false;
+                txtLegajo.ReadOnly = true;
+                cmbPlan.Enabled = false;
+            }
+            else
+            {
+                chkHabilitado.Enabled = true;
+                txtLegajo.ReadOnly = false;
+                cmbPlan.Enabled = true;
+            }
         }
     }
 }
