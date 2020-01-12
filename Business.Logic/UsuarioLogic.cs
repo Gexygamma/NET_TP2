@@ -24,6 +24,11 @@ namespace Business.Logic
             return UsuarioData.GetOne(ID);
         }
 
+        public Usuario GetNombreUsuario(string nombreUsuario)
+        {
+            return UsuarioData.GetNombreUsuario(nombreUsuario);
+        }
+
         public void Delete(int ID)
         {
             UsuarioData.Delete(ID);

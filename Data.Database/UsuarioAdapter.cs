@@ -7,8 +7,21 @@ using System.Data.SqlClient;
 
 namespace Data.Database
 {
-    public class UsuarioAdapter:Adapter
+    public class UsuarioAdapter : Adapter
     {
+        private Usuario CrearUsuarioDesdeReader(SqlDataReader dr)
+        {
+            Usuario usuario = new Usuario();
+            usuario.ID = (int)dr["id_usuario"];
+            usuario.NombreUsuario = (string)dr["nombre_usuario"];
+            usuario.Clave = (string)dr["clave"];
+            usuario.Habilitado = (bool)dr["habilitado"];
+            usuario.Nombre = (string)dr["nombre"];
+            usuario.Apellido = (string)dr["apellido"];
+            usuario.Email = (string)dr["email"];
+            return usuario;
+        }
+        
         public List<Usuario> GetAll()
         {
             List<Usuario> usuarios = new List<Usuario>();
@@ -19,53 +32,81 @@ namespace Data.Database
                 SqlDataReader drUsuarios = cmdUsuarios.ExecuteReader();
                 while (drUsuarios.Read())
                 {
-                    Usuario usr = new Usuario();
-                    usr.ID = (int)drUsuarios["id_usuario"];
-                    usr.NombreUsuario = (string)drUsuarios["nombre_usuario"];
-                    usr.Clave = (string)drUsuarios["clave"];
-                    usr.Habilitado = (bool)drUsuarios["habilitado"];
-                    usr.Nombre = (string)drUsuarios["nombre"];
-                    usr.Apellido = (string)drUsuarios["apellido"];
-                    usr.Email = (string)drUsuarios["email"];
-                    usuarios.Add(usr);
+                    Usuario usuario = CrearUsuarioDesdeReader(drUsuarios);
+                    usuarios.Add(usuario);
                 }
                 drUsuarios.Close();
-                CloseConnection();
             }
             catch (Exception Ex)
             {
                 Exception ExcepcionManejada = new Exception("Error al recuperar lista de usuarios", Ex);
                 throw ExcepcionManejada;
+            }
+            finally
+            {
+                CloseConnection();
             }
             return usuarios;
         }
 
         public Usuario GetOne(int ID)
         {
-            Usuario usuario = new Usuario();
+            Usuario usuario;
             try
             {
                 OpenConnection();
-                SqlCommand cmdUsuarios = new SqlCommand("select * from usuarios where id_usuario=@id", sqlConn);
-                cmdUsuarios.Parameters.Add("@id", SqlDbType.Int).Value = ID;
-                SqlDataReader drUsuarios = cmdUsuarios.ExecuteReader();
+                SqlCommand cmdUsuario = new SqlCommand("select * from usuarios where id_usuario=@id", sqlConn);
+                cmdUsuario.Parameters.Add("@id", SqlDbType.Int).Value = ID;
+                SqlDataReader drUsuarios = cmdUsuario.ExecuteReader();
                 if (drUsuarios.Read())
                 {
-                    usuario.ID = (int)drUsuarios["id_usuario"];
-                    usuario.NombreUsuario = (string)drUsuarios["nombre_usuario"];
-                    usuario.Clave = (string)drUsuarios["clave"];
-                    usuario.Habilitado = (bool)drUsuarios["habilitado"];
-                    usuario.Nombre = (string)drUsuarios["nombre"];
-                    usuario.Apellido = (string)drUsuarios["apellido"];
-                    usuario.Email = (string)drUsuarios["email"];
+                    usuario = CrearUsuarioDesdeReader(drUsuarios);
+                }
+                else
+                {
+                    usuario = null;
                 }
                 drUsuarios.Close();
-                CloseConnection();
             }
             catch (Exception Ex)
             {
-                Exception ExcepcionManejada = new Exception("Error al recuperar lista de usuarios", Ex);
+                Exception ExcepcionManejada = new Exception("Error al recuperar usuario por id", Ex);
                 throw ExcepcionManejada;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return usuario;
+        }
+
+        public Usuario GetNombreUsuario(string nombreUsuario)
+        {
+            Usuario usuario;
+            try
+            {
+                OpenConnection();
+                SqlCommand cmdUsuario = new SqlCommand("select * from usuarios where nombre_usuario=@nombre_usuario", sqlConn);
+                cmdUsuario.Parameters.Add("@nombre_usuario", SqlDbType.VarChar, 50).Value = nombreUsuario;
+                SqlDataReader drUsuarios = cmdUsuario.ExecuteReader();
+                if (drUsuarios.Read())
+                {
+                    usuario = CrearUsuarioDesdeReader(drUsuarios);
+                }
+                else
+                {
+                    usuario = null;
+                }
+                drUsuarios.Close();
+            }
+            catch (Exception Ex)
+            {
+                Exception ExcepcionManejada = new Exception("Error al recuperar usuario por nombre de usuario", Ex);
+                throw ExcepcionManejada;
+            }
+            finally
+            {
+                CloseConnection();
             }
             return usuario;
         }
@@ -75,14 +116,13 @@ namespace Data.Database
             try
             {
                 OpenConnection();
-                SqlCommand cmdDelete = new SqlCommand("delete usuarios where id_usuario=@id",sqlConn);
-                cmdDelete.Parameters.Add("@id",SqlDbType.Int).Value= ID;
+                SqlCommand cmdDelete = new SqlCommand("delete usuarios where id_usuario=@id", sqlConn);
+                cmdDelete.Parameters.Add("@id",SqlDbType.Int).Value = ID;
                 cmdDelete.ExecuteNonQuery();
             }
             catch (Exception Ex)
             {
-                Exception ExcepcionManejada=
-                    new Exception("Error al eliminar usuario", Ex);
+                Exception ExcepcionManejada = new Exception("Error al eliminar usuario", Ex);
                 throw ExcepcionManejada;
             }
             finally
@@ -103,8 +143,8 @@ namespace Data.Database
                 cmdSave.Parameters.Add("@clave", SqlDbType.VarChar, 50).Value = usuario.Clave;
                 cmdSave.Parameters.Add("@habilitado", SqlDbType.Bit).Value = usuario.Habilitado;
                 cmdSave.Parameters.Add("@nombre", SqlDbType.VarChar, 50).Value = usuario.Nombre;
-                cmdSave.Parameters.Add("@apellido", SqlDbType.VarChar,50).Value=usuario.Apellido;
-                cmdSave.Parameters.Add("@email", SqlDbType.VarChar, 50).Value=usuario.Email;
+                cmdSave.Parameters.Add("@apellido", SqlDbType.VarChar,50).Value = usuario.Apellido;
+                cmdSave.Parameters.Add("@email", SqlDbType.VarChar, 50).Value = usuario.Email;
                 cmdSave.ExecuteNonQuery();
             }
             catch (Exception ex)
