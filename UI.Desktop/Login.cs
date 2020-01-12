@@ -25,21 +25,26 @@ namespace UI.Desktop
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             UsuarioLogueado = Autentificacion.AutentificarUsuario(txtNombreUsuario.Text, txtClave.Text);
-            if (UsuarioLogueado != null)
-            {
-                DialogResult = DialogResult.OK;
-            }
-            else
+            if (UsuarioLogueado == null)
             {
                 MessageBox.Show("Usuario y/o contraseña incorrectos. Por favor intente nuevamente.",
                     "Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (!UsuarioLogueado.Habilitado)
+            {
+                MessageBox.Show("Usuario deshabilitado. Comuníquese con un administrador.", "Login",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                DialogResult = DialogResult.OK;
             }
         }
 
         private void lnkOlvideContraseña_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             MessageBox.Show("Pongase en contacto con el administrador para recuperar su contraseña.",
-                "Olvidé mi contraseña", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                "Login", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
     }
 }
