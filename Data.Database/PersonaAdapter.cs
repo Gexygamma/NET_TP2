@@ -13,6 +13,7 @@ namespace Data.Database
         {
             Persona persona = new Persona
             {
+                ID = (int)dr["id_persona"],
                 Nombre = (string)dr["nombre"],
                 Apellido = (string)dr["apellido"],
                 Direccion = (string)dr["direccion"],
