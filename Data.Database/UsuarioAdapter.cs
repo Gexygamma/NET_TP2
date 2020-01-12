@@ -11,14 +11,17 @@ namespace Data.Database
     {
         private Usuario CrearUsuarioDesdeReader(SqlDataReader dr)
         {
-            Usuario usuario = new Usuario();
-            usuario.ID = (int)dr["id_usuario"];
-            usuario.NombreUsuario = (string)dr["nombre_usuario"];
-            usuario.Clave = (string)dr["clave"];
-            usuario.Habilitado = (bool)dr["habilitado"];
-            usuario.Nombre = (string)dr["nombre"];
-            usuario.Apellido = (string)dr["apellido"];
-            usuario.Email = (string)dr["email"];
+            Usuario usuario = new Usuario
+            {
+                ID = (int)dr["id_usuario"],
+                NombreUsuario = (string)dr["nombre_usuario"],
+                Clave = (string)dr["clave"],
+                Habilitado = (bool)dr["habilitado"],
+                Nombre = (string)dr["nombre"],
+                Apellido = (string)dr["apellido"],
+                Email = (string)dr["email"],
+                IdPersona = (int)dr["id_persona"]
+            };
             return usuario;
         }
         

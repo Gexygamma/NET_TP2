@@ -70,5 +70,12 @@ namespace Business.Entities
 			get { return _TipoPersona; }
 			set { _TipoPersona = value; }
 		}
+
+		private int _IdPlan;
+		public int IdPlan
+		{
+			get { return _IdPlan; }
+			set { _IdPlan = value; }
+		}
 	}
 }

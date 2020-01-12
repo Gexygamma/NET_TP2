@@ -11,15 +11,18 @@ namespace Data.Database
     {
         private Persona CrearPersonaDesdeReader(SqlDataReader dr)
         {
-            Persona persona = new Persona();
-            persona.Nombre = (string)dr["nombre"];
-            persona.Apellido = (string)dr["apellido"];
-            persona.Direccion = (string)dr["direccion"];
-            persona.Email = (string)dr["email"];
-            persona.Telefono = (string)dr["telefono"];
-            persona.FechaNacimiento = (DateTime)dr["fecha_nac"];
-            persona.Legajo = (int)dr["legajo"];
-            persona.TipoPersona = (TipoPersona)dr["tipo_persona"];
+            Persona persona = new Persona
+            {
+                Nombre = (string)dr["nombre"],
+                Apellido = (string)dr["apellido"],
+                Direccion = (string)dr["direccion"],
+                Email = (string)dr["email"],
+                Telefono = (string)dr["telefono"],
+                FechaNacimiento = (DateTime)dr["fecha_nac"],
+                Legajo = (int)dr["legajo"],
+                TipoPersona = (TipoPersona)dr["tipo_persona"],
+                IdPlan = (int)dr["id_plan"]
+            };
             return persona;
         }
 
@@ -56,7 +59,7 @@ namespace Data.Database
             try
             {
                 OpenConnection();
-                SqlCommand cmdPersona = new SqlCommand("select * from usuarios where id_usuario=@id", sqlConn);
+                SqlCommand cmdPersona = new SqlCommand("select * from personas where id_persona=@id", sqlConn);
                 cmdPersona.Parameters.Add("@id", SqlDbType.Int).Value = ID;
                 SqlDataReader drPersonas = cmdPersona.ExecuteReader();
                 if (drPersonas.Read())
