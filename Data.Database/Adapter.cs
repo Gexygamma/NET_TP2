@@ -36,17 +36,17 @@ namespace Data.Database
 
         public void Save(BE be)
         {
-            if (be.State == BusinessEntity.States.New)
+            switch (be.State)
             {
-                Insert(be);
-            }
-            else if (be.State == BusinessEntity.States.Modified)
-            {
-                Update(be);
-            }
-            else if (be.State == BusinessEntity.States.Deleted)
-            {
-                Delete(be.ID);
+                case BusinessEntity.States.New:
+                    Insert(be);
+                    break;
+                case BusinessEntity.States.Modified:
+                    Update(be);
+                    break;
+                case BusinessEntity.States.Deleted:
+                    Delete(be.ID);
+                    break;
             }
             be.State = BusinessEntity.States.Unmodified;
         }
