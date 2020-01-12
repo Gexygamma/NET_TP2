@@ -29,11 +29,6 @@ namespace Business.Logic
             return UsuarioData.GetNombreUsuario(nombreUsuario);
         }
 
-        public void Delete(int ID)
-        {
-            UsuarioData.Delete(ID);
-        }
-
         public void Save(Usuario usuario)
         {
             UsuarioData.Save(usuario);

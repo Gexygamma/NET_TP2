@@ -24,11 +24,6 @@ namespace Business.Logic
             return PersonaData.GetOne(ID);
         }
 
-        public void Delete(int ID)
-        {
-            PersonaData.Delete(ID);
-        }
-
         public void Save(Persona persona)
         {
             PersonaData.Save(persona);

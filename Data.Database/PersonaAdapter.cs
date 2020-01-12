@@ -7,9 +7,9 @@ using Business.Entities;
 
 namespace Data.Database
 {
-    public class PersonaAdapter : Adapter
+    public class PersonaAdapter : Adapter<Persona>
     {
-        private Persona CrearPersonaDesdeReader(SqlDataReader dr)
+        protected override Persona CrearDesdeReader(SqlDataReader dr)
         {
             Persona persona = new Persona
             {
@@ -27,17 +27,30 @@ namespace Data.Database
             return persona;
         }
 
+        protected override void CargarParametrosSql(SqlCommand cmd, Persona persona)
+        {
+            cmd.Parameters.Add("@nombre", SqlDbType.VarChar, 50).Value = persona.Nombre;
+            cmd.Parameters.Add("@apellido", SqlDbType.VarChar, 50).Value = persona.Apellido;
+            cmd.Parameters.Add("@direccion", SqlDbType.VarChar, 50).Value = persona.Direccion;
+            cmd.Parameters.Add("@email", SqlDbType.VarChar, 50).Value = persona.Email;
+            cmd.Parameters.Add("@telefono", SqlDbType.VarChar, 50).Value = persona.Telefono;
+            cmd.Parameters.Add("@fecha_nac", SqlDbType.DateTime).Value = persona.FechaNacimiento;
+            cmd.Parameters.Add("@legajo", SqlDbType.Int).Value = persona.Legajo;
+            cmd.Parameters.Add("@tipo_persona", SqlDbType.Int).Value = (int)persona.TipoPersona;
+            cmd.Parameters.Add("@id_plan", SqlDbType.Int).Value = (int)persona.IdPlan;
+        }
+
         public List<Persona> GetAll()
         {
             List<Persona> personas = new List<Persona>();
             try
             {
                 OpenConnection();
-                SqlCommand cmdPersonas = new SqlCommand("select * from personas", sqlConn);
+                SqlCommand cmdPersonas = new SqlCommand("SELECT * FROM personas", SqlConn);
                 SqlDataReader drPersonas = cmdPersonas.ExecuteReader();
                 while (drPersonas.Read())
                 {
-                    Persona persona = CrearPersonaDesdeReader(drPersonas);
+                    Persona persona = CrearDesdeReader(drPersonas);
                     personas.Add(persona);
                 }
                 drPersonas.Close();
@@ -60,12 +73,12 @@ namespace Data.Database
             try
             {
                 OpenConnection();
-                SqlCommand cmdPersona = new SqlCommand("select * from personas where id_persona=@id", sqlConn);
+                SqlCommand cmdPersona = new SqlCommand("SELECT * FROM personas WHERE id_persona=@id", SqlConn);
                 cmdPersona.Parameters.Add("@id", SqlDbType.Int).Value = ID;
                 SqlDataReader drPersonas = cmdPersona.ExecuteReader();
                 if (drPersonas.Read())
                 {
-                    persona = CrearPersonaDesdeReader(drPersonas);
+                    persona = CrearDesdeReader(drPersonas);
                 }
                 else
                 {
@@ -85,76 +98,19 @@ namespace Data.Database
             return persona;
         }
 
-        public void Delete(int ID)
+        protected override void Insert(Persona persona)
         {
             try
             {
                 OpenConnection();
-                SqlCommand cmdDelete = new SqlCommand("delete personas where id_persona=@id", sqlConn);
-                cmdDelete.Parameters.Add("@id", SqlDbType.Int).Value = ID;
-                cmdDelete.ExecuteNonQuery();
-            }
-            catch (Exception Ex)
-            {
-                Exception ExcepcionManejada = new Exception("Error al eliminar persona", Ex);
-                throw ExcepcionManejada;
-            }
-            finally
-            {
-                CloseConnection();
-            }
-        }
-
-        protected void Update(Persona persona)
-        {
-            try
-            {
-                OpenConnection();
-                SqlCommand cmdSave = new SqlCommand(
-                    "UPDATE usuarios SET nombre=@nombre, apellido=@apellido, direccion=@direccion, email=@email, " +
-                    "telefono=@telefono, fecha_nac=@fecha_nac, legajo=@legajo, tipo_persona=@tipo_persona " +
-                    "WHERE id_usuario=@id", sqlConn);
-                cmdSave.Parameters.Add("@id", SqlDbType.Int).Value = persona.ID;
-                cmdSave.Parameters.Add("@nombre", SqlDbType.VarChar, 50).Value = persona.Nombre;
-                cmdSave.Parameters.Add("@apellido", SqlDbType.VarChar, 50).Value = persona.Apellido;
-                cmdSave.Parameters.Add("@direccion", SqlDbType.VarChar, 50).Value = persona.Direccion;
-                cmdSave.Parameters.Add("@email", SqlDbType.VarChar, 50).Value = persona.Email;
-                cmdSave.Parameters.Add("@telefono", SqlDbType.VarChar, 50).Value = persona.Telefono;
-                cmdSave.Parameters.Add("@fecha_nac", SqlDbType.DateTime).Value = persona.FechaNacimiento;
-                cmdSave.Parameters.Add("@legajo", SqlDbType.Int).Value = persona.Legajo;
-                cmdSave.Parameters.Add("@tipo_persona", SqlDbType.Int).Value = (int)persona.TipoPersona;
-                cmdSave.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                Exception ExcepcionManejada = new Exception("Error al modificar datos de la persona", ex);
-                throw ExcepcionManejada;
-            }
-            finally
-            {
-                CloseConnection();
-            }
-        }
-        protected void Insert(Persona persona)
-        {
-            try
-            {
-                OpenConnection();
-                SqlCommand cmdSave = new SqlCommand(
-                   "insert into personas(nombre,apellido,direccion,email,telefono,fecha_nac,legajo,tipo_persona)" +
-                   "values (@nombre,@apellido,@direccion,@email,@telefono,@fecha_nac,@legajo,@tipo_persona)" +
-                   "select @@identity", // Esta última línea es para recuperar el ID autogenerado desde la bd.
-                   sqlConn);
-                cmdSave.Parameters.Add("@nombre", SqlDbType.VarChar, 50).Value = persona.Nombre;
-                cmdSave.Parameters.Add("@apellido", SqlDbType.VarChar, 50).Value = persona.Apellido;
-                cmdSave.Parameters.Add("@direccion", SqlDbType.VarChar, 50).Value = persona.Direccion;
-                cmdSave.Parameters.Add("@email", SqlDbType.VarChar, 50).Value = persona.Email;
-                cmdSave.Parameters.Add("@telefono", SqlDbType.VarChar, 50).Value = persona.Telefono;
-                cmdSave.Parameters.Add("@fecha_nac", SqlDbType.DateTime).Value = persona.FechaNacimiento;
-                cmdSave.Parameters.Add("@legajo", SqlDbType.Int).Value = persona.Legajo;
-                cmdSave.Parameters.Add("@tipo_persona", SqlDbType.Int).Value = (int)persona.TipoPersona;
+                SqlCommand cmdInsert = new SqlCommand(
+                   "INSERT INTO personas(nombre, apellido, direccion, email, telefono, fecha_nac, legajo, tipo_persona)" +
+                   "VALUES (@nombre, @apellido, @direccion, @email, @telefono, @fecha_nac, @legajo, @tipo_persona)" +
+                   "SELECT @@identity", // Esta última línea es para recuperar el ID autogenerado desde la bd.
+                   SqlConn);
+                CargarParametrosSql(cmdInsert, persona);
                 // Se obtiene el ID autogenerado y se lo guarda a la entidad.
-                persona.ID = Decimal.ToInt32((decimal)cmdSave.ExecuteScalar());
+                persona.ID = decimal.ToInt32((decimal)cmdInsert.ExecuteScalar());
             }
             catch (Exception ex)
             {
@@ -167,21 +123,48 @@ namespace Data.Database
             }
         }
 
-        public void Save(Persona persona)
+        protected override void Update(Persona persona)
         {
-            if (persona.State == BusinessEntity.States.New)
+            try
             {
-                Insert(persona);
+                OpenConnection();
+                SqlCommand cmdUpdate = new SqlCommand(
+                    "UPDATE usuarios SET nombre=@nombre, apellido=@apellido, direccion=@direccion, email=@email, " +
+                    "telefono=@telefono, fecha_nac=@fecha_nac, legajo=@legajo, tipo_persona=@tipo_persona " +
+                    "WHERE id_usuario=@id", SqlConn);
+                cmdUpdate.Parameters.Add("@id", SqlDbType.Int).Value = persona.ID;
+                CargarParametrosSql(cmdUpdate, persona);
+                cmdUpdate.ExecuteNonQuery();
             }
-            else if (persona.State == BusinessEntity.States.Deleted)
+            catch (Exception ex)
             {
-                Delete(persona.ID);
+                Exception ExcepcionManejada = new Exception("Error al modificar datos de la persona", ex);
+                throw ExcepcionManejada;
             }
-            else if (persona.State == BusinessEntity.States.Modified)
+            finally
             {
-                Update(persona);
+                CloseConnection();
             }
-            persona.State = BusinessEntity.States.Unmodified;
+        }
+
+        protected override void Delete(int ID)
+        {
+            try
+            {
+                OpenConnection();
+                SqlCommand cmdDelete = new SqlCommand("DELETE personas WHERE id_persona=@id", SqlConn);
+                cmdDelete.Parameters.Add("@id", SqlDbType.Int).Value = ID;
+                cmdDelete.ExecuteNonQuery();
+            }
+            catch (Exception Ex)
+            {
+                Exception ExcepcionManejada = new Exception("Error al eliminar persona", Ex);
+                throw ExcepcionManejada;
+            }
+            finally
+            {
+                CloseConnection();
+            }
         }
     }
 }
