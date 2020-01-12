@@ -37,7 +37,7 @@ namespace Data.Database
             cmd.Parameters.Add("@fecha_nac", SqlDbType.DateTime).Value = persona.FechaNacimiento;
             cmd.Parameters.Add("@legajo", SqlDbType.Int).Value = persona.Legajo;
             cmd.Parameters.Add("@tipo_persona", SqlDbType.Int).Value = (int)persona.TipoPersona;
-            cmd.Parameters.Add("@id_plan", SqlDbType.Int).Value = (int)persona.IdPlan;
+            cmd.Parameters.Add("@id_plan", SqlDbType.Int).Value = persona.IdPlan;
         }
 
         public List<Persona> GetAll()
@@ -104,8 +104,8 @@ namespace Data.Database
             {
                 OpenConnection();
                 SqlCommand cmdInsert = new SqlCommand(
-                   "INSERT INTO personas(nombre, apellido, direccion, email, telefono, fecha_nac, legajo, tipo_persona)" +
-                   "VALUES (@nombre, @apellido, @direccion, @email, @telefono, @fecha_nac, @legajo, @tipo_persona)" +
+                   "INSERT INTO personas(nombre, apellido, direccion, email, telefono, fecha_nac, legajo, tipo_persona, id_plan)" +
+                   "VALUES (@nombre, @apellido, @direccion, @email, @telefono, @fecha_nac, @legajo, @tipo_persona, @id_plan)" +
                    "SELECT @@identity", // Esta última línea es para recuperar el ID autogenerado desde la bd.
                    SqlConn);
                 CargarParametrosSql(cmdInsert, persona);
@@ -129,9 +129,9 @@ namespace Data.Database
             {
                 OpenConnection();
                 SqlCommand cmdUpdate = new SqlCommand(
-                    "UPDATE usuarios SET nombre=@nombre, apellido=@apellido, direccion=@direccion, email=@email, " +
+                    "UPDATE personas SET nombre=@nombre, apellido=@apellido, direccion=@direccion, email=@email, " +
                     "telefono=@telefono, fecha_nac=@fecha_nac, legajo=@legajo, tipo_persona=@tipo_persona " +
-                    "WHERE id_usuario=@id", SqlConn);
+                    "WHERE id_persona=@id", SqlConn);
                 cmdUpdate.Parameters.Add("@id", SqlDbType.Int).Value = persona.ID;
                 CargarParametrosSql(cmdUpdate, persona);
                 cmdUpdate.ExecuteNonQuery();
