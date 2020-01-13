@@ -98,6 +98,30 @@ namespace Data.Database
             return persona;
         }
 
+        public int CountAdmins()
+        {
+            int count = 0;
+            try
+            {
+                OpenConnection();
+                SqlCommand cmdCount = new SqlCommand("SELECT count(*) AS count FROM personas WHERE tipo_persona=2", SqlConn);
+                SqlDataReader dr = cmdCount.ExecuteReader();
+                dr.Read();
+                count = (int)dr["count"];
+                dr.Close();
+            }
+            catch (Exception Ex)
+            {
+                Exception ExcepcionManejada = new Exception("Error al contar cantidad de administradores", Ex);
+                throw ExcepcionManejada;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return count;
+        }
+
         protected override void Insert(Persona persona)
         {
             try

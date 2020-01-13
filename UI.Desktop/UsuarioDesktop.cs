@@ -75,6 +75,13 @@ namespace UI.Desktop
             MapearDeDatos();
         }
 
+        // Constructor usado solamente para dar de alta al primer usuario administrador.
+        public UsuarioDesktop() : this(ModoForm.Alta)
+        {
+            cmbTipoUsuario.SelectedIndex = 2;
+            cmbTipoUsuario.Enabled = false;
+        }
+
         public override void MapearDeDatos()
         {
             txtNombreUsuario.Text = UsuarioActual.NombreUsuario;
@@ -125,7 +132,9 @@ namespace UI.Desktop
                 if (PersonaActual.TipoPersona == TipoPersona.Admin)
                 {
                     PersonaActual.Legajo = 0;
-                    PersonaActual.IdPlan = 0;
+                    PersonaActual.IdPlan = 1;
+                    // Los administradores no tienen plan, pero en la bd la columna tiene
+                    // el constrain not null, asi q lo igualo a 1 pero no lo muestro.
                 }
                 else
                 {
@@ -199,7 +208,7 @@ namespace UI.Desktop
             else
             {
                 GuardarCambios();
-                Close();
+                DialogResult = DialogResult.OK;
             }
         }
 

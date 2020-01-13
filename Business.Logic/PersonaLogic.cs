@@ -24,6 +24,11 @@ namespace Business.Logic
             return PersonaData.GetOne(ID);
         }
 
+        public int CountAdmins()
+        {
+            return PersonaData.CountAdmins();
+        }
+
         public void Save(Persona persona)
         {
             PersonaData.Save(persona);
