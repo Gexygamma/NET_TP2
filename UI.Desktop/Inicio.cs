@@ -46,7 +46,7 @@ namespace UI.Desktop
         /// </summary>
         private void PersonalizarPantalla()
         {
-            lblTest.Text = string.Format("Bienvenido {0} {1}!", PersonaLogueada.Nombre, PersonaLogueada.Apellido);
+            lblWelcome.Text = string.Format("Bienvenido {0} {1}!", PersonaLogueada.Nombre, PersonaLogueada.Apellido);
             switch (PersonaLogueada.TipoPersona)
             {
                 case TipoPersona.Alumno:
@@ -97,6 +97,7 @@ namespace UI.Desktop
             ddAlumno.Visible = false;
             ddProfesor.Visible = false;
             ddAdministrador.Visible = false;
+            lblWelcome.Text = "No hay usuario logueado.";
             InvocarLogin();
             PersonalizarPantalla();
         }

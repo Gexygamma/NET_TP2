@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Inicio));
-            this.lblTest = new System.Windows.Forms.Label();
+            this.lblWelcome = new System.Windows.Forms.Label();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.toolStripSistema = new System.Windows.Forms.ToolStripDropDownButton();
             this.cerrarSesiónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,14 +46,14 @@
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
-            // lblTest
+            // lblWelcome
             // 
-            this.lblTest.AutoSize = true;
-            this.lblTest.Location = new System.Drawing.Point(12, 25);
-            this.lblTest.Name = "lblTest";
-            this.lblTest.Size = new System.Drawing.Size(128, 13);
-            this.lblTest.TabIndex = 0;
-            this.lblTest.Text = "No hay usuario logueado.";
+            this.lblWelcome.AutoSize = true;
+            this.lblWelcome.Location = new System.Drawing.Point(12, 25);
+            this.lblWelcome.Name = "lblWelcome";
+            this.lblWelcome.Size = new System.Drawing.Size(128, 13);
+            this.lblWelcome.TabIndex = 0;
+            this.lblWelcome.Text = "No hay usuario logueado.";
             // 
             // toolStrip
             // 
@@ -113,7 +113,7 @@
             // usuariosToolStripMenuItem
             // 
             this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
-            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.usuariosToolStripMenuItem.Text = "Usuarios...";
             this.usuariosToolStripMenuItem.Click += new System.EventHandler(this.usuariosToolStripMenuItem_Click);
             // 
@@ -187,7 +187,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.toolStrip);
-            this.Controls.Add(this.lblTest);
+            this.Controls.Add(this.lblWelcome);
             this.Name = "Inicio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sistema de Gestión Académico";
@@ -202,7 +202,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lblTest;
+        private System.Windows.Forms.Label lblWelcome;
         private System.Windows.Forms.ToolStrip toolStrip;
         private System.Windows.Forms.ToolStripDropDownButton toolStripSistema;
         private System.Windows.Forms.ToolStripMenuItem cerrarSesiónToolStripMenuItem;
