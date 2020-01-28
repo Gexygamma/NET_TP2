@@ -78,13 +78,10 @@ namespace UI.Desktop
             if (personaLogic.CountAdmins() == 0)
             {
                 DialogResult result = MessageBox.Show("¡Bienvenido al Sistema! No hay administradores cargados en la base de datos. ¿Desea crear uno?",
-                    "Login", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
-                {
-                    UsuarioDesktop usuarioForm = new UsuarioDesktop();
-                    usuarioForm.ShowDialog();
-                }
+                    "Login", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                UsuarioDesktop usuarioForm = new UsuarioDesktop();
+                usuarioForm.ShowDialog();
+                
             }
             InvocarLogin();
             PersonalizarPantalla();
