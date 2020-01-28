@@ -166,9 +166,9 @@ namespace UI.Desktop
         public override void GuardarCambios()
         {
             MapearADatos();
-            PersonaLogic.Save(PersonaActual);
             UsuarioActual.IdPersona = PersonaActual.ID;
             UsuarioLogic.Save(UsuarioActual);
+            PersonaLogic.Save(PersonaActual);
         }
 
         public bool CamposNoVacios()
