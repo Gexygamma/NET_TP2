@@ -32,7 +32,7 @@ namespace Data.Database
             try
             {
                 OpenConnection();
-                SqlCommand cmdPlanes = new SqlCommand("SELECT * FROM planes", SqlConn);
+                SqlCommand cmdPlanes = new SqlCommand("SELECT * FROM planes WHERE NOT id_plan=1", SqlConn);
                 SqlDataReader drPlanes = cmdPlanes.ExecuteReader();
                 while (drPlanes.Read())
                 {

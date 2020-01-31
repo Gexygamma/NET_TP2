@@ -63,6 +63,18 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="PlanEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PlanEditor.Designer.cs">
+      <DependentUpon>PlanEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Planes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Planes.Designer.cs">
+      <DependentUpon>Planes.cs</DependentUpon>
+    </Compile>
     <Compile Include="UsuarioDesktop.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +98,12 @@
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PlanEditor.resx">
+      <DependentUpon>PlanEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Planes.resx">
+      <DependentUpon>Planes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UsuarioDesktop.resx">
       <DependentUpon>UsuarioDesktop.cs</DependentUpon>
     </EmbeddedResource>
@@ -102,6 +120,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Properties\DataSources\Business.Entities.Plan.datasource" />
+    <None Include="Properties\DataSources\Business.Logic.PlanLogic.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

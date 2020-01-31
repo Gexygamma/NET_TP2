@@ -43,20 +43,23 @@
             this.reporteDeCursosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteDePlanesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblVersion = new System.Windows.Forms.Label();
+            this.planesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblWelcome
             // 
             this.lblWelcome.AutoSize = true;
-            this.lblWelcome.Location = new System.Drawing.Point(12, 25);
+            this.lblWelcome.Location = new System.Drawing.Point(16, 31);
+            this.lblWelcome.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblWelcome.Name = "lblWelcome";
-            this.lblWelcome.Size = new System.Drawing.Size(128, 13);
+            this.lblWelcome.Size = new System.Drawing.Size(171, 17);
             this.lblWelcome.TabIndex = 0;
             this.lblWelcome.Text = "No hay usuario logueado.";
             // 
             // toolStrip
             // 
+            this.toolStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSistema,
             this.ddAdministrador,
@@ -65,7 +68,7 @@
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStrip.Size = new System.Drawing.Size(800, 25);
+            this.toolStrip.Size = new System.Drawing.Size(1067, 27);
             this.toolStrip.TabIndex = 1;
             this.toolStrip.Text = "toolStrip1";
             // 
@@ -79,13 +82,13 @@
             this.toolStripSistema.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripSistema.Name = "toolStripSistema";
             this.toolStripSistema.ShowDropDownArrow = false;
-            this.toolStripSistema.Size = new System.Drawing.Size(52, 22);
+            this.toolStripSistema.Size = new System.Drawing.Size(65, 24);
             this.toolStripSistema.Text = "Sistema";
             // 
             // cerrarSesiónToolStripMenuItem
             // 
             this.cerrarSesiónToolStripMenuItem.Name = "cerrarSesiónToolStripMenuItem";
-            this.cerrarSesiónToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.cerrarSesiónToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.cerrarSesiónToolStripMenuItem.Text = "Cerrar Sesión";
             this.cerrarSesiónToolStripMenuItem.Click += new System.EventHandler(this.cerrarSesiónToolStripMenuItem_Click);
             // 
@@ -93,7 +96,7 @@
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
             this.salirToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
@@ -101,19 +104,20 @@
             // 
             this.ddAdministrador.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.ddAdministrador.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.usuariosToolStripMenuItem});
+            this.usuariosToolStripMenuItem,
+            this.planesToolStripMenuItem});
             this.ddAdministrador.Image = ((System.Drawing.Image)(resources.GetObject("ddAdministrador.Image")));
             this.ddAdministrador.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ddAdministrador.Name = "ddAdministrador";
             this.ddAdministrador.ShowDropDownArrow = false;
-            this.ddAdministrador.Size = new System.Drawing.Size(87, 22);
+            this.ddAdministrador.Size = new System.Drawing.Size(108, 24);
             this.ddAdministrador.Text = "Administrador";
             this.ddAdministrador.Visible = false;
             // 
             // usuariosToolStripMenuItem
             // 
             this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
-            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.usuariosToolStripMenuItem.Text = "Usuarios...";
             this.usuariosToolStripMenuItem.Click += new System.EventHandler(this.usuariosToolStripMenuItem_Click);
             // 
@@ -127,20 +131,20 @@
             this.ddAlumno.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ddAlumno.Name = "ddAlumno";
             this.ddAlumno.ShowDropDownArrow = false;
-            this.ddAlumno.Size = new System.Drawing.Size(54, 22);
+            this.ddAlumno.Size = new System.Drawing.Size(65, 24);
             this.ddAlumno.Text = "Alumno";
             this.ddAlumno.Visible = false;
             // 
             // inscribirseACursadoToolStripMenuItem
             // 
             this.inscribirseACursadoToolStripMenuItem.Name = "inscribirseACursadoToolStripMenuItem";
-            this.inscribirseACursadoToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.inscribirseACursadoToolStripMenuItem.Size = new System.Drawing.Size(218, 26);
             this.inscribirseACursadoToolStripMenuItem.Text = "Inscribirse a cursado";
             // 
             // registroDeNotasToolStripMenuItem
             // 
             this.registroDeNotasToolStripMenuItem.Name = "registroDeNotasToolStripMenuItem";
-            this.registroDeNotasToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.registroDeNotasToolStripMenuItem.Size = new System.Drawing.Size(218, 26);
             this.registroDeNotasToolStripMenuItem.Text = "Registro de notas";
             // 
             // ddProfesor
@@ -153,20 +157,20 @@
             this.ddProfesor.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ddProfesor.Name = "ddProfesor";
             this.ddProfesor.ShowDropDownArrow = false;
-            this.ddProfesor.Size = new System.Drawing.Size(55, 22);
+            this.ddProfesor.Size = new System.Drawing.Size(68, 24);
             this.ddProfesor.Text = "Profesor";
             this.ddProfesor.Visible = false;
             // 
             // reporteDeCursosToolStripMenuItem
             // 
             this.reporteDeCursosToolStripMenuItem.Name = "reporteDeCursosToolStripMenuItem";
-            this.reporteDeCursosToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.reporteDeCursosToolStripMenuItem.Size = new System.Drawing.Size(205, 26);
             this.reporteDeCursosToolStripMenuItem.Text = "Reporte de cursos";
             // 
             // reporteDePlanesToolStripMenuItem
             // 
             this.reporteDePlanesToolStripMenuItem.Name = "reporteDePlanesToolStripMenuItem";
-            this.reporteDePlanesToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.reporteDePlanesToolStripMenuItem.Size = new System.Drawing.Size(205, 26);
             this.reporteDePlanesToolStripMenuItem.Text = "Reporte de planes";
             // 
             // lblVersion
@@ -174,20 +178,29 @@
             this.lblVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblVersion.AutoSize = true;
             this.lblVersion.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.lblVersion.Location = new System.Drawing.Point(751, 428);
+            this.lblVersion.Location = new System.Drawing.Point(1001, 527);
+            this.lblVersion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(37, 13);
+            this.lblVersion.Size = new System.Drawing.Size(47, 17);
             this.lblVersion.TabIndex = 2;
             this.lblVersion.Text = "v4.2.0";
             // 
+            // planesToolStripMenuItem
+            // 
+            this.planesToolStripMenuItem.Name = "planesToolStripMenuItem";
+            this.planesToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.planesToolStripMenuItem.Text = "Planes";
+            this.planesToolStripMenuItem.Click += new System.EventHandler(this.planesToolStripMenuItem_Click);
+            // 
             // Inicio
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1067, 554);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.lblWelcome);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Inicio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sistema de Gestión Académico";
@@ -216,5 +229,6 @@
         private System.Windows.Forms.ToolStripMenuItem registroDeNotasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reporteDeCursosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reporteDePlanesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem planesToolStripMenuItem;
     }
 }

@@ -53,6 +53,37 @@ namespace Data.Database
             return especialidades;
         }
 
+        public Especialidad GetOne(int ID)
+        {
+            Especialidad especialidad;
+            try
+            {
+                OpenConnection();
+                SqlCommand cmdEspecialidad = new SqlCommand("SELECT * FROM especialidades WHERE id_especialidad=@id", SqlConn);
+                cmdEspecialidad.Parameters.Add("@id", SqlDbType.Int).Value = ID;
+                SqlDataReader drEspecialidad = cmdEspecialidad.ExecuteReader();
+                if (drEspecialidad.Read())
+                {
+                    especialidad = CrearDesdeReader(drEspecialidad);
+                }
+                else
+                {
+                    especialidad = null;
+                }
+                drEspecialidad.Close();
+            }
+            catch (Exception Ex)
+            {
+                Exception ExcepcionManejada = new Exception("Error al recuperar especialidad por id", Ex);
+                throw ExcepcionManejada;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return especialidad;
+        }
+
         protected override void Insert(Especialidad especialidad)
         {
             try
