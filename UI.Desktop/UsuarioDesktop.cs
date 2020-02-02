@@ -167,8 +167,9 @@ namespace UI.Desktop
         {
             MapearADatos();
             UsuarioActual.IdPersona = PersonaActual.ID;
-            UsuarioLogic.Save(UsuarioActual);
             PersonaLogic.Save(PersonaActual);
+            UsuarioLogic.Save(UsuarioActual);
+           
         }
 
         public bool CamposNoVacios()

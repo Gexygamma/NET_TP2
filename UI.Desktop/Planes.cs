@@ -52,17 +52,17 @@ namespace UI.Desktop
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            int ID = ((Plan)dgvPlanes.SelectedRows[0].DataBoundItem).ID;
-
-            PlanEditor formPlan = new PlanEditor(ApplicationForm.ModoForm.Modificacion, ID);
+            DataRowView fila = (DataRowView)dgvPlanes.SelectedRows[0].DataBoundItem;
+            int  ID =Int32.Parse( fila[0].ToString());    
+            PlanEditor formPlan = new PlanEditor(ApplicationForm.ModoForm.Modificacion,ID );
             formPlan.ShowDialog();
-            ActualizarListado();
+            ActualizarListado(); 
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            int ID = ((Plan)dgvPlanes.SelectedRows[0].DataBoundItem).ID;
-
+            DataRowView fila = (DataRowView)dgvPlanes.SelectedRows[0].DataBoundItem;
+            int ID = Int32.Parse(fila[0].ToString());
             PlanEditor formPlan = new PlanEditor(ApplicationForm.ModoForm.Baja, ID);
             formPlan.ShowDialog();
             ActualizarListado();

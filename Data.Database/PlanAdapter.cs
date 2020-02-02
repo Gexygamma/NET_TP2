@@ -135,6 +135,7 @@ namespace Data.Database
             {
                 Exception ExcepcionManejada = new Exception("Error al eliminar plan", ex);
                 throw ExcepcionManejada;
+               
             }
             finally
             {
