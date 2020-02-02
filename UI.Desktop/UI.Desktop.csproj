@@ -63,6 +63,18 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="MateriaEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MateriaEditor.Designer.cs">
+      <DependentUpon>MateriaEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Materias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Materias.Designer.cs">
+      <DependentUpon>Materias.cs</DependentUpon>
+    </Compile>
     <Compile Include="PlanEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +109,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MateriaEditor.resx">
+      <DependentUpon>MateriaEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Materias.resx">
+      <DependentUpon>Materias.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PlanEditor.resx">
       <DependentUpon>PlanEditor.cs</DependentUpon>

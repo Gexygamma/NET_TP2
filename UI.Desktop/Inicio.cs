@@ -115,5 +115,11 @@ namespace UI.Desktop
             Planes formPlanes = new Planes();
             formPlanes.ShowDialog();
         }
+
+        private void materiasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Materias formMaterias = new Materias();
+            formMaterias.ShowDialog();
+        }
     }
 }
