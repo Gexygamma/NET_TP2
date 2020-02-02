@@ -41,10 +41,7 @@ namespace UI.Desktop
         public MateriaEditor(ModoForm modo, int ID):this(modo)
         {
             MateriaActual = MateriaLogic.GetOne(ID);
-            if (Modo == ModoForm.Modificacion || Modo == ModoForm.Baja)
-            {
-                MapearDeDatos();
-            }
+            MapearDeDatos();
         }
 
         public override void MapearDeDatos()

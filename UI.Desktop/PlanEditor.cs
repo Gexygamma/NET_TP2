@@ -37,12 +37,13 @@ namespace UI.Desktop
         public PlanEditor(ModoForm modo, int ID) : this(modo)
         {
             PlanActual = PlanLogic.GetOne(ID);
+            MapearDeDatos();
         }
 
         public override void MapearDeDatos()
         {
             txtDescripcion.Text = PlanActual.Descripcion;
-            cbEspecialidad.SelectedItem = EspecialidadLogic.GetOne(PlanActual.IdEspecialidad);
+            cbEspecialidad.SelectedIndex = cbEspecialidad.FindStringExact(EspecialidadLogic.GetOne(PlanActual.IdEspecialidad).Descripcion);
         }
 
         public override void MapearADatos()
