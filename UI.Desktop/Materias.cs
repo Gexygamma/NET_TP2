@@ -26,6 +26,16 @@ namespace UI.Desktop
         private void ActualizarListado()
         {
             dgvMaterias.DataSource = MateriaLogic.GetConsultaMaterias();
+            if (dgvMaterias.RowCount > 0)
+            {
+                tsbEditar.Enabled = true;
+                tsbEliminar.Enabled = true;
+            }
+            else
+            {
+                tsbEditar.Enabled = false;
+                tsbEliminar.Enabled = false;
+            }
         }
 
         private void Materias_Load(object sender, EventArgs e)

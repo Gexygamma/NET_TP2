@@ -13,7 +13,7 @@ using Util;
 
 namespace UI.Desktop
 {
-    public partial class UsuarioDesktop : ApplicationForm
+    public partial class UsuarioEditor : ApplicationForm
     {
         private readonly UsuarioLogic UsuarioLogic;
         private readonly PersonaLogic PersonaLogic;
@@ -22,7 +22,7 @@ namespace UI.Desktop
         private Usuario UsuarioActual { get; set; }
         private Persona PersonaActual { get; set; }
 
-        public UsuarioDesktop(ModoForm modo)
+        public UsuarioEditor(ModoForm modo)
         {
             InitializeComponent();
             Modo = modo;
@@ -68,7 +68,7 @@ namespace UI.Desktop
             cmbPlan.SelectedIndex = -1;
         }
 
-        public UsuarioDesktop(ModoForm modo, int id) : this(modo)
+        public UsuarioEditor(ModoForm modo, int id) : this(modo)
         {
             UsuarioActual = UsuarioLogic.GetOne(id);
             PersonaActual = PersonaLogic.GetOne(UsuarioActual.IdPersona);
@@ -76,7 +76,7 @@ namespace UI.Desktop
         }
 
         // Constructor usado solamente para dar de alta al primer usuario administrador.
-        public UsuarioDesktop() : this(ModoForm.Alta)
+        public UsuarioEditor() : this(ModoForm.Alta)
         {
             cmbTipoUsuario.SelectedIndex = 2;
             cmbTipoUsuario.Enabled = false;

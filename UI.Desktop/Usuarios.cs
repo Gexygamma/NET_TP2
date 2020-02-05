@@ -28,6 +28,16 @@ namespace UI.Desktop
         public void ActualizarListado()
         {
             dgvUsuarios.DataSource = UsuarioLogic.GetAll();
+            if (dgvUsuarios.RowCount > 0)
+            {
+                tsbEditar.Enabled = true;
+                tsbEliminar.Enabled = true;
+            }
+            else
+            {
+                tsbEditar.Enabled = false;
+                tsbEliminar.Enabled = false;
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -42,7 +52,7 @@ namespace UI.Desktop
 
         private void tsbNuevo_Click(object sender, EventArgs e)
         {
-            UsuarioDesktop formUsuario = new UsuarioDesktop(ApplicationForm.ModoForm.Alta);
+            UsuarioEditor formUsuario = new UsuarioEditor(ApplicationForm.ModoForm.Alta);
             formUsuario.ShowDialog();
             ActualizarListado();
         }
@@ -51,7 +61,7 @@ namespace UI.Desktop
         {
             int ID = ((Usuario)dgvUsuarios.SelectedRows[0].DataBoundItem).ID;
 
-            UsuarioDesktop formUsuario = new UsuarioDesktop(ApplicationForm.ModoForm.Modificacion, ID);
+            UsuarioEditor formUsuario = new UsuarioEditor(ApplicationForm.ModoForm.Modificacion, ID);
             formUsuario.ShowDialog();
             ActualizarListado();
         }
@@ -60,7 +70,7 @@ namespace UI.Desktop
         {
             int ID = ((Usuario)dgvUsuarios.SelectedRows[0].DataBoundItem).ID;
 
-            UsuarioDesktop formUsuario = new UsuarioDesktop(ApplicationForm.ModoForm.Baja, ID);
+            UsuarioEditor formUsuario = new UsuarioEditor(ApplicationForm.ModoForm.Baja, ID);
             formUsuario.ShowDialog();
             ActualizarListado();
         }

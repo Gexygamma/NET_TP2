@@ -87,11 +87,11 @@
     <Compile Include="Planes.Designer.cs">
       <DependentUpon>Planes.cs</DependentUpon>
     </Compile>
-    <Compile Include="UsuarioDesktop.cs">
+    <Compile Include="UsuarioEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UsuarioDesktop.Designer.cs">
-      <DependentUpon>UsuarioDesktop.cs</DependentUpon>
+    <Compile Include="UsuarioEditor.Designer.cs">
+      <DependentUpon>UsuarioEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="Usuarios.cs">
       <SubType>Form</SubType>
@@ -122,8 +122,8 @@
     <EmbeddedResource Include="Planes.resx">
       <DependentUpon>Planes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UsuarioDesktop.resx">
-      <DependentUpon>UsuarioDesktop.cs</DependentUpon>
+    <EmbeddedResource Include="UsuarioEditor.resx">
+      <DependentUpon>UsuarioEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Usuarios.resx">
       <DependentUpon>Usuarios.cs</DependentUpon>
@@ -166,6 +166,21 @@
       <Project>{9fd02cfa-ef42-4d7a-be31-2e0075b6f9de}</Project>
       <Name>Util</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_nuevo.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pencil-2-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus-4-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\x-mark-3-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\school-32.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

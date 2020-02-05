@@ -26,6 +26,16 @@ namespace UI.Desktop
         private void ActualizarListado()
         {
             dgvPlanes.DataSource = PlanLogic.GetConsultaPlanes();
+            if (dgvPlanes.RowCount > 0)
+            {
+                tsbEditar.Enabled = true;
+                tsbEliminar.Enabled = true;
+            }
+            else
+            {
+                tsbEditar.Enabled = false;
+                tsbEliminar.Enabled = false;
+            }
         }
 
         private void Planes_Load(object sender, EventArgs e)

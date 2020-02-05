@@ -79,7 +79,7 @@ namespace UI.Desktop
             {
                 DialogResult result = MessageBox.Show("¡Bienvenido al Sistema! No hay administradores cargados en la base de datos. ¿Desea crear uno?",
                     "Login", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                UsuarioDesktop usuarioForm = new UsuarioDesktop();
+                UsuarioEditor usuarioForm = new UsuarioEditor();
                 usuarioForm.ShowDialog();
                 
             }
