@@ -51,17 +51,33 @@
     <Compile Include="ApplicationForm.Designer.cs">
       <DependentUpon>ApplicationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="EspecialidadEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EspecialidadEditor.Designer.cs">
+      <DependentUpon>EspecialidadEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Listado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listado.Designer.cs">
+      <DependentUpon>Listado.cs</DependentUpon>
+    </Compile>
     <Compile Include="Inicio.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Inicio.Designer.cs">
       <DependentUpon>Inicio.cs</DependentUpon>
     </Compile>
+    <Compile Include="Listado.Generic.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EspecialidadListado.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="MateriaEditor.cs">
       <SubType>Form</SubType>
@@ -69,11 +85,8 @@
     <Compile Include="MateriaEditor.Designer.cs">
       <DependentUpon>MateriaEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Materias.cs">
+    <Compile Include="MateriaListado.cs">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Materias.Designer.cs">
-      <DependentUpon>Materias.cs</DependentUpon>
     </Compile>
     <Compile Include="PlanEditor.cs">
       <SubType>Form</SubType>
@@ -81,11 +94,8 @@
     <Compile Include="PlanEditor.Designer.cs">
       <DependentUpon>PlanEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Planes.cs">
+    <Compile Include="PlanListado.cs">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Planes.Designer.cs">
-      <DependentUpon>Planes.cs</DependentUpon>
     </Compile>
     <Compile Include="UsuarioEditor.cs">
       <SubType>Form</SubType>
@@ -93,16 +103,19 @@
     <Compile Include="UsuarioEditor.Designer.cs">
       <DependentUpon>UsuarioEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Usuarios.cs">
+    <Compile Include="UsuarioListado.cs">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Usuarios.Designer.cs">
-      <DependentUpon>Usuarios.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ApplicationForm.resx">
       <DependentUpon>ApplicationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EspecialidadEditor.resx">
+      <DependentUpon>EspecialidadEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listado.resx">
+      <DependentUpon>Listado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>
@@ -113,20 +126,11 @@
     <EmbeddedResource Include="MateriaEditor.resx">
       <DependentUpon>MateriaEditor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Materias.resx">
-      <DependentUpon>Materias.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="PlanEditor.resx">
       <DependentUpon>PlanEditor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Planes.resx">
-      <DependentUpon>Planes.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UsuarioEditor.resx">
       <DependentUpon>UsuarioEditor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Usuarios.resx">
-      <DependentUpon>Usuarios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

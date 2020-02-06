@@ -106,20 +106,26 @@ namespace UI.Desktop
 
         private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Usuarios formUsuarios = new Usuarios();
+            UsuarioListado formUsuarios = new UsuarioListado();
             formUsuarios.ShowDialog();
         }
 
         private void planesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Planes formPlanes = new Planes();
+            PlanListado formPlanes = new PlanListado();
             formPlanes.ShowDialog();
         }
 
         private void materiasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Materias formMaterias = new Materias();
+            MateriaListado formMaterias = new MateriaListado();
             formMaterias.ShowDialog();
+        }
+
+        private void especialidadesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EspecialidadListado formEspecialidades = new EspecialidadListado();
+            formEspecialidades.ShowDialog();
         }
     }
 }

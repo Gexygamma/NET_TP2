@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnAceptar = new System.Windows.Forms.Button();
+            this.btnConfirmar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.nHsTotales = new System.Windows.Forms.NumericUpDown();
             this.nHsSemanales = new System.Windows.Forms.NumericUpDown();
@@ -55,16 +55,16 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // btnAceptar
+            // btnConfirmar
             // 
-            this.btnAceptar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAceptar.Location = new System.Drawing.Point(279, 122);
-            this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(65, 23);
-            this.btnAceptar.TabIndex = 8;
-            this.btnAceptar.Text = "Aceptar";
-            this.btnAceptar.UseVisualStyleBackColor = true;
-            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
+            this.btnConfirmar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnConfirmar.Location = new System.Drawing.Point(279, 122);
+            this.btnConfirmar.Name = "btnConfirmar";
+            this.btnConfirmar.Size = new System.Drawing.Size(65, 23);
+            this.btnConfirmar.TabIndex = 8;
+            this.btnConfirmar.Text = "Confirmar";
+            this.btnConfirmar.UseVisualStyleBackColor = true;
+            this.btnConfirmar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // groupBox1
             // 
@@ -164,7 +164,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(354, 157);
             this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.btnAceptar);
+            this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -181,7 +181,7 @@
         #endregion
 
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.Button btnAceptar;
+        private System.Windows.Forms.Button btnConfirmar;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbPlan;

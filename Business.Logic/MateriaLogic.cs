@@ -29,29 +29,31 @@ namespace Business.Logic
             MateriaData.Save(materia);
         }
 
-        public DataTable GetConsultaMaterias()
+        public DataTable GetAllTable()
         {
             PlanAdapter planData = new PlanAdapter();
-            DataTable table = new DataTable();
-            DataRow row;
-            List<Materia> materias = GetAll();
 
+            DataTable table = new DataTable();
             table.Columns.Add("ID", typeof(int));
-            table.Columns.Add("descripcionMateria", typeof(string));
+            table.Columns.Add("descMateria", typeof(string));
             table.Columns.Add("hsSemanales", typeof(int));
             table.Columns.Add("hsTotales", typeof(int));
-            table.Columns.Add("descripcionPlan", typeof(string));
+            table.Columns.Add("descPlan", typeof(string));
 
-            foreach(Materia materia in materias)
+            List<Materia> materias = GetAll();
+            DataRow row;
+
+            foreach (Materia materia in materias)
             {
                 row = table.NewRow();
                 row["ID"] = materia.ID;
-                row["descripcionMateria"] = materia.Descripcion;
+                row["descMateria"] = materia.Descripcion;
                 row["hsSemanales"] = materia.HsSemanales;
                 row["hsTotales"] = materia.HsTotales;
-                row["descripcionPlan"] = planData.GetOne(materia.IdPlan).Descripcion;
+                row["descPlan"] = planData.GetOne(materia.IdPlan).Descripcion;
                 table.Rows.Add(row);
             }
+
             return table;
         }
 

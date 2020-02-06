@@ -19,23 +19,41 @@ namespace UI.Desktop
         
         private Materia MateriaActual { get; set; }
 
-
         public MateriaEditor(ModoForm modo)
         {
             InitializeComponent();
 
             Modo = modo;
 
+            switch (Modo)
+            {
+                case ModoForm.Alta:
+                case ModoForm.Modificacion:
+                    btnConfirmar.Text = "Guardar";
+                    break;
+                case ModoForm.Baja:
+                    btnConfirmar.Text = "Eliminar";
+                    break;
+                case ModoForm.Consulta:
+                    btnConfirmar.Text = "Aceptar";
+                    break;
+            }
+
+            if (modo == ModoForm.Baja || modo == ModoForm.Consulta)
+            {
+                txtDescripcion.ReadOnly = true;
+                cbPlan.Enabled = false;
+                nHsSemanales.ReadOnly = true;
+                nHsTotales.ReadOnly = true;
+            }
+
             MateriaLogic = new MateriaLogic();
             PlanLogic = new PlanLogic();
-        
 
             cbPlan.DataSource = PlanLogic.GetAll();
             cbPlan.DisplayMember = "Descripcion";
             cbPlan.ValueMember = "ID";
             cbPlan.SelectedIndex = -1;
-
-
         }
 
         public MateriaEditor(ModoForm modo, int ID):this(modo)
@@ -44,6 +62,8 @@ namespace UI.Desktop
             MapearDeDatos();
         }
 
+        public MateriaEditor() : this(ModoForm.Alta) { }
+
         public override void MapearDeDatos()
         {
             txtDescripcion.Text = MateriaActual.Descripcion;
@@ -51,14 +71,13 @@ namespace UI.Desktop
             nHsSemanales.Value = MateriaActual.HsSemanales;
             nHsTotales.Value = MateriaActual.HsTotales;
         }
+
         public override void MapearADatos()
         {
             if(Modo == ModoForm.Alta)
             {
-
                 MateriaActual = new Materia();
             }
-
 
             if(Modo == ModoForm.Alta || Modo == ModoForm.Modificacion)
             {
@@ -90,7 +109,6 @@ namespace UI.Desktop
             MapearADatos();
             MateriaLogic.Save(MateriaActual);
         }
-
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {

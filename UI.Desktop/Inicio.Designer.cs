@@ -45,6 +45,7 @@
             this.reporteDeCursosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteDePlanesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblVersion = new System.Windows.Forms.Label();
+            this.especialidadesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -106,7 +107,8 @@
             this.ddAdministrador.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.usuariosToolStripMenuItem,
             this.planesToolStripMenuItem,
-            this.materiasToolStripMenuItem});
+            this.materiasToolStripMenuItem,
+            this.especialidadesToolStripMenuItem});
             this.ddAdministrador.Image = ((System.Drawing.Image)(resources.GetObject("ddAdministrador.Image")));
             this.ddAdministrador.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ddAdministrador.Name = "ddAdministrador";
@@ -118,21 +120,21 @@
             // usuariosToolStripMenuItem
             // 
             this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
-            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.usuariosToolStripMenuItem.Text = "Usuarios...";
             this.usuariosToolStripMenuItem.Click += new System.EventHandler(this.usuariosToolStripMenuItem_Click);
             // 
             // planesToolStripMenuItem
             // 
             this.planesToolStripMenuItem.Name = "planesToolStripMenuItem";
-            this.planesToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.planesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.planesToolStripMenuItem.Text = "Planes...";
             this.planesToolStripMenuItem.Click += new System.EventHandler(this.planesToolStripMenuItem_Click);
             // 
             // materiasToolStripMenuItem
             // 
             this.materiasToolStripMenuItem.Name = "materiasToolStripMenuItem";
-            this.materiasToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.materiasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.materiasToolStripMenuItem.Text = "Materias...";
             this.materiasToolStripMenuItem.Click += new System.EventHandler(this.materiasToolStripMenuItem_Click);
             // 
@@ -199,6 +201,13 @@
             this.lblVersion.TabIndex = 2;
             this.lblVersion.Text = "v4.2.0";
             // 
+            // especialidadesToolStripMenuItem
+            // 
+            this.especialidadesToolStripMenuItem.Name = "especialidadesToolStripMenuItem";
+            this.especialidadesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.especialidadesToolStripMenuItem.Text = "Especialidades...";
+            this.especialidadesToolStripMenuItem.Click += new System.EventHandler(this.especialidadesToolStripMenuItem_Click);
+            // 
             // Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -238,5 +247,6 @@
         private System.Windows.Forms.ToolStripMenuItem reporteDePlanesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem planesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem materiasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem especialidadesToolStripMenuItem;
     }
 }
