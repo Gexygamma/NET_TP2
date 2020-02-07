@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using Business.Entities;
 using Business.Logic;
-using Business.Entities;
+using System;
+using System.Windows.Forms;
 using Util;
 
 namespace UI.Desktop
@@ -43,18 +36,18 @@ namespace UI.Desktop
 
             if (Modo == ModoForm.Baja || Modo == ModoForm.Consulta)
             {
-                txtNombreUsuario.ReadOnly = true;
-                txtClave.ReadOnly = true;
-                txtConfirmarClave.ReadOnly = true;
+                txtNombreUsuario.Enabled = false;
+                txtClave.Enabled = false;
+                txtConfirmarClave.Enabled = false;
                 cmbTipoUsuario.Enabled = false;
                 chkHabilitado.Enabled = false;
-                txtNombre.ReadOnly = true;
-                txtApellido.ReadOnly = true;
-                txtDireccion.ReadOnly = true;
-                txtEmail.ReadOnly = true;
-                txtTelefono.ReadOnly = true;
+                txtNombre.Enabled = false;
+                txtApellido.Enabled = false;
+                txtDireccion.Enabled = false;
+                txtEmail.Enabled = false;
+                txtTelefono.Enabled = false;
                 dtFechaNacimiento.Enabled = false;
-                txtLegajo.ReadOnly = true;
+                txtLegajo.Enabled = false;
                 cmbPlan.Enabled = false;
             }
 
@@ -223,14 +216,17 @@ namespace UI.Desktop
             {
                 chkHabilitado.Checked = true;
                 chkHabilitado.Enabled = false;
-                txtLegajo.ReadOnly = true;
+                txtLegajo.Enabled = false;
                 cmbPlan.Enabled = false;
             }
             else
             {
-                chkHabilitado.Enabled = true;
-                txtLegajo.ReadOnly = false;
-                cmbPlan.Enabled = true;
+                if (Modo != ModoForm.Baja && Modo != ModoForm.Consulta)
+                {
+                    chkHabilitado.Enabled = true;
+                    txtLegajo.Enabled = true;
+                    cmbPlan.Enabled = true;
+                }
             }
         }
     }

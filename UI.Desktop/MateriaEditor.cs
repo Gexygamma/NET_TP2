@@ -41,10 +41,10 @@ namespace UI.Desktop
 
             if (modo == ModoForm.Baja || modo == ModoForm.Consulta)
             {
-                txtDescripcion.ReadOnly = true;
+                txtDescripcion.Enabled = false;
                 cbPlan.Enabled = false;
-                nHsSemanales.ReadOnly = true;
-                nHsTotales.ReadOnly = true;
+                nHsSemanales.Enabled = false;
+                nHsTotales.Enabled = false;
             }
 
             MateriaLogic = new MateriaLogic();
@@ -67,7 +67,7 @@ namespace UI.Desktop
         public override void MapearDeDatos()
         {
             txtDescripcion.Text = MateriaActual.Descripcion;
-            cbPlan.SelectedIndex =cbPlan.FindStringExact( PlanLogic.GetOne(MateriaActual.IdPlan).Descripcion);
+            cbPlan.SelectedIndex = cbPlan.FindStringExact( PlanLogic.GetOne(MateriaActual.IdPlan).Descripcion);
             nHsSemanales.Value = MateriaActual.HsSemanales;
             nHsTotales.Value = MateriaActual.HsTotales;
         }

@@ -40,7 +40,7 @@ namespace UI.Desktop
 
             if (modo == ModoForm.Baja || modo == ModoForm.Consulta)
             {
-                txtDescripcion.ReadOnly = true;
+                txtDescripcion.Enabled = false;
             }
 
             EspecialidadLogic = new EspecialidadLogic();
