@@ -46,29 +46,32 @@ namespace UI.Desktop
         /// </summary>
         private void PersonalizarPantalla()
         {
-            lblWelcome.Text = string.Format("Bienvenido {0} {1}!", PersonaLogueada.Nombre, PersonaLogueada.Apellido);
-            switch (PersonaLogueada.TipoPersona)
+            if (PersonaLogueada != null)
             {
-                case TipoPersona.Alumno:
-                    ddAlumno.Visible = true;
-                    ddProfesor.Visible = false;
-                    ddAdministrador.Visible = false;
-                    break;
-                case TipoPersona.Profesor:
-                    ddAlumno.Visible = false;
-                    ddProfesor.Visible = true;
-                    ddAdministrador.Visible = false;
-                    break;
-                case TipoPersona.Admin:
-                    ddAlumno.Visible = false;
-                    ddProfesor.Visible = false;
-                    ddAdministrador.Visible = true;
-                    break;
-                default:
-                    ddAlumno.Visible = false;
-                    ddProfesor.Visible = false;
-                    ddAdministrador.Visible = false;
-                    break;
+                lblWelcome.Text = string.Format("Bienvenido {0} {1}!", PersonaLogueada.Nombre, PersonaLogueada.Apellido);
+                switch (PersonaLogueada.TipoPersona)
+                {
+                    case TipoPersona.Alumno:
+                        ddAlumno.Visible = true;
+                        ddProfesor.Visible = false;
+                        ddAdministrador.Visible = false;
+                        break;
+                    case TipoPersona.Profesor:
+                        ddAlumno.Visible = false;
+                        ddProfesor.Visible = true;
+                        ddAdministrador.Visible = false;
+                        break;
+                    case TipoPersona.Admin:
+                        ddAlumno.Visible = false;
+                        ddProfesor.Visible = false;
+                        ddAdministrador.Visible = true;
+                        break;
+                    default:
+                        ddAlumno.Visible = false;
+                        ddProfesor.Visible = false;
+                        ddAdministrador.Visible = false;
+                        break;
+                }
             }
         }
 
