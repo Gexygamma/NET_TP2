@@ -43,11 +43,7 @@ namespace UI.Web
             get { return (FormModes)this.ViewState["FormMode"]; }
             set { this.ViewState["FormMode"] = value; }
         }
-        private Usuario Entity
-        {
-            get;
-            set;
-        }
+        private Usuario UsuarioActual{ get;set; }
 
         private int SelectedID
         {
@@ -82,11 +78,12 @@ namespace UI.Web
         }
         private void LoadForm(int id)
         {
-            this.Entity = this.Logic.GetOne(id);
-            this.txtNombre.Text = this.Entity.Nombre;
-            this.txtApellido.Text = this.Entity.Apellido;
-            this.txtEmail.Text = this.Entity.Email;
-            this.ckbHabilitado.Checked = this.Entity.Habilitado;      
+            this.UsuarioActual = this.Logic.GetOne(id);
+            this.txtNombreUsuario.Text = this.UsuarioActual.NombreUsuario;
+            this.txtNombre.Text = this.UsuarioActual.Nombre;
+            this.txtApellido.Text = this.UsuarioActual.Apellido;
+            this.txtEmail.Text = this.UsuarioActual.Email;
+            this.ckbHabilitado.Checked = this.UsuarioActual.Habilitado;      
         }
 
         protected void btnEditarLink_Click(object sender, EventArgs e)
@@ -100,6 +97,7 @@ namespace UI.Web
         }
         private void LoadEntity(Usuario usuario)
         {
+            usuario.NombreUsuario = this.txtNombreUsuario.Text;
             usuario.Nombre = this.txtNombre.Text;
             usuario.Apellido = this.txtApellido.Text;
             usuario.Email = this.txtEmail.Text;
@@ -116,21 +114,25 @@ namespace UI.Web
             switch (this.FormMode)
             {
                 case FormModes.Baja:
-                    this.DeleteEntity(this.SelectedID);
+                    this.UsuarioActual = new Usuario();
+                    this.UsuarioActual.ID = this.SelectedID;
+                    this.UsuarioActual.State = BusinessEntity.States.Deleted;
+                    this.LoadEntity(this.UsuarioActual);
+                    this.SaveEntity(this.UsuarioActual);
                     this.LoadGrid();
                     break;
                 case FormModes.Modificacion:
-                    this.Entity = new Usuario();
-                    this.Entity.ID = this.SelectedID;
-                    this.Entity.State = BusinessEntity.States.Modified;
-                    this.LoadEntity(this.Entity);
-                    this.SaveEntity(this.Entity);
+                    this.UsuarioActual = new Usuario();
+                    this.UsuarioActual.ID = this.SelectedID;
+                    this.UsuarioActual.State = BusinessEntity.States.Modified;
+                    this.LoadEntity(this.UsuarioActual);
+                    this.SaveEntity(this.UsuarioActual);
                     this.LoadGrid();
                     break;
                 case FormModes.Alta:
-                    this.Entity = new Usuario();
-                    this.LoadEntity(this.Entity);
-                    this.SaveEntity(this.Entity);
+                    this.UsuarioActual = new Usuario();
+                    this.LoadEntity(this.UsuarioActual);
+                    this.SaveEntity(this.UsuarioActual);
                     this.LoadGrid();
                     break;
                 default:
@@ -141,6 +143,7 @@ namespace UI.Web
         
         private void EnableForm(bool enable)
         {
+            this.txtNombreUsuario.Enabled = enable;
             this.txtNombre.Enabled = enable;
             this.txtApellido.Enabled = enable;
             this.txtClave.Visible = enable;
@@ -160,10 +163,6 @@ namespace UI.Web
                 this.LoadForm(this.SelectedID);
             }
         }
-        protected void DeleteEntity(int id)
-        {
-            this.Logic.Delete(id);
-        }
 
         protected void btnNuevoLink_Click(object sender, EventArgs e)
         {
@@ -178,7 +177,7 @@ namespace UI.Web
             this.txtApellido.Text = string.Empty;
             this.txtEmail.Text = string.Empty;
             this.ckbHabilitado.Checked = false;
-            //FALTA AGREGAR  NOMBRE USUARIO 
+            this.txtNombreUsuario.Text = string.Empty;
         }
     }
 }
