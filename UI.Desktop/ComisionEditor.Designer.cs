@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.nAnioEspecialidad = new System.Windows.Forms.NumericUpDown();
             this.cbPlan = new System.Windows.Forms.ComboBox();
             this.lblPlan = new System.Windows.Forms.Label();
             this.lblAnioEspecialidad = new System.Windows.Forms.Label();
@@ -36,7 +37,6 @@
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.btnConfirmar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.nAnioEspecialidad = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nAnioEspecialidad)).BeginInit();
             this.SuspendLayout();
@@ -58,6 +58,28 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Comisión";
+            // 
+            // nAnioEspecialidad
+            // 
+            this.nAnioEspecialidad.Location = new System.Drawing.Point(127, 48);
+            this.nAnioEspecialidad.Maximum = new decimal(new int[] {
+            6,
+            0,
+            0,
+            0});
+            this.nAnioEspecialidad.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nAnioEspecialidad.Name = "nAnioEspecialidad";
+            this.nAnioEspecialidad.Size = new System.Drawing.Size(89, 20);
+            this.nAnioEspecialidad.TabIndex = 1;
+            this.nAnioEspecialidad.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // cbPlan
             // 
@@ -124,28 +146,6 @@
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // nAnioEspecialidad
-            // 
-            this.nAnioEspecialidad.Location = new System.Drawing.Point(127, 48);
-            this.nAnioEspecialidad.Maximum = new decimal(new int[] {
-            2100,
-            0,
-            0,
-            0});
-            this.nAnioEspecialidad.Minimum = new decimal(new int[] {
-            1800,
-            0,
-            0,
-            0});
-            this.nAnioEspecialidad.Name = "nAnioEspecialidad";
-            this.nAnioEspecialidad.Size = new System.Drawing.Size(89, 20);
-            this.nAnioEspecialidad.TabIndex = 1;
-            this.nAnioEspecialidad.Value = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            0});
             // 
             // ComisionEditor
             // 
