@@ -27,7 +27,7 @@ namespace Data.Database
             return persona;
         }
 
-        protected override void CargarParametrosSql(SqlCommand cmd, Persona persona)
+        internal override void CargarParametrosSql(SqlCommand cmd, Persona persona)
         {
             cmd.Parameters.Add("@nombre", SqlDbType.VarChar, 50).Value = persona.Nombre;
             cmd.Parameters.Add("@apellido", SqlDbType.VarChar, 50).Value = persona.Apellido;
@@ -122,7 +122,7 @@ namespace Data.Database
             return count;
         }
 
-        protected override void Insert(Persona persona)
+        protected void Insert(Persona persona)
         {
             try
             {
@@ -147,7 +147,7 @@ namespace Data.Database
             }
         }
 
-        protected override void Update(Persona persona)
+        protected void Update(Persona persona)
         {
             try
             {
@@ -171,7 +171,7 @@ namespace Data.Database
             }
         }
 
-        protected override void Delete(int ID)
+        protected void Delete(int ID)
         {
             try
             {
@@ -189,6 +189,23 @@ namespace Data.Database
             {
                 CloseConnection();
             }
+        }
+
+        public void Save(Persona persona)
+        {
+            switch (persona.State)
+            {
+                case BusinessEntity.States.New:
+                    Insert(persona);
+                    break;
+                case BusinessEntity.States.Modified:
+                    Update(persona);
+                    break;
+                case BusinessEntity.States.Deleted:
+                    Delete(persona.ID);
+                    break;
+            }
+            persona.State = BusinessEntity.States.Unmodified;
         }
     }
 }

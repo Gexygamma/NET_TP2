@@ -96,7 +96,7 @@ namespace UI.Desktop
             else
             {
                 txtLegajo.Text = PersonaActual.Legajo.ToString();
-                cmbPlan.SelectedItem = PlanLogic.GetOne(PersonaActual.IdPlan);
+                cmbPlan.SelectedValue = PlanLogic.GetOne(PersonaActual.IdPlan).ID;
             }
         }
 
@@ -159,9 +159,7 @@ namespace UI.Desktop
         public override void GuardarCambios()
         {
             MapearADatos();
-            PersonaLogic.Save(PersonaActual);
-            UsuarioActual.IdPersona = PersonaActual.ID;
-            UsuarioLogic.Save(UsuarioActual);
+            UsuarioLogic.Save(UsuarioActual, PersonaActual);
         }
 
         public bool CamposNoVacios()

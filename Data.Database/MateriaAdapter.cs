@@ -24,7 +24,7 @@ namespace Data.Database
             return materia;
         }
 
-        protected override void CargarParametrosSql(SqlCommand cmd, Materia materia)
+        internal override void CargarParametrosSql(SqlCommand cmd, Materia materia)
         {
             cmd.Parameters.Add("@desc_materia", SqlDbType.VarChar, 50).Value = materia.Descripcion;
             cmd.Parameters.Add("@hs_semanales", SqlDbType.Int).Value = materia.HsSemanales;
@@ -79,7 +79,7 @@ namespace Data.Database
             return materia;
         }
 
-        protected override void Insert(Materia materia)
+        protected void Insert(Materia materia)
         {
             try
             {
@@ -104,7 +104,7 @@ namespace Data.Database
             }
         }
 
-        protected override void Update(Materia materia)
+        protected void Update(Materia materia)
         {
             try
             {
@@ -128,7 +128,7 @@ namespace Data.Database
             }
         }
 
-        protected override void Delete(int ID)
+        protected void Delete(int ID)
         {
             try
             {
@@ -147,6 +147,23 @@ namespace Data.Database
             {
                 CloseConnection();
             }
+        }
+
+        public void Save(Materia materia)
+        {
+            switch (materia.State)
+            {
+                case BusinessEntity.States.New:
+                    Insert(materia);
+                    break;
+                case BusinessEntity.States.Modified:
+                    Update(materia);
+                    break;
+                case BusinessEntity.States.Deleted:
+                    Delete(materia.ID);
+                    break;
+            }
+            materia.State = BusinessEntity.States.Unmodified;
         }
     }
 }

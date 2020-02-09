@@ -20,7 +20,7 @@ namespace Data.Database
             return plan;
         }
 
-        protected override void CargarParametrosSql(SqlCommand cmd, Plan plan)
+        internal override void CargarParametrosSql(SqlCommand cmd, Plan plan)
         {
             cmd.Parameters.Add("@desc_plan", SqlDbType.VarChar, 50).Value = plan.Descripcion;
             cmd.Parameters.Add("@id_especialidad", SqlDbType.Int).Value = plan.IdEspecialidad;
@@ -74,7 +74,7 @@ namespace Data.Database
             return plan;
         }
 
-        protected override void Insert(Plan plan)
+        protected void Insert(Plan plan)
         {
             try
             {
@@ -99,7 +99,7 @@ namespace Data.Database
             }
         }
 
-        protected override void Update(Plan plan)
+        protected void Update(Plan plan)
         {
             try
             {
@@ -122,7 +122,7 @@ namespace Data.Database
             }
         }
 
-        protected override void Delete(int ID)
+        protected void Delete(int ID)
         {
             try
             {
@@ -141,6 +141,23 @@ namespace Data.Database
             {
                 CloseConnection();
             }
+        }
+
+        public void Save(Plan plan)
+        {
+            switch (plan.State)
+            {
+                case BusinessEntity.States.New:
+                    Insert(plan);
+                    break;
+                case BusinessEntity.States.Modified:
+                    Update(plan);
+                    break;
+                case BusinessEntity.States.Deleted:
+                    Delete(plan.ID);
+                    break;
+            }
+            plan.State = BusinessEntity.States.Unmodified;
         }
     }
 }

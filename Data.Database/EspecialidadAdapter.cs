@@ -21,7 +21,7 @@ namespace Data.Database
             return especialidad;
         }
 
-        protected override void CargarParametrosSql(SqlCommand cmd, Especialidad especialidad)
+        internal override void CargarParametrosSql(SqlCommand cmd, Especialidad especialidad)
         {
             cmd.Parameters.Add("@desc_especialidad", SqlDbType.VarChar, 50).Value = especialidad.Descripcion;
         }
@@ -84,7 +84,7 @@ namespace Data.Database
             return especialidad;
         }
 
-        protected override void Insert(Especialidad especialidad)
+        protected void Insert(Especialidad especialidad)
         {
             try
             {
@@ -108,7 +108,7 @@ namespace Data.Database
             }
         }
 
-        protected override void Update(Especialidad especialidad)
+        protected void Update(Especialidad especialidad)
         {
             try
             {
@@ -131,7 +131,7 @@ namespace Data.Database
             }
         }
 
-        protected override void Delete(int ID)
+        protected void Delete(int ID)
         {
             try
             {
@@ -149,6 +149,23 @@ namespace Data.Database
             {
                 CloseConnection();
             }
+        }
+
+        public void Save(Especialidad especialidad)
+        {
+            switch (especialidad.State)
+            {
+                case BusinessEntity.States.New:
+                    Insert(especialidad);
+                    break;
+                case BusinessEntity.States.Modified:
+                    Update(especialidad);
+                    break;
+                case BusinessEntity.States.Deleted:
+                    Delete(especialidad.ID);
+                    break;
+            }
+            especialidad.State = BusinessEntity.States.Unmodified;
         }
     }
 }

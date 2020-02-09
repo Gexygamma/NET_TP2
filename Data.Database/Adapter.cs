@@ -12,7 +12,7 @@ namespace Data.Database
         /// <summary>
         /// Clave por defecto a utilizar para la cadena de conexión.
         /// </summary>
-        const string consKeyDefaultCnnString = "ConnStringIntegratedSecurity";
+        const string KeyDefaultCnnString = "ConnStringIntegratedSecurity";
 
         /// <summary>
         /// Conexión con la base de datos de academia.
@@ -21,7 +21,7 @@ namespace Data.Database
 
         protected void OpenConnection()
         {
-            string strConn = ConfigurationManager.ConnectionStrings[consKeyDefaultCnnString].ConnectionString;
+            string strConn = ConfigurationManager.ConnectionStrings[KeyDefaultCnnString].ConnectionString;
             SqlConn = new SqlConnection(strConn);
             SqlConn.Open();
         }
@@ -42,31 +42,6 @@ namespace Data.Database
         /// </summary>
         /// <param name="cmd">El comando SQL a ser cargado.</param>
         /// <param name="be">La entidad de negocio que contiene los parámetros</param>
-        protected abstract void CargarParametrosSql(SqlCommand cmd, BE be);
-
-        protected abstract void Insert(BE be);
-        protected abstract void Update(BE be);
-        protected abstract void Delete(int ID);
-
-        /// <summary>
-        /// Persiste la entidad de negocio en la base de datos.
-        /// </summary>
-        /// <param name="be">La entidad de negocio a guardarse.</param>
-        public void Save(BE be)
-        {
-            switch (be.State)
-            {
-                case BusinessEntity.States.New:
-                    Insert(be);
-                    break;
-                case BusinessEntity.States.Modified:
-                    Update(be);
-                    break;
-                case BusinessEntity.States.Deleted:
-                    Delete(be.ID);
-                    break;
-            }
-            be.State = BusinessEntity.States.Unmodified;
-        }
+        internal abstract void CargarParametrosSql(SqlCommand cmd, BE be);
     }
 }

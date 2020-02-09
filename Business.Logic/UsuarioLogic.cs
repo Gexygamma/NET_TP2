@@ -30,9 +30,9 @@ namespace Business.Logic
             return UsuarioData.GetNombreUsuario(nombreUsuario);
         }
 
-        public void Save(Usuario usuario)
+        public void Save(Usuario usuario, Persona persona)
         {
-            UsuarioData.Save(usuario);
+            UsuarioData.Save(usuario, persona);
         }
 
         public DataTable GetAllTable()
