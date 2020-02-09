@@ -12,12 +12,12 @@ namespace UI.Desktop
 {
     public enum ModoForm { Alta, Baja, Modificacion, Consulta }
 
-    public abstract class ApplicationForm : Form
+    public class ApplicationForm : Form
     {
         public ModoForm Modo { get; set; }
 
-        public abstract void MapearDeDatos();
-        public abstract void MapearADatos();
-        public abstract void GuardarCambios();
+        public virtual void MapearDeDatos() { }
+        public virtual void MapearADatos() { }
+        public virtual void GuardarCambios() { }
     }
 }
