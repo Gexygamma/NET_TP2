@@ -176,8 +176,8 @@ namespace UI.Desktop
                 !string.IsNullOrEmpty(txtTelefono.Text) &&
                 cmbTipoUsuario.SelectedIndex != -1;
 
-            camposNoVacios2 = (TipoPersona)cmbTipoUsuario.SelectedIndex == TipoPersona.Admin ? 
-                true : !string.IsNullOrEmpty(txtLegajo.Text) && cmbPlan.SelectedIndex != -1;
+            camposNoVacios2 = (TipoPersona)cmbTipoUsuario.SelectedIndex == TipoPersona.Admin ||
+                (!string.IsNullOrEmpty(txtLegajo.Text) && cmbPlan.SelectedIndex != -1);
 
             return camposNoVacios1 && camposNoVacios2;
         }
