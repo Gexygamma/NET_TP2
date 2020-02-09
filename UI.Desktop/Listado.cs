@@ -74,7 +74,7 @@ namespace UI.Desktop
 
         private void tsbNuevo_Click(object sender, EventArgs e)
         {
-            AF form = (AF)Activator.CreateInstance(typeof(AF), ApplicationForm.ModoForm.Alta);
+            AF form = (AF)Activator.CreateInstance(typeof(AF), ModoForm.Alta);
             form.ShowDialog();
             ActualizarListado();
             HabilitarBotones();
@@ -85,7 +85,7 @@ namespace UI.Desktop
             DataRowView row = (DataRowView)dataGridView.SelectedRows[0].DataBoundItem;
             int ID = Int32.Parse(row["ID"].ToString());
 
-            AF form = (AF)Activator.CreateInstance(typeof(AF), ApplicationForm.ModoForm.Modificacion, ID);
+            AF form = (AF)Activator.CreateInstance(typeof(AF), ModoForm.Modificacion, ID);
             form.ShowDialog();
             ActualizarListado();
             HabilitarBotones();
@@ -96,7 +96,7 @@ namespace UI.Desktop
             DataRowView row = (DataRowView)dataGridView.SelectedRows[0].DataBoundItem;
             int ID = Int32.Parse(row["ID"].ToString());
 
-            AF form = (AF)Activator.CreateInstance(typeof(AF), ApplicationForm.ModoForm.Baja, ID);
+            AF form = (AF)Activator.CreateInstance(typeof(AF), ModoForm.Baja, ID);
             form.ShowDialog();
             ActualizarListado();
             HabilitarBotones();

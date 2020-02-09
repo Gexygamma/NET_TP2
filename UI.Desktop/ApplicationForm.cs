@@ -10,19 +10,14 @@ using System.Windows.Forms;
 
 namespace UI.Desktop
 {
-    public partial class ApplicationForm : Form
-    {
-        public ApplicationForm()
-        {
-            InitializeComponent();
-        }
+    public enum ModoForm { Alta, Baja, Modificacion, Consulta }
 
-        public enum ModoForm { Alta, Baja, Modificacion, Consulta }
+    public abstract class ApplicationForm : Form
+    {
         public ModoForm Modo { get; set; }
 
-        public virtual void MapearDeDatos() { }
-        public virtual void MapearADatos() { }
-        public virtual void GuardarCambios() { }
-        public virtual bool Validar() { return false; }
+        public abstract void MapearDeDatos();
+        public abstract void MapearADatos();
+        public abstract void GuardarCambios();
     }
 }
