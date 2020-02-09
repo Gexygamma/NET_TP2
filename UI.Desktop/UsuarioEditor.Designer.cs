@@ -32,7 +32,7 @@
             this.label11 = new System.Windows.Forms.Label();
             this.txtConfirmarClave = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.cmbTipoUsuario = new System.Windows.Forms.ComboBox();
+            this.cbTipoUsuario = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.chkHabilitado = new System.Windows.Forms.CheckBox();
             this.txtClave = new System.Windows.Forms.TextBox();
@@ -40,7 +40,7 @@
             this.txtNombreUsuario = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.cmbPlan = new System.Windows.Forms.ComboBox();
+            this.cbPlan = new System.Windows.Forms.ComboBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtLegajo = new System.Windows.Forms.TextBox();
@@ -68,7 +68,7 @@
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.txtConfirmarClave);
             this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.cmbTipoUsuario);
+            this.groupBox1.Controls.Add(this.cbTipoUsuario);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.chkHabilitado);
             this.groupBox1.Controls.Add(this.txtClave);
@@ -109,17 +109,17 @@
             // 
             // cmbTipoUsuario
             // 
-            this.cmbTipoUsuario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbTipoUsuario.FormattingEnabled = true;
-            this.cmbTipoUsuario.Items.AddRange(new object[] {
+            this.cbTipoUsuario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTipoUsuario.FormattingEnabled = true;
+            this.cbTipoUsuario.Items.AddRange(new object[] {
             "Alumno",
             "Profesor",
             "Administrador"});
-            this.cmbTipoUsuario.Location = new System.Drawing.Point(110, 98);
-            this.cmbTipoUsuario.Name = "cmbTipoUsuario";
-            this.cmbTipoUsuario.Size = new System.Drawing.Size(200, 21);
-            this.cmbTipoUsuario.TabIndex = 3;
-            this.cmbTipoUsuario.SelectedIndexChanged += new System.EventHandler(this.cmbTipoUsuario_SelectedIndexChanged);
+            this.cbTipoUsuario.Location = new System.Drawing.Point(110, 98);
+            this.cbTipoUsuario.Name = "cmbTipoUsuario";
+            this.cbTipoUsuario.Size = new System.Drawing.Size(200, 21);
+            this.cbTipoUsuario.TabIndex = 3;
+            this.cbTipoUsuario.SelectedIndexChanged += new System.EventHandler(this.cmbTipoUsuario_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -171,7 +171,7 @@
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.label12);
-            this.groupBox2.Controls.Add(this.cmbPlan);
+            this.groupBox2.Controls.Add(this.cbPlan);
             this.groupBox2.Controls.Add(this.txtEmail);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.txtLegajo);
@@ -204,12 +204,12 @@
             // 
             // cmbPlan
             // 
-            this.cmbPlan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbPlan.FormattingEnabled = true;
-            this.cmbPlan.Location = new System.Drawing.Point(110, 208);
-            this.cmbPlan.Name = "cmbPlan";
-            this.cmbPlan.Size = new System.Drawing.Size(200, 21);
-            this.cmbPlan.TabIndex = 14;
+            this.cbPlan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbPlan.FormattingEnabled = true;
+            this.cbPlan.Location = new System.Drawing.Point(110, 208);
+            this.cbPlan.Name = "cmbPlan";
+            this.cbPlan.Size = new System.Drawing.Size(200, 21);
+            this.cbPlan.TabIndex = 14;
             // 
             // txtEmail
             // 
@@ -393,7 +393,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DateTimePicker dtFechaNacimiento;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ComboBox cmbTipoUsuario;
+        private System.Windows.Forms.ComboBox cbTipoUsuario;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtLegajo;
         private System.Windows.Forms.TextBox txtEmail;
@@ -402,6 +402,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtConfirmarClave;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.ComboBox cmbPlan;
+        private System.Windows.Forms.ComboBox cbPlan;
     }
 }

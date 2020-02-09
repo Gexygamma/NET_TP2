@@ -40,7 +40,7 @@ namespace UI.Desktop
                 txtNombreUsuario.Enabled = false;
                 txtClave.Enabled = false;
                 txtConfirmarClave.Enabled = false;
-                cmbTipoUsuario.Enabled = false;
+                cbTipoUsuario.Enabled = false;
                 chkHabilitado.Enabled = false;
                 txtNombre.Enabled = false;
                 txtApellido.Enabled = false;
@@ -49,17 +49,17 @@ namespace UI.Desktop
                 txtTelefono.Enabled = false;
                 dtFechaNacimiento.Enabled = false;
                 txtLegajo.Enabled = false;
-                cmbPlan.Enabled = false;
+                cbPlan.Enabled = false;
             }
 
             UsuarioLogic = new UsuarioLogic();
             PersonaLogic = new PersonaLogic();
             PlanLogic = new PlanLogic();
 
-            cmbPlan.DataSource = PlanLogic.GetAll();
-            cmbPlan.DisplayMember = "Descripcion";
-            cmbPlan.ValueMember = "ID";
-            cmbPlan.SelectedIndex = -1;
+            cbPlan.DataSource = PlanLogic.GetAll();
+            cbPlan.DisplayMember = "Descripcion";
+            cbPlan.ValueMember = "ID";
+            cbPlan.SelectedIndex = -1;
         }
 
         public UsuarioEditor(ModoForm modo, int id) : this(modo)
@@ -72,8 +72,8 @@ namespace UI.Desktop
         // Constructor usado solamente para dar de alta al primer usuario administrador.
         public UsuarioEditor() : this(ModoForm.Alta)
         {
-            cmbTipoUsuario.SelectedIndex = 2;
-            cmbTipoUsuario.Enabled = false;
+            cbTipoUsuario.SelectedIndex = 2;
+            cbTipoUsuario.Enabled = false;
         }
 
         public override void MapearDeDatos()
@@ -81,7 +81,7 @@ namespace UI.Desktop
             txtNombreUsuario.Text = UsuarioActual.NombreUsuario;
             txtClave.Text = UsuarioActual.Clave;
             txtConfirmarClave.Text = UsuarioActual.Clave;
-            cmbTipoUsuario.SelectedIndex = (int)PersonaActual.TipoPersona;
+            cbTipoUsuario.SelectedIndex = (int)PersonaActual.TipoPersona;
             chkHabilitado.Checked = UsuarioActual.Habilitado;
             txtNombre.Text = PersonaActual.Nombre;
             txtApellido.Text = PersonaActual.Apellido;
@@ -92,12 +92,12 @@ namespace UI.Desktop
             if (PersonaActual.TipoPersona == TipoPersona.Admin)
             {
                 txtLegajo.Text = "";
-                cmbPlan.SelectedIndex = -1;
+                cbPlan.SelectedIndex = -1;
             }
             else
             {
                 txtLegajo.Text = PersonaActual.Legajo.ToString();
-                cmbPlan.SelectedValue = PlanLogic.GetOne(PersonaActual.IdPlan).ID;
+                cbPlan.SelectedValue = PlanLogic.GetOne(PersonaActual.IdPlan).ID;
             }
         }
 
@@ -116,7 +116,7 @@ namespace UI.Desktop
                 PersonaActual.Email = txtEmail.Text;
                 PersonaActual.Telefono = txtTelefono.Text;
                 PersonaActual.FechaNacimiento = dtFechaNacimiento.Value;
-                PersonaActual.TipoPersona = (TipoPersona)cmbTipoUsuario.SelectedIndex;
+                PersonaActual.TipoPersona = (TipoPersona)cbTipoUsuario.SelectedIndex;
                 UsuarioActual.NombreUsuario = txtNombreUsuario.Text;
                 UsuarioActual.Clave = txtClave.Text;
                 UsuarioActual.Habilitado = chkHabilitado.Checked;
@@ -133,7 +133,7 @@ namespace UI.Desktop
                 else
                 {
                     PersonaActual.Legajo = Int32.Parse(txtLegajo.Text);
-                    PersonaActual.IdPlan = ((Plan)cmbPlan.SelectedItem).ID;
+                    PersonaActual.IdPlan = ((Plan)cbPlan.SelectedItem).ID;
                 }
             }
             switch (Modo)
@@ -175,10 +175,10 @@ namespace UI.Desktop
                 !string.IsNullOrEmpty(txtDireccion.Text) &&
                 !string.IsNullOrEmpty(txtEmail.Text) &&
                 !string.IsNullOrEmpty(txtTelefono.Text) &&
-                cmbTipoUsuario.SelectedIndex != -1;
+                cbTipoUsuario.SelectedIndex != -1;
 
-            camposNoVacios2 = (TipoPersona)cmbTipoUsuario.SelectedIndex == TipoPersona.Admin ||
-                (!string.IsNullOrEmpty(txtLegajo.Text) && cmbPlan.SelectedIndex != -1);
+            camposNoVacios2 = (TipoPersona)cbTipoUsuario.SelectedIndex == TipoPersona.Admin ||
+                (!string.IsNullOrEmpty(txtLegajo.Text) && cbPlan.SelectedIndex != -1);
 
             return camposNoVacios1 && camposNoVacios2;
         }
@@ -218,12 +218,12 @@ namespace UI.Desktop
 
         private void cmbTipoUsuario_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if ((TipoPersona)cmbTipoUsuario.SelectedIndex == TipoPersona.Admin)
+            if ((TipoPersona)cbTipoUsuario.SelectedIndex == TipoPersona.Admin)
             {
                 chkHabilitado.Checked = true;
                 chkHabilitado.Enabled = false;
                 txtLegajo.Enabled = false;
-                cmbPlan.Enabled = false;
+                cbPlan.Enabled = false;
             }
             else
             {
@@ -231,7 +231,7 @@ namespace UI.Desktop
                 {
                     chkHabilitado.Enabled = true;
                     txtLegajo.Enabled = true;
-                    cmbPlan.Enabled = true;
+                    cbPlan.Enabled = true;
                 }
             }
         }
