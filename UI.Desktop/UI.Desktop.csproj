@@ -57,6 +57,15 @@
     <Compile Include="ComisionListado.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="CursoEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CursoEditor.Designer.cs">
+      <DependentUpon>CursoEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CursoListado.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="EspecialidadEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +125,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ComisionEditor.resx">
       <DependentUpon>ComisionEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CursoEditor.resx">
+      <DependentUpon>CursoEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EspecialidadEditor.resx">
       <DependentUpon>EspecialidadEditor.cs</DependentUpon>

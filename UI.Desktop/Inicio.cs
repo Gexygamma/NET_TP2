@@ -136,5 +136,11 @@ namespace UI.Desktop
             ComisionListado formComisiones = new ComisionListado();
             formComisiones.ShowDialog();
         }
+
+        private void cursosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CursoListado formCursos = new CursoListado();
+            formCursos.ShowDialog();
+        }
     }
 }

@@ -35,12 +35,5 @@ namespace Business.Entities
 			get { return _IdMateria; }
 			set { _IdMateria = value; }
 		}
-
-		private string _Descripcion;
-		public string Descripcion
-		{
-			get { return _Descripcion; }
-			set { _Descripcion = value; }
-		}
 	}
 }

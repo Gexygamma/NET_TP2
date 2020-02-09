@@ -52,6 +52,29 @@ namespace Data.Database
             return comisiones;
         }
 
+        public List<Comision> GetAllPlan(int idPlan)
+        {
+            List<Comision> comisiones = new List<Comision>();
+            try
+            {
+                OpenConnection();
+                SqlCommand cmdComision = new SqlCommand("SELECT * FROM comisiones WHERE id_plan=@id_plan", SqlConn);
+                cmdComision.Parameters.Add("@id_plan", SqlDbType.Int).Value = idPlan;
+                SqlDataReader drComision = cmdComision.ExecuteReader();
+                while (drComision.Read())
+                {
+                    Comision comision = CrearDesdeReader(drComision);
+                    comisiones.Add(comision);
+                }
+                drComision.Close();
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return comisiones;
+        }
+
         public Comision GetOne(int ID)
         {
             Comision comision;
