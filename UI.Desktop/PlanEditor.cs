@@ -105,9 +105,15 @@ namespace UI.Desktop
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            // TODO: Hacer validaciones.
-            GuardarCambios();
-            DialogResult = DialogResult.OK;
+            if (string.IsNullOrEmpty(txtDescripcion.Text) || cbEspecialidad.SelectedIndex == -1)
+            {
+                MessageBox.Show("Algunos campos están vacios. Por favor rellene con la información solicitada.");
+            }
+            else
+            {
+                GuardarCambios();
+                DialogResult = DialogResult.OK;
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

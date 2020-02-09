@@ -117,9 +117,20 @@ namespace UI.Desktop
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            // TODO: Hacer validaciones.
-            GuardarCambios();
-            DialogResult = DialogResult.OK;
+            if (string.IsNullOrEmpty(txtDescripcion.Text) || cbPlan.SelectedIndex == -1 || 
+                nHsSemanales.Value <= 0 || nHsTotales.Value <= 0)
+            {
+                MessageBox.Show("Algunos campos están vacios. Por favor rellene con la información solicitada.");
+            }
+            else if (nHsSemanales.Value > nHsTotales.Value)
+            {
+                MessageBox.Show("Las horas totales deben ser menos que las horas semanales. Por favor corrija e intente de nuevo.");
+            }
+            else
+            {
+                GuardarCambios();
+                DialogResult = DialogResult.OK;
+            }
         }
     }
 }
