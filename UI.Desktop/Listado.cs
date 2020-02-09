@@ -102,6 +102,15 @@ namespace UI.Desktop
             HabilitarBotones();
         }
 
+        private void dataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataRowView row = (DataRowView)dataGridView.SelectedRows[0].DataBoundItem;
+            int ID = Int32.Parse(row["ID"].ToString());
+
+            AF form = (AF)Activator.CreateInstance(typeof(AF), ModoForm.Consulta, ID);
+            form.ShowDialog();
+        }
+
         private void chkMostrarID_CheckedChanged(object sender, EventArgs e)
         {
             dataGridView.Columns["ID"].Visible = chkMostrarID.Checked;
