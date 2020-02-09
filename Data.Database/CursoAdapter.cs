@@ -31,14 +31,46 @@ namespace Data.Database
             cmd.Parameters.Add("@cupo", SqlDbType.Int).Value = curso.Cupo;
             cmd.Parameters.Add("@anio_calendario", SqlDbType.Int).Value = curso.AñoCalendario;
         }
+        public List<Curso> GetAllComision(int idMateria)
+        {
+            List<Curso> comisiones = new List<Curso>();
+            try
+            {
+                OpenConnection();
+                SqlCommand cmdCurso = new SqlCommand("SELECT * FROM curso WHERE id_materia@id_materia", SqlConn);
+                cmdCurso.Parameters.Add("@id_materia", SqlDbType.Int).Value = idMateria;
+                SqlDataReader drCurso = cmdCurso.ExecuteReader();
+                while (drCurso.Read())
+                {
+                    Curso Curso = CrearDesdeReader(drCurso);
+                    comisiones.Add(Curso);
+                }
+                drCurso.Close();
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return comisiones;
+        }
 
-        public List<Curso> GetAll()
+        public List<Curso> GetAll(int origen )
         {
             List<Curso> cursos = new List<Curso>();
             try
             {
                 OpenConnection();
-                SqlCommand cmdCurso = new SqlCommand("SELECT * FROM cursos", SqlConn);
+                string queryString;
+                if (origen == 1) //para filtrar año y que haya cupo
+                {
+                    queryString = "SELECT * FROM cursos where cupo>0 and anio_calendario=year(getdate());";
+                }
+                else
+                {
+                    queryString = "SELECT * FROM cursos";
+                }
+
+                SqlCommand cmdCurso = new SqlCommand(queryString, SqlConn);
                 SqlDataReader drCurso = cmdCurso.ExecuteReader();
                 while (drCurso.Read())
                 {

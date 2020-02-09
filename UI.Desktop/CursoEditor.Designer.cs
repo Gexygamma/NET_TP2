@@ -107,6 +107,11 @@
             this.nCupo.Name = "nCupo";
             this.nCupo.Size = new System.Drawing.Size(87, 20);
             this.nCupo.TabIndex = 3;
+            this.nCupo.Value = new decimal(new int[] {
+            40,
+            0,
+            0,
+            0});
             // 
             // nAnioCalendario
             // 
@@ -126,7 +131,7 @@
             this.nAnioCalendario.Size = new System.Drawing.Size(87, 20);
             this.nAnioCalendario.TabIndex = 2;
             this.nAnioCalendario.Value = new decimal(new int[] {
-            2000,
+            2020,
             0,
             0,
             0});

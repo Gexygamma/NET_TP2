@@ -142,5 +142,10 @@ namespace UI.Desktop
             CursoListado formCursos = new CursoListado();
             formCursos.ShowDialog();
         }
+
+        private void inscribirseACursadoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Inscripcion formInscripcion = new Inscripcion();
+        }
     }
 }

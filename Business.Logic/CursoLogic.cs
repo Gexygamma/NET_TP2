@@ -10,7 +10,7 @@ using Data.Database;
 namespace Business.Logic
 {
     public class CursoLogic
-    {
+    {   private ComisionLogic ComisionLogic { get; set; }
         private CursoAdapter CursoData { get; set; }
 
         public CursoLogic()
@@ -18,17 +18,27 @@ namespace Business.Logic
             CursoData = new CursoAdapter();
         }
 
-        public List<Curso> GetAll()
+        public List<Curso> GetAll(int origen)
         {
-            return CursoData.GetAll();
+            return CursoData.GetAll(origen);
         }
 
         public Curso GetOne(int id)
         {
             return CursoData.GetOne(id);
         }
+        public List<Comision> GetAllComision(int idMateria)
+        {
+             CursoData.GetAllComision(idMateria);
+            List<Comision> Comisiones = new List<Comision>();
+            foreach(Curso curso in CursoData.GetAllComision(idMateria)) 
+            {
+                Comisiones.Add(ComisionLogic.GetOne(curso.IdComision));
+            }
+            return Comisiones;
+        }
 
-        public DataTable GetAllTable()
+        public DataTable GetAllTable(int origen)
         {
             MateriaAdapter materiaData = new MateriaAdapter();
             ComisionAdapter comisionData = new ComisionAdapter();
@@ -40,7 +50,7 @@ namespace Business.Logic
             table.Columns.Add("anioCalendario", typeof(int));
             table.Columns.Add("cupo", typeof(int));
 
-            List<Curso> cursos = GetAll();
+            List<Curso> cursos = GetAll(origen);
             DataRow row;
 
             foreach (Curso curso in cursos)
