@@ -30,7 +30,8 @@ namespace UI.Desktop
                     btnConfirmar.Text = "Eliminar";
                     break;
                 case ModoForm.Consulta:
-                    btnConfirmar.Text = "Aceptar";
+                    btnConfirmar.Text = "Cerrar";
+                    btnCancelar.Visible = false;
                     break;
             }
 
@@ -184,21 +185,28 @@ namespace UI.Desktop
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            if (!CamposNoVacios())
+            if (Modo != ModoForm.Consulta)
             {
-                MessageBox.Show("Algunos campos están vacios. Por favor rellene con la información solicitada.");
-            }
-            else if (!Validacion.ValidarEmail(txtEmail.Text))
-            {
-                MessageBox.Show("El email ingresado tiene un formato inválido. Por favor intente nuevamente.");
-            }
-            else if (!Validacion.ValidarClave(txtClave.Text, txtConfirmarClave.Text))
-            {
-                MessageBox.Show("La contraseña ingresada no coincide o es muy corta. Por favor intente nuevamente.");
+                if (!CamposNoVacios())
+                {
+                    MessageBox.Show("Algunos campos están vacios. Por favor rellene con la información solicitada.");
+                }
+                else if (!Validacion.ValidarEmail(txtEmail.Text))
+                {
+                    MessageBox.Show("El email ingresado tiene un formato inválido. Por favor intente nuevamente.");
+                }
+                else if (!Validacion.ValidarClave(txtClave.Text, txtConfirmarClave.Text))
+                {
+                    MessageBox.Show("La contraseña ingresada no coincide o es muy corta. Por favor intente nuevamente.");
+                }
+                else
+                {
+                    GuardarCambios();
+                    DialogResult = DialogResult.OK;
+                }
             }
             else
             {
-                GuardarCambios();
                 DialogResult = DialogResult.OK;
             }
         }

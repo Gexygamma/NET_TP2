@@ -34,7 +34,8 @@ namespace UI.Desktop
                     btnConfirmar.Text = "Eliminar";
                     break;
                 case ModoForm.Consulta:
-                    btnConfirmar.Text = "Aceptar";
+                    btnConfirmar.Text = "Cerrar";
+                    btnCancelar.Visible = false;
                     break;
             }
 
@@ -95,13 +96,20 @@ namespace UI.Desktop
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtDescripcion.Text))
+            if (Modo != ModoForm.Consulta)
             {
-                MessageBox.Show("Algunos campos están vacios. Por favor rellene con la información solicitada.");
+                if (string.IsNullOrEmpty(txtDescripcion.Text))
+                {
+                    MessageBox.Show("Algunos campos están vacios. Por favor rellene con la información solicitada.");
+                }
+                else
+                {
+                    GuardarCambios();
+                    DialogResult = DialogResult.OK;
+                }
             }
             else
             {
-                GuardarCambios();
                 DialogResult = DialogResult.OK;
             }
         }
