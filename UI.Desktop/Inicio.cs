@@ -130,5 +130,11 @@ namespace UI.Desktop
             EspecialidadListado formEspecialidades = new EspecialidadListado();
             formEspecialidades.ShowDialog();
         }
+
+        private void comisionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ComisionListado formComisiones = new ComisionListado();
+            formComisiones.ShowDialog();
+        }
     }
 }
