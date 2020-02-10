@@ -24,17 +24,6 @@ namespace Business.Logic
             return CursoData.GetOne(id);
         }
 
-        public List<Comision> GetAllComision(int idMateria)
-        {
-             CursoData.GetAllComision(idMateria);
-            List<Comision> Comisiones = new List<Comision>();
-            foreach(Curso curso in CursoData.GetAllComision(idMateria)) 
-            {
-                Comisiones.Add(ComisionLogic.GetOne(curso.IdComision));
-            }
-            return Comisiones;
-        }
-
         public DataTable GetTable(List<Curso> cursos)
         {
             MateriaAdapter materiaData = new MateriaAdapter();
