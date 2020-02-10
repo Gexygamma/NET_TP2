@@ -127,7 +127,7 @@ namespace UI.Desktop
                 }
                 else if (nHsSemanales.Value > nHsTotales.Value)
                 {
-                    MessageBox.Show("Las horas totales deben ser menos que las horas semanales. Por favor corrija e intente de nuevo.");
+                    MessageBox.Show("Las horas totales deben ser más que las horas semanales. Por favor corrija e intente de nuevo.");
                 }
                 else
                 {
