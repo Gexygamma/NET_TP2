@@ -18,6 +18,7 @@ namespace UI.Desktop
 
         protected override void EstablecerPropiedades()
         {
+            Text = "Listado de Comisiones";
             dataGridView.Columns["ID"].HeaderText = "ID";
             dataGridView.Columns["ID"].Width = 50;
             dataGridView.Columns["descComision"].HeaderText = "Comisión";

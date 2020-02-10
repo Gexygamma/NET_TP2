@@ -22,13 +22,13 @@ namespace UI.Desktop
             dataGridView.Columns["ID"].HeaderText = "ID";
             dataGridView.Columns["ID"].Width = 50;
             dataGridView.Columns["descMateria"].HeaderText = "Materia";
-            dataGridView.Columns["descMateria"].Width = 250;
+            dataGridView.Columns["descMateria"].Width = 200;
             dataGridView.Columns["hsSemanales"].HeaderText = "Hs Semanales";
             dataGridView.Columns["hsSemanales"].Width = 100;
             dataGridView.Columns["hsTotales"].HeaderText = "Hs Totales";
             dataGridView.Columns["hsTotales"].Width = 100;
             dataGridView.Columns["descPlan"].HeaderText = "Plan";
-            dataGridView.Columns["descPlan"].Width = 250;
+            dataGridView.Columns["descPlan"].Width = 100;
         }
 
         protected override void ActualizarListado()

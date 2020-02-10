@@ -18,6 +18,7 @@ namespace UI.Desktop
 
         protected override void EstablecerPropiedades()
         {
+            Text = "Listado de Planes";
             dataGridView.Columns["ID"].HeaderText = "ID";
             dataGridView.Columns["ID"].Width = 50;
             dataGridView.Columns["descPlan"].HeaderText = "Plan";

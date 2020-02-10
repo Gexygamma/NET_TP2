@@ -18,14 +18,15 @@ namespace UI.Desktop
 
         protected override void EstablecerPropiedades()
         {
+            Text = "Listado de Cursos";
             dataGridView.Columns["ID"].HeaderText = "ID";
             dataGridView.Columns["ID"].Width = 50;
             dataGridView.Columns["descMateria"].HeaderText = "Materia";
-            dataGridView.Columns["descMateria"].Width = 150;
+            dataGridView.Columns["descMateria"].Width = 200;
             dataGridView.Columns["descComision"].HeaderText = "Comisión";
-            dataGridView.Columns["descComision"].Width = 150;
+            dataGridView.Columns["descComision"].Width = 100;
             dataGridView.Columns["anioCalendario"].HeaderText = "Año";
-            dataGridView.Columns["anioCalendario"].Width = 100;
+            dataGridView.Columns["anioCalendario"].Width = 50;
             dataGridView.Columns["cupo"].HeaderText = "Cupo";
             dataGridView.Columns["cupo"].Width = 50;
         }
