@@ -146,6 +146,19 @@ namespace UI.Desktop
         private void inscribirseACursadoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Inscripcion formInscripcion = new Inscripcion();
+            formInscripcion.ShowDialog();
+        }
+
+        private void modificarDatosPersonalesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UsuarioEditor formUsuarioEditor = new UsuarioEditor(UsuarioLogueado);
+            formUsuarioEditor.ShowDialog();
+
+            UsuarioLogic usuarioLogic = new UsuarioLogic();
+            PersonaLogic personaLogic = new PersonaLogic();
+            UsuarioLogueado = usuarioLogic.GetOne(UsuarioLogueado.ID);
+            PersonaLogueada = personaLogic.GetOne(UsuarioLogueado.IdPersona);
+            PersonalizarPantalla();
         }
     }
 }

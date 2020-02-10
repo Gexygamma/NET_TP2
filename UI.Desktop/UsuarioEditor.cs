@@ -76,6 +76,19 @@ namespace UI.Desktop
             cbTipoUsuario.Enabled = false;
         }
 
+        // Constructor usado solamente para editar datos personales del usuario logueado.
+        public UsuarioEditor(Usuario usuario) : this(ModoForm.Modificacion)
+        {
+            UsuarioActual = usuario;
+            PersonaActual = PersonaLogic.GetOne(UsuarioActual.IdPersona);
+            MapearDeDatos();
+
+            cbTipoUsuario.Enabled = false;
+            chkHabilitado.Enabled = false;
+            txtLegajo.Enabled = false;
+            cbPlan.Enabled = false;
+        }
+
         public override void MapearDeDatos()
         {
             txtNombreUsuario.Text = UsuarioActual.NombreUsuario;

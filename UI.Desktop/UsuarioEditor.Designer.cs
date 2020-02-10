@@ -107,7 +107,7 @@
             this.label10.TabIndex = 6;
             this.label10.Text = "Tipo de Usuario";
             // 
-            // cmbTipoUsuario
+            // cbTipoUsuario
             // 
             this.cbTipoUsuario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTipoUsuario.FormattingEnabled = true;
@@ -116,7 +116,7 @@
             "Profesor",
             "Administrador"});
             this.cbTipoUsuario.Location = new System.Drawing.Point(110, 98);
-            this.cbTipoUsuario.Name = "cmbTipoUsuario";
+            this.cbTipoUsuario.Name = "cbTipoUsuario";
             this.cbTipoUsuario.Size = new System.Drawing.Size(200, 21);
             this.cbTipoUsuario.TabIndex = 3;
             this.cbTipoUsuario.SelectedIndexChanged += new System.EventHandler(this.cmbTipoUsuario_SelectedIndexChanged);
@@ -202,12 +202,12 @@
             this.label12.TabIndex = 15;
             this.label12.Text = "Plan";
             // 
-            // cmbPlan
+            // cbPlan
             // 
             this.cbPlan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbPlan.FormattingEnabled = true;
             this.cbPlan.Location = new System.Drawing.Point(110, 208);
-            this.cbPlan.Name = "cmbPlan";
+            this.cbPlan.Name = "cbPlan";
             this.cbPlan.Size = new System.Drawing.Size(200, 21);
             this.cbPlan.TabIndex = 14;
             // 
@@ -376,7 +376,6 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.CheckBox chkHabilitado;
         private System.Windows.Forms.TextBox txtClave;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtNombreUsuario;
@@ -393,7 +392,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DateTimePicker dtFechaNacimiento;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ComboBox cbTipoUsuario;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtLegajo;
         private System.Windows.Forms.TextBox txtEmail;
@@ -403,5 +401,7 @@
         private System.Windows.Forms.TextBox txtConfirmarClave;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox cbPlan;
+        public System.Windows.Forms.CheckBox chkHabilitado;
+        public System.Windows.Forms.ComboBox cbTipoUsuario;
     }
 }
