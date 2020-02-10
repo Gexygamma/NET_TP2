@@ -42,7 +42,7 @@ namespace Data.Database
                 cmdTruncate.Connection = sqlConn;
                 cmdTruncate.Transaction = transaction;
 
-                string[] tableNames = { "usuarios", "personas", "alumnos_inscripciones", "docentes_cursos",
+                string[] tableNames = { "alumnos_inscripciones", "docentes_cursos", "usuarios", "personas",
                     "cursos", "comisiones", "materias", "planes", "especialidades" };
 
                 try
