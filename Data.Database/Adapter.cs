@@ -18,11 +18,11 @@ namespace Data.Database
         /// Conexión con la base de datos de academia.
         /// </summary>
         protected SqlConnection SqlConn { get; set; }
+        protected static string StrConn => ConfigurationManager.ConnectionStrings[KeyDefaultCnnString].ConnectionString;
 
         protected void OpenConnection()
         {
-            string strConn = ConfigurationManager.ConnectionStrings[KeyDefaultCnnString].ConnectionString;
-            SqlConn = new SqlConnection(strConn);
+            SqlConn = new SqlConnection(StrConn);
             SqlConn.Open();
         }
 
@@ -30,6 +30,41 @@ namespace Data.Database
         {
             SqlConn.Close();
             SqlConn = null;
+        }
+
+        public static void TruncarBaseDatos()
+        {
+            using (SqlConnection sqlConn = new SqlConnection(StrConn))
+            {
+                sqlConn.Open();
+                SqlCommand cmdTruncate = new SqlCommand();
+                SqlTransaction transaction = sqlConn.BeginTransaction();
+                cmdTruncate.Connection = sqlConn;
+                cmdTruncate.Transaction = transaction;
+
+                string[] tableNames = { "usuarios", "personas", "alumnos_inscripciones", "docentes_cursos",
+                    "cursos", "comisiones", "materias", "planes", "especialidades" };
+
+                try
+                {
+                    foreach (string table in tableNames)
+                    {
+                        cmdTruncate.CommandText = string.Format("DELETE FROM {0}; DBCC CHECKIDENT({0}, RESEED, 0)", table);
+                        cmdTruncate.ExecuteNonQuery();
+                    }
+
+                    cmdTruncate.CommandText = "INSERT INTO especialidades(desc_especialidad) VALUES ('default')" +
+                        "INSERT INTO planes(desc_plan, id_especialidad) VALUES ('default', 1);";
+                    cmdTruncate.ExecuteNonQuery();
+
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    transaction.Rollback();
+                    throw;
+                }
+            }
         }
 
         /// <summary>

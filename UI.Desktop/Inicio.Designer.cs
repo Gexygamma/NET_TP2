@@ -32,6 +32,8 @@
             this.lblWelcome = new System.Windows.Forms.Label();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.toolStripSistema = new System.Windows.Forms.ToolStripDropDownButton();
+            this.modificarDatosPersonalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.cerrarSesiónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ddAdministrador = new System.Windows.Forms.ToolStripDropDownButton();
@@ -43,14 +45,12 @@
             this.cursosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ddAlumno = new System.Windows.Forms.ToolStripDropDownButton();
             this.inscribirseACursadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reporteDeCursadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ddProfesor = new System.Windows.Forms.ToolStripDropDownButton();
             this.reporteDeCursosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteDePlanesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registroDeNotasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblVersion = new System.Windows.Forms.Label();
-            this.reporteDeCursadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.modificarDatosPersonalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -92,6 +92,18 @@
             this.toolStripSistema.ShowDropDownArrow = false;
             this.toolStripSistema.Size = new System.Drawing.Size(52, 22);
             this.toolStripSistema.Text = "Sistema";
+            // 
+            // modificarDatosPersonalesToolStripMenuItem
+            // 
+            this.modificarDatosPersonalesToolStripMenuItem.Name = "modificarDatosPersonalesToolStripMenuItem";
+            this.modificarDatosPersonalesToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.modificarDatosPersonalesToolStripMenuItem.Text = "Modificar datos personales";
+            this.modificarDatosPersonalesToolStripMenuItem.Click += new System.EventHandler(this.modificarDatosPersonalesToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(213, 6);
             // 
             // cerrarSesiónToolStripMenuItem
             // 
@@ -189,6 +201,12 @@
             this.inscribirseACursadoToolStripMenuItem.Text = "Inscribirse a cursado";
             this.inscribirseACursadoToolStripMenuItem.Click += new System.EventHandler(this.inscribirseACursadoToolStripMenuItem_Click);
             // 
+            // reporteDeCursadoToolStripMenuItem
+            // 
+            this.reporteDeCursadoToolStripMenuItem.Name = "reporteDeCursadoToolStripMenuItem";
+            this.reporteDeCursadoToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.reporteDeCursadoToolStripMenuItem.Text = "Reporte de cursado";
+            // 
             // ddProfesor
             // 
             this.ddProfesor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -207,19 +225,19 @@
             // reporteDeCursosToolStripMenuItem
             // 
             this.reporteDeCursosToolStripMenuItem.Name = "reporteDeCursosToolStripMenuItem";
-            this.reporteDeCursosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.reporteDeCursosToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.reporteDeCursosToolStripMenuItem.Text = "Reporte de cursos";
             // 
             // reporteDePlanesToolStripMenuItem
             // 
             this.reporteDePlanesToolStripMenuItem.Name = "reporteDePlanesToolStripMenuItem";
-            this.reporteDePlanesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.reporteDePlanesToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.reporteDePlanesToolStripMenuItem.Text = "Reporte de planes";
             // 
             // registroDeNotasToolStripMenuItem
             // 
             this.registroDeNotasToolStripMenuItem.Name = "registroDeNotasToolStripMenuItem";
-            this.registroDeNotasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.registroDeNotasToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.registroDeNotasToolStripMenuItem.Text = "Registro de notas";
             // 
             // lblVersion
@@ -232,24 +250,6 @@
             this.lblVersion.Size = new System.Drawing.Size(37, 13);
             this.lblVersion.TabIndex = 2;
             this.lblVersion.Text = "v4.2.0";
-            // 
-            // reporteDeCursadoToolStripMenuItem
-            // 
-            this.reporteDeCursadoToolStripMenuItem.Name = "reporteDeCursadoToolStripMenuItem";
-            this.reporteDeCursadoToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.reporteDeCursadoToolStripMenuItem.Text = "Reporte de cursado";
-            // 
-            // modificarDatosPersonalesToolStripMenuItem
-            // 
-            this.modificarDatosPersonalesToolStripMenuItem.Name = "modificarDatosPersonalesToolStripMenuItem";
-            this.modificarDatosPersonalesToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
-            this.modificarDatosPersonalesToolStripMenuItem.Text = "Modificar datos personales";
-            this.modificarDatosPersonalesToolStripMenuItem.Click += new System.EventHandler(this.modificarDatosPersonalesToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(213, 6);
             // 
             // Inicio
             // 
@@ -265,6 +265,7 @@
             this.Text = "Sistema de Gestión Académico";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Shown += new System.EventHandler(this.Inicio_Shown);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Inicio_KeyDown);
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
             this.ResumeLayout(false);

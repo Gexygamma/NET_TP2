@@ -160,5 +160,29 @@ namespace UI.Desktop
             PersonaLogueada = personaLogic.GetOne(UsuarioLogueado.IdPersona);
             PersonalizarPantalla();
         }
+
+        #region nuke
+        private void Inicio_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (PersonaLogueada.TipoPersona == TipoPersona.Admin && e.KeyCode == Keys.End)
+            {
+                DialogResult result = MessageBox.Show("Está a punto de nukear la base de datos. ¿Está seguro?", "Nuke DB",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (result == DialogResult.Yes)
+                {
+                    result = MessageBox.Show("¿Seguro seguro?", "Nuke DB",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        Util.Nuke.TruncarBaseDatos();
+                        MessageBox.Show("rip", ":'(");
+                        Dispose();
+                    }
+                }
+            }
+        }
+        #endregion
     }
 }
