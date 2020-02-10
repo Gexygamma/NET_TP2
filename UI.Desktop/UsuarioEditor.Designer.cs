@@ -362,7 +362,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "UsuarioEditor";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Edición de Usuarios";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

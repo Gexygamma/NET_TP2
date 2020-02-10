@@ -14,6 +14,11 @@ namespace UI.Desktop
 
     public class ApplicationForm : Form
     {
+        public ApplicationForm()
+        {
+            StartPosition = FormStartPosition.CenterParent;
+        }
+        
         public ModoForm Modo { get; set; }
 
         public virtual void MapearDeDatos() { }

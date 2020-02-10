@@ -188,6 +188,7 @@
             this.Controls.Add(this.toolStripContainer);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Listado";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Listado";
             this.Load += new System.EventHandler(this.Especialidades_Load);
             this.toolStripContainer.ContentPanel.ResumeLayout(false);
