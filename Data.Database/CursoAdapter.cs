@@ -31,28 +31,6 @@ namespace Data.Database
             cmd.Parameters.Add("@cupo", SqlDbType.Int).Value = curso.Cupo;
             cmd.Parameters.Add("@anio_calendario", SqlDbType.Int).Value = curso.AñoCalendario;
         }
-        public List<Curso> GetAllComision(int idMateria)
-        {
-            List<Curso> comisiones = new List<Curso>();
-            try
-            {
-                OpenConnection();
-                SqlCommand cmdCurso = new SqlCommand("SELECT * FROM curso WHERE id_materia@id_materia", SqlConn);
-                cmdCurso.Parameters.Add("@id_materia", SqlDbType.Int).Value = idMateria;
-                SqlDataReader drCurso = cmdCurso.ExecuteReader();
-                while (drCurso.Read())
-                {
-                    Curso Curso = CrearDesdeReader(drCurso);
-                    comisiones.Add(Curso);
-                }
-                drCurso.Close();
-            }
-            finally
-            {
-                CloseConnection();
-            }
-            return comisiones;
-        }
 
         public List<Curso> GetAll()
         {
@@ -76,19 +54,24 @@ namespace Data.Database
             return cursos;
         }
 
-        public List<Curso> GetAllPorCupo()
+        public Curso GetLatestOneMateriaComision(int idMateria, int idComision)
         {
-            List<Curso> cursos = new List<Curso>();
+            Curso curso;
             try
             {
                 OpenConnection();
-                SqlCommand cmdCurso = new SqlCommand("SELECT * FROM cursos where cupo>0 and anio_calendario=year(getdate())",
-                    SqlConn);
+                SqlCommand cmdCurso = new SqlCommand("SELECT * FROM cursos WHERE id_materia=@id_materia AND " +
+                    "id_comision=@id_comision ORDER BY anio_calendario DESC", SqlConn);
+                cmdCurso.Parameters.Add("@id_materia", SqlDbType.Int).Value = idMateria;
+                cmdCurso.Parameters.Add("@id_comision", SqlDbType.Int).Value = idComision;
                 SqlDataReader drCurso = cmdCurso.ExecuteReader();
-                while (drCurso.Read())
+                if (drCurso.Read())
                 {
-                    Curso curso = CrearDesdeReader(drCurso);
-                    cursos.Add(curso);
+                    curso = CrearDesdeReader(drCurso);
+                }
+                else
+                {
+                    curso = null;
                 }
                 drCurso.Close();
             }
@@ -96,7 +79,7 @@ namespace Data.Database
             {
                 CloseConnection();
             }
-            return cursos;
+            return curso;
         }
 
         public Curso GetOne(int ID)

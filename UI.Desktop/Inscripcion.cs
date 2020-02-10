@@ -14,10 +14,13 @@ namespace UI.Desktop
 {
     public partial class Inscripcion : Form
     {
+        private readonly InscripcionLogic InscripcionLogic;
+        private readonly CursoLogic CursoLogic;
         private readonly ComisionLogic ComisionLogic;
         private readonly MateriaLogic MateriaLogic;
 
         private Persona AlumnoActual;
+        private AlumnoInscripcion InscripcionActual;
 
         public Inscripcion(Persona alumno)
         {
@@ -25,6 +28,8 @@ namespace UI.Desktop
 
             AlumnoActual = alumno;
 
+            InscripcionLogic = new InscripcionLogic();
+            CursoLogic = new CursoLogic();
             ComisionLogic = new ComisionLogic();
             MateriaLogic = new MateriaLogic();
 
@@ -52,14 +57,31 @@ namespace UI.Desktop
         }
 
         public void MapearADatos()
-        { 
-            // aqui iria la clase inscripción
+        {
+            InscripcionActual = new AlumnoInscripcion();
+            InscripcionActual.IdAlumno = AlumnoActual.ID;
+            InscripcionActual.IdCurso = CursoLogic.GetLatestOneMateriaComision(((Materia)cbMateria.SelectedItem).ID,
+                ((Comision)cbComision.SelectedItem).ID).ID;
+            InscripcionActual.Condicion = "Libre";
+        }
+
+        public void GuardarCambios()
+        {
+            MapearADatos();
+            InscripcionLogic.Save(InscripcionActual);
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            MapearADatos();
-            // save de clase inscripción
+            if (cbMateria.SelectedIndex == -1 || cbComision.SelectedIndex == -1)
+            {
+                MessageBox.Show("Algunos campos están vacios. Por favor rellene con la información solicitada.");
+            }
+            else
+            {
+                GuardarCambios();
+                DialogResult = DialogResult.OK;
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

@@ -24,7 +24,12 @@ namespace Business.Logic
             return CursoData.GetOne(id);
         }
 
-        public DataTable GetTable(List<Curso> cursos)
+        public Curso GetLatestOneMateriaComision(int idMateria, int idComision)
+        {
+            return CursoData.GetLatestOneMateriaComision(idMateria, idComision);
+        }
+
+        public DataTable GetAllTable()
         {
             MateriaAdapter materiaData = new MateriaAdapter();
             ComisionAdapter comisionData = new ComisionAdapter();
@@ -36,6 +41,7 @@ namespace Business.Logic
             table.Columns.Add("anioCalendario", typeof(int));
             table.Columns.Add("cupo", typeof(int));
 
+            List<Curso> cursos = CursoData.GetAll();
             DataRow row;
 
             foreach (Curso curso in cursos)
@@ -50,16 +56,6 @@ namespace Business.Logic
             }
 
             return table;
-        }
-
-        public DataTable GetAllTable()
-        {
-            return GetTable(CursoData.GetAll());
-        }
-
-        public DataTable GetAllTablePorCupo()
-        {
-            return GetTable(CursoData.GetAllPorCupo());
         }
 
         public void Save(Curso curso)
