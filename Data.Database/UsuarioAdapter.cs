@@ -182,7 +182,7 @@ namespace Data.Database
                 {
                     cmdUpdate = new SqlCommand(
                        "UPDATE personas SET nombre=@nombre, apellido=@apellido, direccion=@direccion, email=@email, " +
-                        "telefono=@telefono, fecha_nac=@fecha_nac, legajo=@legajo, tipo_persona=@tipo_persona " +
+                        "telefono=@telefono, fecha_nac=@fecha_nac, legajo=@legajo, tipo_persona=@tipo_persona, id_plan=@id_plan " +
                         "WHERE id_persona=@id",
                        SqlConn, transaction);
                     cmdUpdate.Parameters.Add("@id", SqlDbType.Int).Value = persona.ID;
