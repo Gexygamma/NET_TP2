@@ -53,6 +53,30 @@ namespace Data.Database
             }
             return materias;
         }
+
+        public List<Materia> GetAllPlan(int idPlan)
+        {
+            List<Materia> materias = new List<Materia>();
+            try
+            {
+                OpenConnection();
+                SqlCommand cmdMateria = new SqlCommand("SELECT * FROM materias WHERE id_plan=@id_plan", SqlConn);
+                cmdMateria.Parameters.Add("@id_plan", SqlDbType.Int).Value = idPlan;
+                SqlDataReader drMateria = cmdMateria.ExecuteReader();
+                while (drMateria.Read())
+                {
+                    Materia materia = CrearDesdeReader(drMateria);
+                    materias.Add(materia);
+                }
+                drMateria.Close();
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return materias;
+        }
+
         public Materia GetOne(int ID)
         {
             Materia materia;

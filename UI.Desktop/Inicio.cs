@@ -145,7 +145,7 @@ namespace UI.Desktop
 
         private void inscribirseACursadoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Inscripcion formInscripcion = new Inscripcion();
+            Inscripcion formInscripcion = new Inscripcion(PersonaLogueada);
             formInscripcion.ShowDialog();
         }
 

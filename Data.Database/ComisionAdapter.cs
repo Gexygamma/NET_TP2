@@ -30,14 +30,14 @@ namespace Data.Database
             cmd.Parameters.Add("@id_plan", SqlDbType.Int).Value = comision.IdPlan;
         }
 
-        public List<Comision> GetAll()
+        private List<Comision> GetMany(SqlCommand cmd)
         {
             List<Comision> comisiones = new List<Comision>();
             try
             {
                 OpenConnection();
-                SqlCommand cmdComision = new SqlCommand("SELECT * FROM comisiones", SqlConn);
-                SqlDataReader drComision = cmdComision.ExecuteReader();
+                cmd.Connection = SqlConn;
+                SqlDataReader drComision = cmd.ExecuteReader();
                 while (drComision.Read())
                 {
                     Comision comision = CrearDesdeReader(drComision);
@@ -52,27 +52,26 @@ namespace Data.Database
             return comisiones;
         }
 
+        public List<Comision> GetAll()
+        {
+            SqlCommand cmdComision = new SqlCommand("SELECT * FROM comisiones");
+            return GetMany(cmdComision);
+        }
+
         public List<Comision> GetAllPlan(int idPlan)
         {
-            List<Comision> comisiones = new List<Comision>();
-            try
-            {
-                OpenConnection();
-                SqlCommand cmdComision = new SqlCommand("SELECT * FROM comisiones WHERE id_plan=@id_plan", SqlConn);
-                cmdComision.Parameters.Add("@id_plan", SqlDbType.Int).Value = idPlan;
-                SqlDataReader drComision = cmdComision.ExecuteReader();
-                while (drComision.Read())
-                {
-                    Comision comision = CrearDesdeReader(drComision);
-                    comisiones.Add(comision);
-                }
-                drComision.Close();
-            }
-            finally
-            {
-                CloseConnection();
-            }
-            return comisiones;
+            SqlCommand cmdComision = new SqlCommand("SELECT * FROM comisiones WHERE id_plan=@id_plan");
+            cmdComision.Parameters.Add("@id_plan", SqlDbType.Int).Value = idPlan;
+            return GetMany(cmdComision);
+        }
+
+        public List<Comision> GetAllMateria(int idMateria)
+        {
+            SqlCommand cmdComision = new SqlCommand("SELECT cursos.id_comision,desc_comision,anio_especialidad,id_plan " +
+                    "FROM cursos INNER JOIN comisiones ON cursos.id_comision=comisiones.id_comision " +
+                    "WHERE id_materia=@id_materia");
+            cmdComision.Parameters.Add("@id_materia", SqlDbType.Int).Value = idMateria;
+            return GetMany(cmdComision);
         }
 
         public Comision GetOne(int ID)

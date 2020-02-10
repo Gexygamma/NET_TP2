@@ -23,9 +23,14 @@ namespace Business.Logic
             return ComisionData.GetAll();
         }
 
-        public List<Comision> GetAllPlan(int id)
+        public List<Comision> GetAllPlan(int idPlan)
         {
-            return ComisionData.GetAllPlan(id);
+            return ComisionData.GetAllPlan(idPlan);
+        }
+
+        public List<Comision> GetAllMateria(int idMateria)
+        {
+            return ComisionData.GetAllMateria(idMateria);
         }
 
         public Comision GetOne(int id)

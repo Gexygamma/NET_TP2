@@ -14,23 +14,35 @@ namespace UI.Desktop
 {
     public partial class Inscripcion : Form
     {
-        private readonly CursoLogic CursoLogic;
+        private readonly ComisionLogic ComisionLogic;
+        private readonly MateriaLogic MateriaLogic;
 
-        public Inscripcion()
+        private Persona AlumnoActual;
+
+        public Inscripcion(Persona alumno)
         {
             InitializeComponent();
-            CursoLogic = new CursoLogic();
-            cbMateria.DataSource = CursoLogic.GetAllTablePorCupo();
-            cbMateria.DisplayMember = "descMateria";
+
+            AlumnoActual = alumno;
+
+            ComisionLogic = new ComisionLogic();
+            MateriaLogic = new MateriaLogic();
+
+            cbMateria.DataSource = MateriaLogic.GetAllPlan(AlumnoActual.IdPlan);
+            cbMateria.DisplayMember = "Descripcion";
             cbMateria.ValueMember = "ID";
             cbMateria.SelectedIndex = -1;
+
+            cbComision.DisplayMember = "Descripcion";
+            cbComision.ValueMember = "ID";
         }
 
         private void cbMateria_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbMateria.SelectedIndex != -1)
             {
-                //cbComision.DataSource = CursoLogic.GetAllComision(idMateria);
+                Materia materia = (Materia)cbMateria.SelectedItem;
+                cbComision.DataSource = ComisionLogic.GetAllMateria(materia.ID);
                 cbComision.SelectedIndex = -1;
             }
             else
