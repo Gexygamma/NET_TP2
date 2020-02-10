@@ -32,16 +32,16 @@
             this.btnConfirmar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cbMateria = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblMateria = new System.Windows.Forms.Label();
             this.cbComision = new System.Windows.Forms.ComboBox();
-            this.lbl = new System.Windows.Forms.Label();
+            this.lblComision = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnCancelar
             // 
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancelar.Location = new System.Drawing.Point(146, 104);
+            this.btnCancelar.Location = new System.Drawing.Point(146, 107);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(71, 23);
             this.btnCancelar.TabIndex = 12;
@@ -52,7 +52,7 @@
             // btnConfirmar
             // 
             this.btnConfirmar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnConfirmar.Location = new System.Drawing.Point(223, 104);
+            this.btnConfirmar.Location = new System.Drawing.Point(223, 107);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(71, 23);
             this.btnConfirmar.TabIndex = 11;
@@ -66,19 +66,21 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.cbMateria);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.lblMateria);
             this.groupBox1.Controls.Add(this.cbComision);
-            this.groupBox1.Controls.Add(this.lbl);
+            this.groupBox1.Controls.Add(this.lblComision);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(282, 86);
+            this.groupBox1.Size = new System.Drawing.Size(282, 89);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Inscripción";
             // 
             // cbMateria
             // 
+            this.cbMateria.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cbMateria.FormattingEnabled = true;
             this.cbMateria.Location = new System.Drawing.Point(65, 25);
             this.cbMateria.Name = "cbMateria";
@@ -86,44 +88,47 @@
             this.cbMateria.TabIndex = 5;
             this.cbMateria.SelectedIndexChanged += new System.EventHandler(this.cbMateria_SelectedIndexChanged);
             // 
-            // label1
+            // lblMateria
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 28);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Materia";
+            this.lblMateria.AutoSize = true;
+            this.lblMateria.Location = new System.Drawing.Point(11, 28);
+            this.lblMateria.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblMateria.Name = "lblMateria";
+            this.lblMateria.Size = new System.Drawing.Size(42, 13);
+            this.lblMateria.TabIndex = 4;
+            this.lblMateria.Text = "Materia";
             // 
             // cbComision
             // 
+            this.cbComision.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cbComision.FormattingEnabled = true;
             this.cbComision.Location = new System.Drawing.Point(65, 51);
             this.cbComision.Name = "cbComision";
             this.cbComision.Size = new System.Drawing.Size(211, 21);
             this.cbComision.TabIndex = 3;
             // 
-            // lbl
+            // lblComision
             // 
-            this.lbl.AutoSize = true;
-            this.lbl.Location = new System.Drawing.Point(11, 54);
-            this.lbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lbl.Name = "lbl";
-            this.lbl.Size = new System.Drawing.Size(49, 13);
-            this.lbl.TabIndex = 1;
-            this.lbl.Text = "Comisión";
+            this.lblComision.AutoSize = true;
+            this.lblComision.Location = new System.Drawing.Point(11, 54);
+            this.lblComision.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblComision.Name = "lblComision";
+            this.lblComision.Size = new System.Drawing.Size(49, 13);
+            this.lblComision.TabIndex = 1;
+            this.lblComision.Text = "Comisión";
             // 
             // Inscripcion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(300, 148);
+            this.ClientSize = new System.Drawing.Size(300, 142);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Inscripcion";
-            this.Text = "Inscripcion";
+            this.Text = "Inscripcion a Cursado";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -136,8 +141,8 @@
         private System.Windows.Forms.Button btnConfirmar;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox cbComision;
-        private System.Windows.Forms.Label lbl;
+        private System.Windows.Forms.Label lblComision;
         private System.Windows.Forms.ComboBox cbMateria;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblMateria;
     }
 }
