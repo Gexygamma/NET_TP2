@@ -32,7 +32,7 @@ namespace UI.Desktop
 
         protected override void ActualizarListado()
         {
-            dataGridView.DataSource = CursoLogic.GetAllTable(0);
+            dataGridView.DataSource = CursoLogic.GetAllTable();
         }
     }
 }

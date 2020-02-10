@@ -14,20 +14,16 @@ namespace UI.Desktop
 {
     public partial class Inscripcion : Form
     {
-
         private readonly CursoLogic CursoLogic;
-        
 
         public Inscripcion()
         {
             InitializeComponent();
             CursoLogic = new CursoLogic();
-            cbMateria.DataSource = CursoLogic.GetAllTable(1);
+            cbMateria.DataSource = CursoLogic.GetAllTablePorCupo();
             cbMateria.DisplayMember = "descMateria";
             cbMateria.ValueMember = "ID";
             cbMateria.SelectedIndex = -1;
-            
-
         }
 
         private void cbMateria_SelectedIndexChanged(object sender, EventArgs e)
@@ -43,16 +39,15 @@ namespace UI.Desktop
             }
         }
 
-        public override void MapearADatos()
+        public void MapearADatos()
         { 
-            //aqui iria la clase inscripcion
+            // aqui iria la clase inscripción
         }
 
-            private void btnConfirmar_Click(object sender, EventArgs e)
+        private void btnConfirmar_Click(object sender, EventArgs e)
         {
             MapearADatos();
-            //save de clase inscripcion
-            
+            // save de clase inscripción
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

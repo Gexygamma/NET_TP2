@@ -54,27 +54,40 @@ namespace Data.Database
             return comisiones;
         }
 
-        public List<Curso> GetAll(int origen )
+        public List<Curso> GetAll()
         {
             List<Curso> cursos = new List<Curso>();
             try
             {
                 OpenConnection();
-                string queryString;
-                if (origen == 1) //para filtrar año y que haya cupo
-                {
-                    queryString = "SELECT * FROM cursos where cupo>0 and anio_calendario=year(getdate());";
-                }
-                else
-                {
-                    queryString = "SELECT * FROM cursos";
-                }
-
-                SqlCommand cmdCurso = new SqlCommand(queryString, SqlConn);
+                SqlCommand cmdCurso = new SqlCommand("SELECT * FROM cursos", SqlConn);
                 SqlDataReader drCurso = cmdCurso.ExecuteReader();
                 while (drCurso.Read())
                 {
                     Curso curso= CrearDesdeReader(drCurso);
+                    cursos.Add(curso);
+                }
+                drCurso.Close();
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return cursos;
+        }
+
+        public List<Curso> GetAllPorCupo()
+        {
+            List<Curso> cursos = new List<Curso>();
+            try
+            {
+                OpenConnection();
+                SqlCommand cmdCurso = new SqlCommand("SELECT * FROM cursos where cupo>0 and anio_calendario=year(getdate())",
+                    SqlConn);
+                SqlDataReader drCurso = cmdCurso.ExecuteReader();
+                while (drCurso.Read())
+                {
+                    Curso curso = CrearDesdeReader(drCurso);
                     cursos.Add(curso);
                 }
                 drCurso.Close();
