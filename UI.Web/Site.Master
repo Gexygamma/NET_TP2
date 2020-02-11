@@ -6,19 +6,14 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Academia</title>
-    <asp:ContentPlaceHolder ID="head" runat="server">
-    </asp:ContentPlaceHolder>
+    <asp:ContentPlaceHolder ID="head" runat="server" />
 </head>
 <body>
     <form id="bodyForm" runat="server">
         <div>
-            <asp:Menu runat="server" ID="menu" DataSourceID="SiteMapDataSource">
-            </asp:Menu>
-            <asp:SiteMapDataSource ID="SiteMapDataSource" runat="server"/>
-            <div>
-            <asp:ContentPlaceHolder ID="bodyContentPlaceHolder" runat="server">
-            </asp:ContentPlaceHolder>
-            </div>   
+            <asp:Menu runat="server" ID="menu" DataSourceID="SiteMapDataSource" />
+            <asp:SiteMapDataSource ID="SiteMapDataSource" runat="server" />
+            <asp:ContentPlaceHolder ID="bodyContent" runat="server" />
         </div>
     </form>
 </body>

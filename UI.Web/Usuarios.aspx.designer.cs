@@ -15,13 +15,13 @@ namespace UI.Web
     {
 
         /// <summary>
-        /// Control Panel1.
+        /// Control gridPanel.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel1;
+        protected global::System.Web.UI.WebControls.Panel gridPanel;
 
         /// <summary>
         /// Control GridView.
@@ -114,13 +114,13 @@ namespace UI.Web
         protected global::System.Web.UI.WebControls.TextBox txtEmail;
 
         /// <summary>
-        /// Control ckbHabilitado.
+        /// Control chkHabilitado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox ckbHabilitado;
+        protected global::System.Web.UI.WebControls.CheckBox chkHabilitado;
 
         /// <summary>
         /// Control lblClave.

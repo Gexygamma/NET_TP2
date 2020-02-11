@@ -46,7 +46,7 @@ namespace UI.Web
             txtNombre.Text = UsuarioActual.Nombre;
             txtApellido.Text = UsuarioActual.Apellido;
             txtEmail.Text = UsuarioActual.Email;
-            ckbHabilitado.Checked = UsuarioActual.Habilitado;
+            chkHabilitado.Checked = UsuarioActual.Habilitado;
         }
 
         private void EnableForm(bool enable)
@@ -66,7 +66,7 @@ namespace UI.Web
             txtNombre.Text = string.Empty;
             txtApellido.Text = string.Empty;
             txtEmail.Text = string.Empty;
-            ckbHabilitado.Checked = false;
+            chkHabilitado.Checked = false;
             txtNombreUsuario.Text = string.Empty;
         }
 
@@ -83,7 +83,7 @@ namespace UI.Web
             usuario.Apellido = txtApellido.Text;
             usuario.Email = txtEmail.Text;
             usuario.Clave = txtClave.Text;
-            usuario.Habilitado = ckbHabilitado.Checked;
+            usuario.Habilitado = chkHabilitado.Checked;
         }
 
         private void SaveEntity(Usuario usuario)
