@@ -14,9 +14,29 @@ namespace UI.Web
 
         }
 
-        protected void menu_MenuItemClick(object sernver, EventArgs e)
+        protected void menu_MenuItemClick(object sender, MenuEventArgs e)
         {
-
+            switch (e.Item.Value)
+            {
+                case "Usuarios":
+                    Response.Redirect("~/Usuarios.aspx");
+                    break;
+                case "Especialidades":
+                    Response.Write("<script>alert('Click en Especialidades')</script>");
+                    break;
+                case "Planes":
+                    Response.Write("<script>alert('Click en Planes')</script>");
+                    break;
+                case "Materias":
+                    Response.Write("<script>alert('Click en Materias')</script>");
+                    break;
+                case "Cursos":
+                    Response.Write("<script>alert('Click en Cursos')</script>");
+                    break;
+                case "Comisiones":
+                    Response.Write("<script>alert('Click en Comisiones')</script>");
+                    break;
+            }
         }
     }
 }
