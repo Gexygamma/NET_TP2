@@ -11,9 +11,18 @@
 <body>
     <form id="bodyForm" runat="server">
         <div>
-            <asp:Menu runat="server" ID="menu" DataSourceID="SiteMapDataSource" />
-            <asp:SiteMapDataSource ID="SiteMapDataSource" runat="server" />
+            <asp:Label runat="server" Text="Academia" Font-Bold="True" Font-Size="X-Large" Font-Underline="True" />
+        </div>
+        <div style="text-align:right; width:100%; padding-bottom:16px" >
+            <asp:Label ID="lblMensajeBienvenida" runat="server" Text="Bienvenido, Usuario!" style="margin-right:16px"/>
+            <asp:Button ID="btnCerrarSesion" runat="server" Text="Cerrar Sesión" OnClick="btnCerrarSesion_Click" />
+        </div>
+        <div>
             <asp:ContentPlaceHolder ID="bodyContent" runat="server" />
+        </div>
+        <div>
+            <hr />
+            <asp:Label runat="server" Text="Academia 2020 &#169;" />
         </div>
     </form>
 </body>
