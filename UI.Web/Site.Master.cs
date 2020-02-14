@@ -23,5 +23,10 @@ namespace UI.Web
             Session.Clear();
             Response.Redirect("~/Login.aspx");
         }
+
+        protected void btnHome_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/MainMenu.aspx");
+        }
     }
 }
