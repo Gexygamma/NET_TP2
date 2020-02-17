@@ -9,20 +9,22 @@ using Business.Logic;
 
 namespace UI.Web
 {
-    public partial class Usuarios : ApplicationPage
+    public partial class Planes : ApplicationPage
     {
-        private UsuarioLogic _usuarioLogic;
-        private UsuarioLogic UsuarioLogic
+        private PlanLogic _PlanLogic;
+        private PlanLogic PlanLogic
         {
             get
             {
-                if (_usuarioLogic == null) _usuarioLogic = new UsuarioLogic();
-                return _usuarioLogic;
+                if (_PlanLogic == null) _PlanLogic = new PlanLogic();
+                return _PlanLogic;
             }
         }
-        
-        private Usuario UsuarioActual { get; set; }
-        private Persona PersonaActual { get; set; } // TODO: Agregar controles para los atributos de persona.
+        private EspecialidadLogic EspecialidadLogic { get; set; }
+
+
+        private Plan PlanActual { get; set; }
+
 
         private int SelectedID
         {
@@ -41,55 +43,38 @@ namespace UI.Web
 
         private void LoadForm(int id)
         {
-            UsuarioActual = UsuarioLogic.GetOne(id);
-            txtNombreUsuario.Text = UsuarioActual.NombreUsuario;
-            txtNombre.Text = UsuarioActual.Nombre;
-            txtApellido.Text = UsuarioActual.Apellido;
-            txtEmail.Text = UsuarioActual.Email;
-            chkHabilitado.Checked = UsuarioActual.Habilitado;
+            PlanActual = PlanLogic.GetOne(id);
+            txtdescPlan.Text = PlanActual.Descripcion;
+            txtdescEspecialidad.Text = EspecialidadLogic.GetOne(PlanActual.IdEspecialidad).Descripcion;
         }
 
         private void EnableForm(bool enable)
         {
-            txtNombreUsuario.Enabled = enable;
-            txtNombre.Enabled = enable;
-            txtApellido.Enabled = enable;
-            txtClave.Visible = enable;
-            lblClave.Visible = enable;
-            txtEmail.Enabled = enable;
-            txtRepetirClave.Visible = enable;
-            lblRepetirClave.Visible = enable;
-  
+            txtdescPlan.Enabled = enable;
+            txtdescEspecialidad.Enabled = enable;
         }
 
         private void ClearForm()
         {
-            txtNombre.Text = string.Empty;
-            txtApellido.Text = string.Empty;
-            txtEmail.Text = string.Empty;
-            chkHabilitado.Checked = false;
-            txtNombreUsuario.Text = string.Empty;
+            txtdescPlan.Text = string.Empty;
+            txtdescEspecialidad.Text = string.Empty;
         }
 
         private void LoadGrid()
         {
-            GridView.DataSource = UsuarioLogic.GetAll();
+            GridView.DataSource = PlanLogic.GetAllTable();
             GridView.DataBind();
         }
 
-        private void LoadEntity(Usuario usuario)
+        private void LoadEntity(Plan Plan)
         {
-            usuario.NombreUsuario = txtNombreUsuario.Text;
-            usuario.Nombre = txtNombre.Text;
-            usuario.Apellido = txtApellido.Text;
-            usuario.Email = txtEmail.Text;
-            usuario.Clave = txtClave.Text;
-            usuario.Habilitado = chkHabilitado.Checked;
+            Plan.Descripcion = txtdescPlan.Text;
+            Plan.IdEspecialidad = int.Parse(txtdescEspecialidad.ID);
         }
 
-        private void SaveEntity(Usuario usuario)
+        private void SaveEntity(Plan Plan)
         {
-            //UsuarioLogic.Save(usuario, persona);
+            PlanLogic.Save(Plan);
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -119,25 +104,25 @@ namespace UI.Web
             switch (Modo)
             {
                 case ModoForm.Baja:
-                    UsuarioActual = new Usuario();
-                    UsuarioActual.ID = SelectedID;
-                    UsuarioActual.State = BusinessEntity.States.Deleted;
-                    LoadEntity(UsuarioActual);
-                    SaveEntity(UsuarioActual);
+                    PlanActual = new Plan();
+                    PlanActual.ID = SelectedID;
+                    PlanActual.State = BusinessEntity.States.Deleted;
+                    LoadEntity(PlanActual);
+                    SaveEntity(PlanActual);
                     LoadGrid();
                     break;
                 case ModoForm.Modificacion:
-                    UsuarioActual = new Usuario();
-                    UsuarioActual.ID = SelectedID;
-                    UsuarioActual.State = BusinessEntity.States.Modified;
-                    LoadEntity(UsuarioActual);
-                    SaveEntity(UsuarioActual);
+                    PlanActual = new Plan();
+                    PlanActual.ID = SelectedID;
+                    PlanActual.State = BusinessEntity.States.Modified;
+                    LoadEntity(PlanActual);
+                    SaveEntity(PlanActual);
                     LoadGrid();
                     break;
                 case ModoForm.Alta:
-                    UsuarioActual = new Usuario();
-                    LoadEntity(UsuarioActual);
-                    SaveEntity(UsuarioActual);
+                    PlanActual = new Plan();
+                    LoadEntity(PlanActual);
+                    SaveEntity(PlanActual);
                     LoadGrid();
                     break;
                 default:
@@ -168,7 +153,7 @@ namespace UI.Web
             Modo = ModoForm.Alta;
             ClearForm();
             EnableForm(true);
-            
+
         }
 
         protected void btnCancelarLink_Click(object sender, EventArgs e)

@@ -9,20 +9,20 @@ using Business.Logic;
 
 namespace UI.Web
 {
-    public partial class Usuarios : ApplicationPage
+    public partial class Especialidades : ApplicationPage
     {
-        private UsuarioLogic _usuarioLogic;
-        private UsuarioLogic UsuarioLogic
+        private EspecialidadLogic _EspecialidadLogic;
+        private EspecialidadLogic EspecialidadLogic
         {
             get
             {
-                if (_usuarioLogic == null) _usuarioLogic = new UsuarioLogic();
-                return _usuarioLogic;
+                if (_EspecialidadLogic == null) _EspecialidadLogic = new EspecialidadLogic();
+                return _EspecialidadLogic;
             }
         }
-        
-        private Usuario UsuarioActual { get; set; }
-        private Persona PersonaActual { get; set; } // TODO: Agregar controles para los atributos de persona.
+
+        private Especialidad EspecialidadActual { get; set; }
+
 
         private int SelectedID
         {
@@ -41,55 +41,38 @@ namespace UI.Web
 
         private void LoadForm(int id)
         {
-            UsuarioActual = UsuarioLogic.GetOne(id);
-            txtNombreUsuario.Text = UsuarioActual.NombreUsuario;
-            txtNombre.Text = UsuarioActual.Nombre;
-            txtApellido.Text = UsuarioActual.Apellido;
-            txtEmail.Text = UsuarioActual.Email;
-            chkHabilitado.Checked = UsuarioActual.Habilitado;
+            EspecialidadActual = EspecialidadLogic.GetOne(id);
+            txtdescEspecialidad.Text = EspecialidadActual.Descripcion;
+
         }
 
         private void EnableForm(bool enable)
         {
-            txtNombreUsuario.Enabled = enable;
-            txtNombre.Enabled = enable;
-            txtApellido.Enabled = enable;
-            txtClave.Visible = enable;
-            lblClave.Visible = enable;
-            txtEmail.Enabled = enable;
-            txtRepetirClave.Visible = enable;
-            lblRepetirClave.Visible = enable;
-  
+            txtdescEspecialidad.Enabled = enable;
+            
+
         }
 
         private void ClearForm()
         {
-            txtNombre.Text = string.Empty;
-            txtApellido.Text = string.Empty;
-            txtEmail.Text = string.Empty;
-            chkHabilitado.Checked = false;
-            txtNombreUsuario.Text = string.Empty;
+            txtdescEspecialidad.Text = string.Empty;
         }
-
+    
         private void LoadGrid()
         {
-            GridView.DataSource = UsuarioLogic.GetAll();
+            GridView.DataSource = EspecialidadLogic.GetAll();
             GridView.DataBind();
         }
 
-        private void LoadEntity(Usuario usuario)
+        private void LoadEntity(Especialidad Especialidad)
         {
-            usuario.NombreUsuario = txtNombreUsuario.Text;
-            usuario.Nombre = txtNombre.Text;
-            usuario.Apellido = txtApellido.Text;
-            usuario.Email = txtEmail.Text;
-            usuario.Clave = txtClave.Text;
-            usuario.Habilitado = chkHabilitado.Checked;
+            Especialidad.Descripcion = txtdescEspecialidad.Text;
+ 
         }
 
-        private void SaveEntity(Usuario usuario)
+        private void SaveEntity(Especialidad Especialidad)
         {
-            //UsuarioLogic.Save(usuario, persona);
+            EspecialidadLogic.Save(Especialidad);
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -119,25 +102,25 @@ namespace UI.Web
             switch (Modo)
             {
                 case ModoForm.Baja:
-                    UsuarioActual = new Usuario();
-                    UsuarioActual.ID = SelectedID;
-                    UsuarioActual.State = BusinessEntity.States.Deleted;
-                    LoadEntity(UsuarioActual);
-                    SaveEntity(UsuarioActual);
+                    EspecialidadActual = new Especialidad();
+                    EspecialidadActual.ID = SelectedID;
+                    EspecialidadActual.State = BusinessEntity.States.Deleted;
+                    LoadEntity(EspecialidadActual);
+                    SaveEntity(EspecialidadActual);
                     LoadGrid();
                     break;
                 case ModoForm.Modificacion:
-                    UsuarioActual = new Usuario();
-                    UsuarioActual.ID = SelectedID;
-                    UsuarioActual.State = BusinessEntity.States.Modified;
-                    LoadEntity(UsuarioActual);
-                    SaveEntity(UsuarioActual);
+                    EspecialidadActual = new Especialidad();
+                    EspecialidadActual.ID = SelectedID;
+                    EspecialidadActual.State = BusinessEntity.States.Modified;
+                    LoadEntity(EspecialidadActual);
+                    SaveEntity(EspecialidadActual);
                     LoadGrid();
                     break;
                 case ModoForm.Alta:
-                    UsuarioActual = new Usuario();
-                    LoadEntity(UsuarioActual);
-                    SaveEntity(UsuarioActual);
+                    EspecialidadActual = new Especialidad();
+                    LoadEntity(EspecialidadActual);
+                    SaveEntity(EspecialidadActual);
                     LoadGrid();
                     break;
                 default:
@@ -168,7 +151,7 @@ namespace UI.Web
             Modo = ModoForm.Alta;
             ClearForm();
             EnableForm(true);
-            
+
         }
 
         protected void btnCancelarLink_Click(object sender, EventArgs e)
