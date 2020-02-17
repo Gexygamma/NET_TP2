@@ -34,7 +34,7 @@ namespace UI.Web
                     Response.Redirect("~/Cursos.aspx");
                     break;
                 case "Comisiones":
-                    Response.Write("<script>alert('Click en Comisiones')</script>");
+                    Response.Redirect("~/Comisiones.aspx");
                     break;
             }
         }
