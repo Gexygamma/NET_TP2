@@ -22,7 +22,7 @@ namespace UI.Web
                     Response.Redirect("~/Usuarios.aspx");
                     break;
                 case "Especialidades":
-                    Response.Redirect("~/Especialidades.aspx");//<script>alert('Click en Especialidades')</script>
+                    Response.Redirect("~/Especialidades.aspx");
                     break;
                 case "Planes":
                     Response.Redirect("~/Planes.aspx");

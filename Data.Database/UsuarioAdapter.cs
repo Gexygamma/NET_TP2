@@ -237,7 +237,7 @@ namespace Data.Database
                 {
                     transaction.Rollback();
                     Exception ExcepcionManejada = new Exception("Error al eliminar usuario y persona", ex);
-                    throw ExcepcionManejada;
+                    throw ExcepcionManejada;// Agregar mensaje de error
                 }
 
             }

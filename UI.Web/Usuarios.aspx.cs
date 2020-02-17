@@ -20,7 +20,27 @@ namespace UI.Web
                 return _usuarioLogic;
             }
         }
-        
+
+        private PersonaLogic _personaLogic;
+        private PersonaLogic PersonaLogic
+        {
+            get
+            {
+                if (_personaLogic == null) _personaLogic = new PersonaLogic();
+                return _personaLogic;
+            }
+        }
+
+        private PlanLogic _planLogic;
+        private PlanLogic PlanLogic
+        {
+            get
+            {
+                if (_planLogic == null) _planLogic = new PlanLogic();
+                return _planLogic;
+            }
+        }
+
         private Usuario UsuarioActual { get; set; }
         private Persona PersonaActual { get; set; } // TODO: Agregar controles para los atributos de persona.
 
@@ -42,11 +62,22 @@ namespace UI.Web
         private void LoadForm(int id)
         {
             UsuarioActual = UsuarioLogic.GetOne(id);
+            PersonaActual = PersonaLogic.GetOne(UsuarioActual.IdPersona);
+
             txtNombreUsuario.Text = UsuarioActual.NombreUsuario;
-            txtNombre.Text = UsuarioActual.Nombre;
-            txtApellido.Text = UsuarioActual.Apellido;
-            txtEmail.Text = UsuarioActual.Email;
+            txtClave.Text = UsuarioActual.Clave;
+            txtRepetirClave.Text = UsuarioActual.Clave;
             chkHabilitado.Checked = UsuarioActual.Habilitado;
+            ddlTipoUsuario.SelectedIndex = (int)PersonaActual.TipoPersona;
+
+            txtNombre.Text = PersonaActual.Nombre;
+            txtApellido.Text = PersonaActual.Apellido;
+            txtDireccion.Text = PersonaActual.Direccion;
+            txtEmail.Text = PersonaActual.Email;
+            txtTelefono.Text = PersonaActual.Telefono;
+            cldFechaNacimiento.SelectedDate = PersonaActual.FechaNacimiento;
+
+
         }
 
         private void EnableForm(bool enable)
@@ -59,7 +90,12 @@ namespace UI.Web
             txtEmail.Enabled = enable;
             txtRepetirClave.Visible = enable;
             lblRepetirClave.Visible = enable;
-  
+
+            txtDireccion.Enabled = enable;
+            txtTelefono.Enabled = enable;
+            cldFechaNacimiento.Enabled = enable;
+            ddlTipoUsuario.Enabled = enable;
+
         }
 
         private void ClearForm()
@@ -69,15 +105,19 @@ namespace UI.Web
             txtEmail.Text = string.Empty;
             chkHabilitado.Checked = false;
             txtNombreUsuario.Text = string.Empty;
+            txtDireccion.Text = string.Empty;
+            txtTelefono.Text = string.Empty;
+            cldFechaNacimiento.SelectedDate = DateTime.Now;
+            ddlTipoUsuario.SelectedIndex = -1;
         }
 
         private void LoadGrid()
         {
-            GridView.DataSource = UsuarioLogic.GetAll();
+            GridView.DataSource = UsuarioLogic.GetAllTable();
             GridView.DataBind();
         }
 
-        private void LoadEntity(Usuario usuario)
+        private void LoadEntity(Usuario usuario, Persona persona)
         {
             usuario.NombreUsuario = txtNombreUsuario.Text;
             usuario.Nombre = txtNombre.Text;
@@ -85,16 +125,30 @@ namespace UI.Web
             usuario.Email = txtEmail.Text;
             usuario.Clave = txtClave.Text;
             usuario.Habilitado = chkHabilitado.Checked;
+            persona.IdPlan = int.Parse(ddlPlan.SelectedItem.Value);
+
+            persona.Nombre = txtNombre.Text;
+            persona.Apellido = txtApellido.Text;
+            persona.Email = txtEmail.Text;
+            persona.Direccion = txtDireccion.Text;
+            persona.Telefono = txtTelefono.Text;
+            persona.FechaNacimiento = cldFechaNacimiento.SelectedDate;
+            persona.TipoPersona = (TipoPersona)ddlTipoUsuario.SelectedIndex;
         }
 
-        private void SaveEntity(Usuario usuario)
+        private void SaveEntity(Usuario usuario,Persona persona)
         {
-            //UsuarioLogic.Save(usuario, persona);
+            UsuarioLogic.Save(usuario, persona);
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             LoadGrid();
+            ddlPlan.DataSource = PlanLogic.GetAll();
+            ddlPlan.DataTextField = "Descripcion";
+            ddlPlan.DataValueField = "ID";
+            ddlPlan.DataBind();
+            ddlPlan.SelectedIndex = -1;
         }
 
         protected void GridView_SelectedIndexChanged(object sender, EventArgs e)
@@ -119,25 +173,28 @@ namespace UI.Web
             switch (Modo)
             {
                 case ModoForm.Baja:
-                    UsuarioActual = new Usuario();
-                    UsuarioActual.ID = SelectedID;
+                    UsuarioActual = UsuarioLogic.GetOne(SelectedID);
+                    PersonaActual = PersonaLogic.GetOne(UsuarioActual.IdPersona);
                     UsuarioActual.State = BusinessEntity.States.Deleted;
-                    LoadEntity(UsuarioActual);
-                    SaveEntity(UsuarioActual);
+                    PersonaActual.State = BusinessEntity.States.Deleted;
+                    LoadEntity(UsuarioActual, PersonaActual);
+                    SaveEntity(UsuarioActual, PersonaActual);
                     LoadGrid();
                     break;
                 case ModoForm.Modificacion:
-                    UsuarioActual = new Usuario();
-                    UsuarioActual.ID = SelectedID;
+                    UsuarioActual = UsuarioLogic.GetOne(SelectedID);
+                    PersonaActual = PersonaLogic.GetOne(UsuarioActual.IdPersona);
                     UsuarioActual.State = BusinessEntity.States.Modified;
-                    LoadEntity(UsuarioActual);
-                    SaveEntity(UsuarioActual);
+                    PersonaActual.State = BusinessEntity.States.Modified;
+                    LoadEntity(UsuarioActual, PersonaActual);
+                    SaveEntity(UsuarioActual, PersonaActual);
                     LoadGrid();
                     break;
                 case ModoForm.Alta:
                     UsuarioActual = new Usuario();
-                    LoadEntity(UsuarioActual);
-                    SaveEntity(UsuarioActual);
+                    PersonaActual = new Persona();
+                    LoadEntity(UsuarioActual, PersonaActual);
+                    SaveEntity(UsuarioActual, PersonaActual);
                     LoadGrid();
                     break;
                 default:
