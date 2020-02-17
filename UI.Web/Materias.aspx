@@ -52,7 +52,8 @@
             <tr>
                 <td class="auto-style1">Plan</td>
                 <td>
-                    <asp:TextBox ID="txtDescPlan" runat="server"></asp:TextBox>
+                    <asp:DropDownList ID="DropDownListPlan" runat="server">
+                    </asp:DropDownList>
                 </td>
             </tr>
         </table>

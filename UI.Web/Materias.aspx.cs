@@ -45,7 +45,7 @@ namespace UI.Web
             txtDescripcion.Text = MateriaActual.Descripcion;
             txtHsSemanales.Text = MateriaActual.HsSemanales.ToString();
             txtHsTotales.Text = MateriaActual.HsTotales.ToString();
-            txtDescPlan.Text = PlanLogic.GetOne(MateriaActual.IdPlan).Descripcion;
+            DropDownListPlan.Text = PlanLogic.GetOne(MateriaActual.IdPlan).Descripcion;
         }
 
         private void EnableForm(bool enable)
@@ -53,14 +53,14 @@ namespace UI.Web
             txtDescripcion.Enabled = enable;
             txtHsSemanales.Enabled = enable;
             txtHsTotales.Enabled = enable;
-            txtDescPlan.Enabled = enable;
+            DropDownListPlan.Enabled = enable;
         }
 
         private void ClearForm()
         {
             txtHsSemanales.Text = string.Empty;
             txtHsTotales.Text = string.Empty;
-            txtDescPlan.Text = string.Empty;
+            DropDownListPlan.Text = string.Empty;
             txtDescripcion.Text = string.Empty;
         }
 
@@ -75,7 +75,7 @@ namespace UI.Web
             Materia.Descripcion = txtDescripcion.Text;
             Materia.HsSemanales = int.Parse(txtHsSemanales.Text);
             Materia.HsTotales =int.Parse( txtHsTotales.Text);
-           // Materia.DescPlan = txtDescPlan.Text;
+           // Materia.IdPlan = 
 
         }
 
