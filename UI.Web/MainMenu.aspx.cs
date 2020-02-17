@@ -28,10 +28,10 @@ namespace UI.Web
                     Response.Redirect("~/Planes.aspx");
                     break;
                 case "Materias":
-                    Response.Write("<script>alert('Click en Materias')</script>");
+                    Response.Redirect("~/Materias.aspx");
                     break;
                 case "Cursos":
-                    Response.Write("<script>alert('Click en Cursos')</script>");
+                    Response.Redirect("~/Cursos.aspx");
                     break;
                 case "Comisiones":
                     Response.Write("<script>alert('Click en Comisiones')</script>");
