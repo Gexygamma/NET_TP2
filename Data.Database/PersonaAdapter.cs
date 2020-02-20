@@ -98,6 +98,33 @@ namespace Data.Database
             return persona;
         }
 
+        public List<Persona> GetAllDocentes()
+        {
+            List<Persona> docentes = new List<Persona>();
+            try
+            {
+                OpenConnection();
+                SqlCommand cmdPersonas = new SqlCommand("SELECT * FROM personas WHERE tipo_persona=1", SqlConn);
+                SqlDataReader drPersonas = cmdPersonas.ExecuteReader();
+                while (drPersonas.Read())
+                {
+                    Persona docente = CrearDesdeReader(drPersonas);
+                    docentes.Add(docente);
+                }
+                drPersonas.Close();
+            }
+            catch (Exception Ex)
+            {
+                Exception ExcepcionManejada = new Exception("Error al recuperar lista de docentes", Ex);
+                throw ExcepcionManejada;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return docentes;
+        }
+
         public int CountAdmins()
         {
             int count = 0;

@@ -58,9 +58,9 @@ namespace Business.Logic
             return table;
         }
 
-        public void Save(Curso curso)
+        public void Save(Curso curso, DocenteCurso titular, DocenteCurso auxiliar)
         {
-            CursoData.Save(curso);
+            CursoData.Save(curso, titular, auxiliar);
         }
     }
 }

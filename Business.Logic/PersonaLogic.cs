@@ -24,6 +24,11 @@ namespace Business.Logic
             return PersonaData.GetOne(ID);
         }
 
+        public List<Persona> GetAllDocentes()
+        {
+            return PersonaData.GetAllDocentes();
+        }
+
         public int CountAdmins()
         {
             return PersonaData.CountAdmins();
