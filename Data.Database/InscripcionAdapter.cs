@@ -32,6 +32,38 @@ namespace Data.Database
             cmd.Parameters.Add("@nota", SqlDbType.Int).Value = inscripcion.Nota;
         }
 
+        public AlumnoInscripcion GetOne(int ID)
+        {
+            AlumnoInscripcion inscripcion;
+            try
+            {
+                OpenConnection();
+                SqlCommand cmdInscripcion = new SqlCommand("SELECT * FROM alumnos_inscripciones " +
+                    "WHERE id_inscripcion=@id", SqlConn);
+                cmdInscripcion.Parameters.Add("@id", SqlDbType.Int).Value = ID;
+                SqlDataReader drInscripcion = cmdInscripcion.ExecuteReader();
+                if (drInscripcion.Read())
+                {
+                    inscripcion = CrearDesdeReader(drInscripcion);
+                }
+                else
+                {
+                    inscripcion = null;
+                }
+                drInscripcion.Close();
+            }
+            catch (Exception Ex)
+            {
+                Exception ExcepcionManejada = new Exception("Error al recuperar inscripcion por id", Ex);
+                throw ExcepcionManejada;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return inscripcion;
+        }
+
         private List<AlumnoInscripcion> GetMany(SqlCommand cmd)
         {
             List<AlumnoInscripcion> inscripciones = new List<AlumnoInscripcion>();
@@ -65,7 +97,7 @@ namespace Data.Database
         public List<AlumnoInscripcion> GetAllCurso(int idCurso)
         {
             SqlCommand cmdInscripcion = new SqlCommand("SELECT * FROM alumnos_inscripciones " +
-                "WHERE id_curso=@id_");
+                "WHERE id_curso=@id");
             cmdInscripcion.Parameters.Add("@id", SqlDbType.Int).Value = idCurso;
             return GetMany(cmdInscripcion);
         }

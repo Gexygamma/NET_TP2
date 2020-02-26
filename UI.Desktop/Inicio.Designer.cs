@@ -224,13 +224,14 @@
             // reporteDeCursosToolStripMenuItem
             // 
             this.reporteDeCursosToolStripMenuItem.Name = "reporteDeCursosToolStripMenuItem";
-            this.reporteDeCursosToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.reporteDeCursosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.reporteDeCursosToolStripMenuItem.Text = "Reporte de cursos";
+            this.reporteDeCursosToolStripMenuItem.Click += new System.EventHandler(this.reporteDeCursosToolStripMenuItem_Click);
             // 
             // reporteDePlanesToolStripMenuItem
             // 
             this.reporteDePlanesToolStripMenuItem.Name = "reporteDePlanesToolStripMenuItem";
-            this.reporteDePlanesToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.reporteDePlanesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.reporteDePlanesToolStripMenuItem.Text = "Reporte de planes";
             // 
             // lblVersion

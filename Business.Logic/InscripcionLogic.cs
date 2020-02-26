@@ -18,6 +18,11 @@ namespace Business.Logic
             InscripcionData = new InscripcionAdapter();
         }
 
+        public AlumnoInscripcion GetOne(int ID)
+        {
+            return InscripcionData.GetOne(ID);
+        }
+
         public DataTable GetAllAlumnoTable(int idAlumno)
         {
             CursoAdapter cursoData = new CursoAdapter();
@@ -41,6 +46,35 @@ namespace Business.Logic
                 row["descMateria"] = materiaData.GetOne(curso.IdMateria).Descripcion;
                 row["descComision"] = comisionData.GetOne(curso.IdComision).Descripcion;
                 row["anioCalendario"] = curso.AñoCalendario;
+                row["condicion"] = inscripcion.Condicion;
+                row["nota"] = inscripcion.Nota;
+                table.Rows.Add(row);
+            }
+
+            return table;
+        }
+
+        public DataTable GetAllCursoTable(int idCurso)
+        {
+            PersonaAdapter personaData = new PersonaAdapter();
+
+            DataTable table = new DataTable();
+            table.Columns.Add("ID", typeof(int));
+            table.Columns.Add("alumnoLegajo", typeof(string));
+            table.Columns.Add("alumnoNombre", typeof(string));
+            table.Columns.Add("condicion", typeof(string));
+            table.Columns.Add("nota", typeof(int));
+
+            List<AlumnoInscripcion> inscripciones = InscripcionData.GetAllCurso(idCurso);
+            DataRow row;
+
+            foreach (AlumnoInscripcion inscripcion in inscripciones)
+            {
+                row = table.NewRow();
+                Persona alumno = personaData.GetOne(inscripcion.IdAlumno);
+                row["ID"] = inscripcion.ID;
+                row["alumnoLegajo"] = alumno.Legajo;
+                row["alumnoNombre"] = alumno.NombreCompleto;
                 row["condicion"] = inscripcion.Condicion;
                 row["nota"] = inscripcion.Nota;
                 table.Rows.Add(row);

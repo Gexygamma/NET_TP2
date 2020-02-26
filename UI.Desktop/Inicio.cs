@@ -167,6 +167,12 @@ namespace UI.Desktop
             formEstadoAcademico.ShowDialog();
         }
 
+        private void reporteDeCursosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ReporteCursos formReporteCursos = new ReporteCursos();
+            formReporteCursos.ShowDialog();
+        }
+
         #region nuke
         private void Inicio_KeyDown(object sender, KeyEventArgs e)
         {
