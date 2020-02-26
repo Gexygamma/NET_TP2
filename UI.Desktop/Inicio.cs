@@ -161,6 +161,12 @@ namespace UI.Desktop
             PersonalizarPantalla();
         }
 
+        private void estadoAcademicoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EstadoAcademico formEstadoAcademico = new EstadoAcademico(PersonaLogueada);
+            formEstadoAcademico.ShowDialog();
+        }
+
         #region nuke
         private void Inicio_KeyDown(object sender, KeyEventArgs e)
         {

@@ -32,6 +32,44 @@ namespace Data.Database
             cmd.Parameters.Add("@nota", SqlDbType.Int).Value = inscripcion.Nota;
         }
 
+        private List<AlumnoInscripcion> GetMany(SqlCommand cmd)
+        {
+            List<AlumnoInscripcion> inscripciones = new List<AlumnoInscripcion>();
+            try
+            {
+                OpenConnection();
+                cmd.Connection = SqlConn;
+                SqlDataReader drInscripcion = cmd.ExecuteReader();
+                while (drInscripcion.Read())
+                {
+                    AlumnoInscripcion inscripcion = CrearDesdeReader(drInscripcion);
+                    inscripciones.Add(inscripcion);
+                }
+                drInscripcion.Close();
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return inscripciones;
+        }
+
+        public List<AlumnoInscripcion> GetAllAlumno(int idAlumno)
+        {
+            SqlCommand cmdInscripcion = new SqlCommand("SELECT * FROM alumnos_inscripciones " +
+                "WHERE id_alumno=@id");
+            cmdInscripcion.Parameters.Add("@id", SqlDbType.Int).Value = idAlumno;
+            return GetMany(cmdInscripcion);
+        }
+
+        public List<AlumnoInscripcion> GetAllCurso(int idCurso)
+        {
+            SqlCommand cmdInscripcion = new SqlCommand("SELECT * FROM alumnos_inscripciones " +
+                "WHERE id_curso=@id_");
+            cmdInscripcion.Parameters.Add("@id", SqlDbType.Int).Value = idCurso;
+            return GetMany(cmdInscripcion);
+        }
+
         protected void Insert(AlumnoInscripcion inscripcion)
         {
             try
