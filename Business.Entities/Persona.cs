@@ -29,6 +29,11 @@ namespace Business.Entities
 			set { _Apellido = value; }
 		}
 
+		public string NombreCompleto
+		{
+			get { return _Nombre + " " + _Apellido; }
+		}
+
 		private string _Direccion;
 		public string Direccion
 		{
