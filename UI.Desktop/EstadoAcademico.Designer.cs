@@ -68,7 +68,7 @@
             this.ClientSize = new System.Drawing.Size(589, 321);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.dataGridView);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "EstadoAcademico";
             this.Text = "Estado Académico";
             this.Load += new System.EventHandler(this.EstadoAcademico_Load);
