@@ -45,6 +45,11 @@ namespace Data.Database
                 }
                 drComision.Close();
             }
+            catch (Exception ex)
+            {
+                Exception ExcepcionManejada = new Exception("Error al recuperar lista de comisiones", ex);
+                throw ExcepcionManejada;
+            }
             finally
             {
                 CloseConnection();
@@ -92,6 +97,11 @@ namespace Data.Database
                     comision = null;
                 }
                 drComision.Close();
+            }
+            catch (Exception ex)
+            {
+                Exception ExcepcionManejada = new Exception("Error al recuperar comisión", ex);
+                throw ExcepcionManejada;
             }
             finally
             {

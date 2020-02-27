@@ -79,6 +79,11 @@ namespace Data.Database
                 }
                 drInscripcion.Close();
             }
+            catch (Exception ex)
+            {
+                Exception ExcepcionManejada = new Exception("Error al recuperar lista de inscripciones", ex);
+                throw ExcepcionManejada;
+            }
             finally
             {
                 CloseConnection();
@@ -164,7 +169,6 @@ namespace Data.Database
             {
                 Exception ExcepcionManejada = new Exception("Error al eliminar inscripcion", ex);
                 throw ExcepcionManejada;
-
             }
             finally
             {

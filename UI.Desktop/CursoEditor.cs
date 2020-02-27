@@ -172,7 +172,14 @@ namespace UI.Desktop
         public override void GuardarCambios()
         {
             MapearADatos();
-            CursoLogic.Save(CursoActual, TitularActual, AuxiliarActual);
+            try
+            {
+                CursoLogic.Save(CursoActual, TitularActual, AuxiliarActual);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)

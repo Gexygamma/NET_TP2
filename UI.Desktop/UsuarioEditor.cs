@@ -173,7 +173,14 @@ namespace UI.Desktop
         public override void GuardarCambios()
         {
             MapearADatos();
-            UsuarioLogic.Save(UsuarioActual, PersonaActual);
+            try
+            {
+                UsuarioLogic.Save(UsuarioActual, PersonaActual);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public bool CamposNoVacios()

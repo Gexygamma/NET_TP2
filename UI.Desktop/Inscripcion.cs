@@ -68,7 +68,14 @@ namespace UI.Desktop
         public void GuardarCambios()
         {
             MapearADatos();
-            InscripcionLogic.Save(InscripcionActual);
+            try
+            {
+                InscripcionLogic.Save(InscripcionActual);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)

@@ -41,6 +41,11 @@ namespace Data.Database
                 }
                 drPlanes.Close();
             }
+            catch (Exception ex)
+            {
+                Exception ExcepcionManejada = new Exception("Error al recuperar lista de planes", ex);
+                throw ExcepcionManejada;
+            }
             finally
             {
                 CloseConnection();
@@ -66,6 +71,11 @@ namespace Data.Database
                     plan = null;
                 }
                 drPlanes.Close();
+            }
+            catch (Exception ex)
+            {
+                Exception ExcepcionManejada = new Exception("Error al recuperar plan", ex);
+                throw ExcepcionManejada;
             }
             finally
             {

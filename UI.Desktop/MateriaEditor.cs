@@ -108,7 +108,14 @@ namespace UI.Desktop
         public override void GuardarCambios()
         {
             MapearADatos();
-            MateriaLogic.Save(MateriaActual);
+            try
+            {
+                MateriaLogic.Save(MateriaActual);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

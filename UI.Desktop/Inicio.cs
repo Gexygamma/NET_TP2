@@ -77,17 +77,23 @@ namespace UI.Desktop
 
         private void Inicio_Shown(object sender, EventArgs e)
         {
-            PersonaLogic personaLogic = new PersonaLogic();
-            if (personaLogic.CountAdmins() == 0)
+            try
             {
-                DialogResult result = MessageBox.Show("¡Bienvenido al Sistema! No hay administradores cargados en la base de datos. ¿Desea crear uno?",
-                    "Login", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                UsuarioEditor usuarioForm = new UsuarioEditor();
-                usuarioForm.ShowDialog();
-                
+                PersonaLogic personaLogic = new PersonaLogic();
+                if (personaLogic.CountAdmins() == 0)
+                {
+                    DialogResult result = MessageBox.Show("¡Bienvenido al Sistema! No hay administradores cargados en la base de datos. ¿Desea crear uno?",
+                        "Login", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    UsuarioEditor usuarioForm = new UsuarioEditor();
+                    usuarioForm.ShowDialog();
+                }
+                InvocarLogin();
+                PersonalizarPantalla();
             }
-            InvocarLogin();
-            PersonalizarPantalla();
+            catch (Exception ex)
+            {
+                MessageBox.Show(string.Format("Error de conexión. ¿La base de datos está conectada?\n{0}", ex.Message));
+            }
         }
 
         private void cerrarSesiónToolStripMenuItem_Click(object sender, EventArgs e)

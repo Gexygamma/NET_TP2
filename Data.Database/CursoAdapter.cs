@@ -47,6 +47,11 @@ namespace Data.Database
                 }
                 drCurso.Close();
             }
+            catch (Exception ex)
+            {
+                Exception ExcepcionManejada = new Exception("Error al recuperar lista de cursos", ex);
+                throw ExcepcionManejada;
+            }
             finally
             {
                 CloseConnection();
@@ -75,6 +80,11 @@ namespace Data.Database
                 }
                 drCurso.Close();
             }
+            catch (Exception ex)
+            {
+                Exception ExcepcionManejada = new Exception("Error al recuperar curso mas reciente por materia y comisión", ex);
+                throw ExcepcionManejada;
+            }
             finally
             {
                 CloseConnection();
@@ -100,6 +110,11 @@ namespace Data.Database
                     curso = null;
                 }
                 drCurso.Close();
+            }
+            catch (Exception ex)
+            {
+                Exception ExcepcionManejada = new Exception("Error al recuperar curso", ex);
+                throw ExcepcionManejada;
             }
             finally
             {
@@ -159,7 +174,10 @@ namespace Data.Database
                     Exception ExcepcionManejada = new Exception("Error al insertar curso", ex);
                     throw ExcepcionManejada;
                 }
-
+            }
+            catch (Exception)
+            {
+                throw;
             }
             finally
             {
@@ -231,6 +249,10 @@ namespace Data.Database
                     throw ExcepcionManejada;
                 }
             }
+            catch (Exception)
+            {
+                throw;
+            }
             finally
             {
                 CloseConnection();
@@ -269,6 +291,10 @@ namespace Data.Database
                     Exception ExcepcionManejada = new Exception("Error al eliminar curso", ex);
                     throw ExcepcionManejada;
                 }
+            }
+            catch (Exception)
+            {
+                throw;
             }
             finally
             {

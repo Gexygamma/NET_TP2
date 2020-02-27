@@ -47,6 +47,11 @@ namespace Data.Database
                 }
                 drMateria.Close();
             }
+            catch (Exception ex)
+            {
+                Exception ExcepcionManejada = new Exception("Error al recuperar lista de materias", ex);
+                throw ExcepcionManejada;
+            }
             finally
             {
                 CloseConnection();
@@ -69,6 +74,11 @@ namespace Data.Database
                     materias.Add(materia);
                 }
                 drMateria.Close();
+            }
+            catch (Exception ex)
+            {
+                Exception ExcepcionManejada = new Exception("Error al recuperar lista de materias por plan", ex);
+                throw ExcepcionManejada;
             }
             finally
             {
@@ -95,6 +105,11 @@ namespace Data.Database
                     materia = null;
                 }
                 drMateria.Close();
+            }
+            catch (Exception ex)
+            {
+                Exception ExcepcionManejada = new Exception("Error al recuperar materia", ex);
+                throw ExcepcionManejada;
             }
             finally
             {

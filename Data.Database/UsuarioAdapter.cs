@@ -163,6 +163,10 @@ namespace Data.Database
                 }
                 
             }
+            catch (Exception)
+            {
+                throw;
+            }
             finally
             {
                 CloseConnection();
@@ -208,6 +212,10 @@ namespace Data.Database
                 }
 
             }
+            catch (Exception)
+            {
+                throw;
+            }
             finally
             {
                 CloseConnection();
@@ -240,6 +248,10 @@ namespace Data.Database
                     throw ExcepcionManejada;// Agregar mensaje de error
                 }
 
+            }
+            catch (Exception)
+            {
+                throw;
             }
             finally
             {

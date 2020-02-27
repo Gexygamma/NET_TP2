@@ -91,7 +91,14 @@ namespace UI.Desktop
         public override void GuardarCambios()
         {
             MapearADatos();
-            EspecialidadLogic.Save(EspecialidadActual);
+            try
+            {
+                EspecialidadLogic.Save(EspecialidadActual);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)

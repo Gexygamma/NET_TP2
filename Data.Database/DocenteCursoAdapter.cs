@@ -49,6 +49,11 @@ namespace Data.Database
                 }
                 drDictado.Close();
             }
+            catch (Exception ex)
+            {
+                Exception ExcepcionManejada = new Exception("Error al recuperar dictado", ex);
+                throw ExcepcionManejada;
+            }
             finally
             {
                 CloseConnection();
@@ -76,6 +81,11 @@ namespace Data.Database
                     docenteCurso = null;
                 }
                 drDictado.Close();
+            }
+            catch (Exception ex)
+            {
+                Exception ExcepcionManejada = new Exception("Error al recuperar dictado por curso", ex);
+                throw ExcepcionManejada;
             }
             finally
             {

@@ -103,7 +103,14 @@ namespace UI.Desktop
         public override void GuardarCambios()
         {
             MapearADatos();
-            ComisionLogic.Save(ComisionActual);
+            try
+            {
+                ComisionLogic.Save(ComisionActual);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
