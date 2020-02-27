@@ -48,7 +48,7 @@ namespace UI.Desktop
         {
             if (PersonaLogueada != null)
             {
-                lblWelcome.Text = string.Format("Bienvenido {0} {1}!", PersonaLogueada.Nombre, PersonaLogueada.Apellido);
+                lblWelcome.Text = string.Format("Bienvenido {0}!", PersonaLogueada.NombreCompleto);
                 switch (PersonaLogueada.TipoPersona)
                 {
                     case TipoPersona.Alumno:
