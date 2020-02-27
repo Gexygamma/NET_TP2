@@ -40,6 +40,15 @@ namespace UI.Web {
         protected global::System.Web.UI.WebControls.Panel gridActionsPanel;
         
         /// <summary>
+        /// Control btnNuevoLink.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnNuevoLink;
+        
+        /// <summary>
         /// Control btnEditarLink.
         /// </summary>
         /// <remarks>
@@ -58,13 +67,13 @@ namespace UI.Web {
         protected global::System.Web.UI.WebControls.LinkButton btnEliminarLink;
         
         /// <summary>
-        /// Control btnNuevoLink.
+        /// Control ActualizarBtnUserControl.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnNuevoLink;
+        protected global::UI.Web.ActualizarBtnUserControl ActualizarBtnUserControl;
         
         /// <summary>
         /// Control formPanel.

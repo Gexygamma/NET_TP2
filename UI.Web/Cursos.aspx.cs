@@ -85,7 +85,7 @@ namespace UI.Web
 
         private void SaveEntity(Curso Curso)
         {
-            CursoLogic.Save(Curso);
+           // CursoLogic.Save(Curso);
         }
 
         protected void Page_Load(object sender, EventArgs e)
