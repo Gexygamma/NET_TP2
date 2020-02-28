@@ -47,7 +47,7 @@
             <tr>
                 <td class="auto-style1">Plan</td>
                 <td>
-                    <asp:DropDownList ID="DropDownList1" runat="server">
+                    <asp:DropDownList ID="ddlPlan" runat="server">
                     </asp:DropDownList>
                 </td>
             </tr>

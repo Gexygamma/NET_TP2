@@ -7,11 +7,13 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace UI.Web {
-    
-    
-    public partial class Comisiones {
-        
+namespace UI.Web
+{
+
+
+    public partial class Comisiones
+    {
+
         /// <summary>
         /// Control gridPanel.
         /// </summary>
@@ -20,7 +22,7 @@ namespace UI.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel gridPanel;
-        
+
         /// <summary>
         /// Control GridView.
         /// </summary>
@@ -29,7 +31,7 @@ namespace UI.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridView;
-        
+
         /// <summary>
         /// Control gridActionsPanel.
         /// </summary>
@@ -38,7 +40,7 @@ namespace UI.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel gridActionsPanel;
-        
+
         /// <summary>
         /// Control btnNuevoLink.
         /// </summary>
@@ -47,7 +49,7 @@ namespace UI.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnNuevoLink;
-        
+
         /// <summary>
         /// Control btnEditarLink.
         /// </summary>
@@ -56,7 +58,7 @@ namespace UI.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnEditarLink;
-        
+
         /// <summary>
         /// Control btnEliminarLink.
         /// </summary>
@@ -65,7 +67,7 @@ namespace UI.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnEliminarLink;
-        
+
         /// <summary>
         /// Control ActualizarBtnUserControl.
         /// </summary>
@@ -74,7 +76,7 @@ namespace UI.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::UI.Web.ActualizarBtnUserControl ActualizarBtnUserControl;
-        
+
         /// <summary>
         /// Control formPanel.
         /// </summary>
@@ -83,7 +85,7 @@ namespace UI.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel formPanel;
-        
+
         /// <summary>
         /// Control txtDescripcion.
         /// </summary>
@@ -92,7 +94,7 @@ namespace UI.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDescripcion;
-        
+
         /// <summary>
         /// Control txtAñoEspecialidad.
         /// </summary>
@@ -101,16 +103,16 @@ namespace UI.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtAñoEspecialidad;
-        
+
         /// <summary>
-        /// Control DropDownList1.
+        /// Control ddlPlan.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
-        
+        protected global::System.Web.UI.WebControls.DropDownList ddlPlan;
+
         /// <summary>
         /// Control formActionsPanel.
         /// </summary>
@@ -119,7 +121,7 @@ namespace UI.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel formActionsPanel;
-        
+
         /// <summary>
         /// Control btnAceptarLink.
         /// </summary>
@@ -128,7 +130,7 @@ namespace UI.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnAceptarLink;
-        
+
         /// <summary>
         /// Control btnCancelarLink.
         /// </summary>

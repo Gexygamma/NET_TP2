@@ -20,7 +20,17 @@ namespace UI.Web
                 return _ComisionLogic;
             }
         }
-        private PlanLogic PlanLogic { get;  }
+
+        private PlanLogic _PlanLogic;
+        private PlanLogic PlanLogic
+        {
+            get
+            {
+                if (_PlanLogic == null) _PlanLogic = new PlanLogic();
+                return _PlanLogic;
+            }
+        }
+
         private Comision ComisionActual { get; set; }
        
         private int SelectedID
@@ -43,25 +53,21 @@ namespace UI.Web
             ComisionActual = ComisionLogic.GetOne(id);
             txtDescripcion.Text = ComisionActual.Descripcion;
             txtAñoEspecialidad.Text = ComisionActual.AñoEspecialidad.ToString();
-         //   DropDownList1.SelectedValue=int.Parse( PlanLogic.GetOne(ComisionActual.IdPlan).ID);
-
-
-
+            ddlPlan.SelectedValue = ComisionActual.IdPlan.ToString();
         }
 
         private void EnableForm(bool enable)
         {
             txtDescripcion.Enabled = enable;
             txtAñoEspecialidad.Enabled = enable;
-            DropDownList1.Enabled = enable;
-
+            ddlPlan.Enabled = enable;
         }
 
         private void ClearForm()
         {
             txtAñoEspecialidad.Text = string.Empty;
             txtDescripcion.Text = string.Empty;
-            DropDownList1.Text = string.Empty;
+            ddlPlan.SelectedIndex = -1;
         }
 
         private void LoadGrid()
@@ -73,9 +79,8 @@ namespace UI.Web
         private void LoadEntity(Comision Comision)
         {
             Comision.Descripcion = txtDescripcion.Text;
-            Comision.AñoEspecialidad =int.Parse( txtAñoEspecialidad.Text);
-           // Comision.IdPlan = ((Plan)DropDownList1.SelectedItem).ID;
-
+            Comision.AñoEspecialidad = int.Parse( txtAñoEspecialidad.Text);
+            Comision.IdPlan = int.Parse(ddlPlan.SelectedItem.Value);
         }
 
         private void SaveEntity(Comision Comision)
@@ -86,6 +91,11 @@ namespace UI.Web
         protected void Page_Load(object sender, EventArgs e)
         {
             LoadGrid();
+            ddlPlan.DataSource = PlanLogic.GetAll();
+            ddlPlan.DataTextField = "Descripcion";
+            ddlPlan.DataValueField = "ID";
+            ddlPlan.DataBind();
+            ddlPlan.SelectedIndex = -1;
         }
 
         protected void GridView_SelectedIndexChanged(object sender, EventArgs e)
@@ -147,7 +157,6 @@ namespace UI.Web
                 Modo = ModoForm.Baja;
                 EnableForm(false);
                 LoadForm(SelectedID);
-
             }
         }
 
@@ -159,7 +168,6 @@ namespace UI.Web
             Modo = ModoForm.Alta;
             ClearForm();
             EnableForm(true);
-
         }
 
         protected void btnCancelarLink_Click(object sender, EventArgs e)

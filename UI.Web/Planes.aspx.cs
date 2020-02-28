@@ -20,11 +20,18 @@ namespace UI.Web
                 return _PlanLogic;
             }
         }
-        private EspecialidadLogic EspecialidadLogic { get; set; }
 
+        private EspecialidadLogic _EspecialidadLogic;
+        private EspecialidadLogic EspecialidadLogic
+        {
+            get
+            {
+                if (_EspecialidadLogic == null) _EspecialidadLogic = new EspecialidadLogic();
+                return _EspecialidadLogic;
+            }
+        }
 
         private Plan PlanActual { get; set; }
-
 
         private int SelectedID
         {
@@ -45,19 +52,19 @@ namespace UI.Web
         {
             PlanActual = PlanLogic.GetOne(id);
             txtdescPlan.Text = PlanActual.Descripcion;
-            txtdescEspecialidad.Text = EspecialidadLogic.GetOne(PlanActual.IdEspecialidad).Descripcion;
+            ddlEspecialidad.SelectedValue = PlanActual.IdEspecialidad.ToString();
         }
 
         private void EnableForm(bool enable)
         {
             txtdescPlan.Enabled = enable;
-            txtdescEspecialidad.Enabled = enable;
+            ddlEspecialidad.Enabled = enable;
         }
 
         private void ClearForm()
         {
             txtdescPlan.Text = string.Empty;
-            txtdescEspecialidad.Text = string.Empty;
+            ddlEspecialidad.SelectedIndex = -1;
         }
 
         private void LoadGrid()
@@ -69,7 +76,7 @@ namespace UI.Web
         private void LoadEntity(Plan Plan)
         {
             Plan.Descripcion = txtdescPlan.Text;
-            Plan.IdEspecialidad = int.Parse(txtdescEspecialidad.ID);
+            Plan.IdEspecialidad = int.Parse(ddlEspecialidad.SelectedValue);
         }
 
         private void SaveEntity(Plan Plan)
@@ -80,6 +87,11 @@ namespace UI.Web
         protected void Page_Load(object sender, EventArgs e)
         {
             LoadGrid();
+            ddlEspecialidad.DataSource = EspecialidadLogic.GetAll();
+            ddlEspecialidad.DataTextField = "Descripcion";
+            ddlEspecialidad.DataValueField = "ID";
+            ddlEspecialidad.DataBind();
+            ddlEspecialidad.SelectedIndex = -1;
         }
 
         protected void GridView_SelectedIndexChanged(object sender, EventArgs e)
@@ -141,7 +153,6 @@ namespace UI.Web
                 Modo = ModoForm.Baja;
                 EnableForm(false);
                 LoadForm(SelectedID);
-
             }
         }
 
@@ -153,7 +164,6 @@ namespace UI.Web
             Modo = ModoForm.Alta;
             ClearForm();
             EnableForm(true);
-
         }
 
         protected void btnCancelarLink_Click(object sender, EventArgs e)

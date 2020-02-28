@@ -40,7 +40,8 @@
             <tr>
                 <td class="auto-style1">Especialidad</td>
                 <td>
-                    <asp:TextBox ID="txtdescEspecialidad" runat="server"></asp:TextBox>
+                    <asp:DropDownList ID="ddlEspecialidad" runat="server">
+                    </asp:DropDownList>
                 </td>
             </tr>
         </table>

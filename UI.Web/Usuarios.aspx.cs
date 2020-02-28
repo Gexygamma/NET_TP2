@@ -42,7 +42,7 @@ namespace UI.Web
         }
 
         private Usuario UsuarioActual { get; set; }
-        private Persona PersonaActual { get; set; } // TODO: Agregar controles para los atributos de persona.
+        private Persona PersonaActual { get; set; }
 
         private int SelectedID
         {
@@ -76,8 +76,7 @@ namespace UI.Web
             txtEmail.Text = PersonaActual.Email;
             txtTelefono.Text = PersonaActual.Telefono;
             cldFechaNacimiento.SelectedDate = PersonaActual.FechaNacimiento;
-
-
+            ddlPlan.SelectedValue = PersonaActual.IdPlan.ToString();
         }
 
         private void EnableForm(bool enable)

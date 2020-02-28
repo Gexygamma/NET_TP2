@@ -32,11 +32,11 @@
             </tr>  
             <tr __designer:mapid="38">
                 <td class="auto-style3" __designer:mapid="39">
-                    <asp:DropDownList ID="ddlMateria" runat="server" OnSelectedIndexChanged="ddlMateria_SelectedIndexChanged" AutoPostBack="true">
+                    <asp:DropDownList ID="ddlMateria" runat="server" OnSelectedIndexChanged="ddlMateria_SelectedIndexChanged" AutoPostBack="True">
                     </asp:DropDownList>
                 </td>
                 <td class="auto-style1" __designer:mapid="39">
-                    <asp:DropDownList ID="ddlComision" runat="server" OnSelectedIndexChanged="ddlComision_SelectedIndexChanged" AutoPostBack="true">
+                    <asp:DropDownList ID="ddlComision" runat="server" AutoPostBack="True">
                     </asp:DropDownList>
                 </td>
                 <td __designer:mapid="3a">
@@ -44,7 +44,7 @@
                 </td>
             </tr>  
         </table>
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" Height="124px" Width="693px" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowEditing="GridView1_RowEditing">
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" Height="124px" Width="693px" CellPadding="4" ForeColor="#333333" GridLines="None">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:BoundField DataField="alumnoLegajo" HeaderText="Legajo " />
