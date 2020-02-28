@@ -12,12 +12,6 @@ namespace UI.Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Menu();
-        }
-
-
-        private void Menu()
-        {
             Persona PersonaActual = (Persona)Session["PersonaLogueada"];
             if (PersonaActual != null)
             {
@@ -33,11 +27,9 @@ namespace UI.Web
                         menuAdmin.Visible = true;
                         break;
                 }
+            }
         }
 
-           
-
-        }
         protected void menuAdmin_MenuItemClick(object sender, MenuEventArgs e)
         {
             switch (e.Item.Value)
