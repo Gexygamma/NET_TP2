@@ -84,7 +84,6 @@ namespace UI.Desktop
             else
             {
                 MessageBox.Show("Lamentablemente no hay cupo para el curso seleccionado");
-               
             }
             
 

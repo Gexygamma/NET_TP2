@@ -74,8 +74,8 @@ namespace UI.Web
         {
             Materia.Descripcion = txtDescripcion.Text;
             Materia.HsSemanales = int.Parse(txtHsSemanales.Text);
-            Materia.HsTotales =int.Parse( txtHsTotales.Text);
-           // Materia.IdPlan = 
+            Materia.HsTotales = int.Parse( txtHsTotales.Text);
+            Materia.IdPlan = int.Parse(DropDownListPlan.SelectedValue.ToString());
 
         }
 
@@ -87,6 +87,14 @@ namespace UI.Web
         protected void Page_Load(object sender, EventArgs e)
         {
             LoadGrid();
+            if (!IsPostBack)
+            {
+                DropDownListPlan.DataSource = PlanLogic.GetAll();
+                DropDownListPlan.DataTextField = "Descripcion";
+                DropDownListPlan.DataValueField = "ID";
+                DropDownListPlan.DataBind();
+                DropDownListPlan.SelectedIndex = -1;
+            }
         }
 
         protected void GridView_SelectedIndexChanged(object sender, EventArgs e)

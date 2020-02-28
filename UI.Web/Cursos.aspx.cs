@@ -77,7 +77,7 @@ namespace UI.Web
         private void LoadEntity(Curso Curso)
         {
             //Curso.IdMateria = txtdescMateria.Text;
-           // Curso.IdComision = txtdescComision.Text;
+            // Curso.IdComision = txtdescComision.Text;
             Curso.AñoCalendario = int.Parse(txtAnioCalendario.Text);
             Curso.Cupo = int.Parse(txtCupo.Text);
  
@@ -85,7 +85,7 @@ namespace UI.Web
 
         private void SaveEntity(Curso Curso)
         {
-           // CursoLogic.Save(Curso);
+          //  CursoLogic.Save(Curso);
         }
 
         protected void Page_Load(object sender, EventArgs e)

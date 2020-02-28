@@ -74,6 +74,7 @@
     <Content Include="Especialidades.aspx" />
     <Content Include="EstadoAcademico.aspx" />
     <Content Include="Home.aspx" />
+    <Content Include="Inscripcion.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="MainMenu.aspx" />
     <Content Include="Materias.aspx" />
@@ -142,6 +143,13 @@
     </Compile>
     <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inscripcion.aspx.cs">
+      <DependentUpon>Inscripcion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inscripcion.aspx.designer.cs">
+      <DependentUpon>Inscripcion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

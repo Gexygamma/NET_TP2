@@ -87,11 +87,15 @@ namespace UI.Web
         protected void Page_Load(object sender, EventArgs e)
         {
             LoadGrid();
-            ddlEspecialidad.DataSource = EspecialidadLogic.GetAll();
-            ddlEspecialidad.DataTextField = "Descripcion";
-            ddlEspecialidad.DataValueField = "ID";
-            ddlEspecialidad.DataBind();
-            ddlEspecialidad.SelectedIndex = -1;
+            if (!IsPostBack)
+            {
+                ddlEspecialidad.DataSource = EspecialidadLogic.GetAll();
+                ddlEspecialidad.DataTextField = "Descripcion";
+                ddlEspecialidad.DataValueField = "ID";
+                ddlEspecialidad.DataBind();
+                ddlEspecialidad.SelectedIndex = -1;
+            }
+
         }
 
         protected void GridView_SelectedIndexChanged(object sender, EventArgs e)

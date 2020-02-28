@@ -143,11 +143,15 @@ namespace UI.Web
         protected void Page_Load(object sender, EventArgs e)
         {
             LoadGrid();
-            ddlPlan.DataSource = PlanLogic.GetAll();
-            ddlPlan.DataTextField = "Descripcion";
-            ddlPlan.DataValueField = "ID";
-            ddlPlan.DataBind();
-            ddlPlan.SelectedIndex = -1;
+            if (!IsPostBack)
+            {
+                ddlPlan.DataSource = PlanLogic.GetAll();
+                ddlPlan.DataTextField = "Descripcion";
+                ddlPlan.DataValueField = "ID";
+                ddlPlan.DataBind();
+                ddlPlan.SelectedIndex = -1;
+            }
+
         }
 
         protected void GridView_SelectedIndexChanged(object sender, EventArgs e)
