@@ -62,5 +62,17 @@ namespace Business.Logic
         {
             CursoData.Save(curso, titular, auxiliar);
         }
+
+        public bool ValidacionCurso(int idcurso)
+        {
+            
+            if (GetOne(idcurso).Cupo > 0)
+            {
+                return true;
+            }
+
+            else return false;
+
+        }
     }
 }

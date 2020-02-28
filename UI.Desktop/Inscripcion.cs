@@ -56,26 +56,38 @@ namespace UI.Desktop
             }
         }
 
-        public void MapearADatos()
+        public void MapearADatos(int idCurso)
         {
             InscripcionActual = new AlumnoInscripcion();
             InscripcionActual.IdAlumno = AlumnoActual.ID;
-            InscripcionActual.IdCurso = CursoLogic.GetLatestOneMateriaComision(((Materia)cbMateria.SelectedItem).ID,
-                ((Comision)cbComision.SelectedItem).ID).ID;
+            InscripcionActual.IdCurso = idCurso;
             InscripcionActual.Condicion = "Libre";
         }
 
         public void GuardarCambios()
         {
-            MapearADatos();
-            try
+            int idCurso= CursoLogic.GetLatestOneMateriaComision(((Materia)cbMateria.SelectedItem).ID,
+                ((Comision)cbComision.SelectedItem).ID).ID;
+            if (CursoLogic.ValidacionCurso(idCurso))
             {
-                InscripcionLogic.Save(InscripcionActual);
+                MapearADatos(idCurso);
+                try
+                {
+                    InscripcionLogic.Save(InscripcionActual);
+                    DialogResult = DialogResult.OK;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lamentablemente no hay cupo para el curso seleccionado");
+               
             }
+            
+
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
@@ -87,7 +99,6 @@ namespace UI.Desktop
             else
             {
                 GuardarCambios();
-                DialogResult = DialogResult.OK;
             }
         }
 
