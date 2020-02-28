@@ -75,6 +75,6 @@ var specialElementHandlers = {
     $('#bodyContent_generar').click(function () {
     doc.autoTable({ html: '#bodyContent_GridView1' })
 
-  doc.save('ReporteCursos.pdf');
+  doc.save('ReportePlanes.pdf');
 });</script>
 </asp:Content>

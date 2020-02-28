@@ -202,5 +202,11 @@ namespace UI.Desktop
             }
         }
         #endregion
+
+        private void reporteDePlanesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ReportePlanes formreportePlanes = new ReportePlanes();
+            formreportePlanes.ShowDialog();
+        }
     }
 }

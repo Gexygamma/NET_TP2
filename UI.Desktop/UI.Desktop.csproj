@@ -130,6 +130,12 @@
     <Compile Include="ReporteCursos.Designer.cs">
       <DependentUpon>ReporteCursos.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportePlanes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportePlanes.Designer.cs">
+      <DependentUpon>ReportePlanes.cs</DependentUpon>
+    </Compile>
     <Compile Include="UsuarioEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -173,6 +179,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReporteCursos.resx">
       <DependentUpon>ReporteCursos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportePlanes.resx">
+      <DependentUpon>ReportePlanes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UsuarioEditor.resx">
       <DependentUpon>UsuarioEditor.cs</DependentUpon>
