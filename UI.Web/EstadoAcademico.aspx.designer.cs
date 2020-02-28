@@ -10,33 +10,24 @@
 namespace UI.Web {
     
     
-    public partial class MainMenu {
+    public partial class EstadoAcademico {
         
         /// <summary>
-        /// Control menuAdmin.
+        /// Control gvEstadoAcademico.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Menu menuAdmin;
+        protected global::System.Web.UI.WebControls.GridView gvEstadoAcademico;
         
         /// <summary>
-        /// Control menuAlumno.
+        /// Control btnVolver.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Menu menuAlumno;
-        
-        /// <summary>
-        /// Control menuProfesor.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Menu menuProfesor;
+        protected global::System.Web.UI.WebControls.Button btnVolver;
     }
 }

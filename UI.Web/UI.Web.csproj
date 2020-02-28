@@ -72,6 +72,7 @@
     <Content Include="Comisiones.aspx" />
     <Content Include="Cursos.aspx" />
     <Content Include="Especialidades.aspx" />
+    <Content Include="EstadoAcademico.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="MainMenu.aspx" />
@@ -122,6 +123,13 @@
     </Compile>
     <Compile Include="Especialidades.aspx.designer.cs">
       <DependentUpon>Especialidades.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EstadoAcademico.aspx.cs">
+      <DependentUpon>EstadoAcademico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EstadoAcademico.aspx.designer.cs">
+      <DependentUpon>EstadoAcademico.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

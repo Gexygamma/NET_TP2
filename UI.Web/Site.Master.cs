@@ -14,7 +14,7 @@ namespace UI.Web
         {
             if (!IsPostBack)
             {
-                lblMensajeBienvenida.Text = string.Format("¡Bienvenido, {0}!", ((Usuario)Session["UsuarioLogueado"]).Nombre);
+                lblMensajeBienvenida.Text = string.Format("¡Bienvenido, {0}!", ((Persona)Session["PersonaLogueada"]).NombreCompleto);
             }
         }
 
