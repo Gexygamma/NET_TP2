@@ -5,7 +5,7 @@
 <asp:Content ID="ContentBody" ContentPlaceHolderID="bodyContent" runat="server">
 
     <div>
-        <asp:Menu runat="server" ID="menuAdmin" Orientation="Vertical" RenderingMode="Table" Width="100%" OnMenuItemClick="menu_MenuItemClick"  Visible="false"> 
+        <asp:Menu runat="server" ID="menuAdmin" Orientation="Vertical" RenderingMode="Table" Width="100%" OnMenuItemClick="menuAdmin_MenuItemClick"  Visible="false"> 
             <Items>
                 <asp:MenuItem Text="Usuarios" Value="Usuarios"></asp:MenuItem>
                 <asp:MenuItem Text="Especialidades" Value="Especialidades"></asp:MenuItem>
