@@ -79,6 +79,7 @@
     <Content Include="Materias.aspx" />
     <Content Include="Planes.aspx" />
     <Content Include="ReporteCursos.aspx" />
+    <Content Include="ReportePlanes.aspx" />
     <Content Include="Site.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -177,6 +178,13 @@
     </Compile>
     <Compile Include="ReporteCursos.aspx.designer.cs">
       <DependentUpon>ReporteCursos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReportePlanes.aspx.cs">
+      <DependentUpon>ReportePlanes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReportePlanes.aspx.designer.cs">
+      <DependentUpon>ReportePlanes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
