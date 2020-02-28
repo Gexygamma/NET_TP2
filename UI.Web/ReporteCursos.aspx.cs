@@ -11,17 +11,37 @@ namespace UI.Web
 {
     public partial class ReporteCursos : Page
     {
+        private int SelectedID
+        {
+            get
+            {
+                return ViewState["SelectedID"] != null ?
+                    (int)ViewState["SelectedID"] : 0;
+            }
+            set
+            {
+                ViewState["SelectedID"] = value;
+            }
+        }
+
+        private bool IsEntitySelected => SelectedID != 0;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                MateriaLogic materiaLogic = new MateriaLogic();
-                ddlMateria.DataSource = materiaLogic.GetAll();
-                ddlMateria.DataTextField = "Descripcion";
-                ddlMateria.DataValueField = "ID";
-                ddlMateria.DataBind();
-                ddlMateria.SelectedIndex = -1;
+                LoadGrid();
             }
+        }
+
+        private void LoadGrid()
+        {
+            MateriaLogic materiaLogic = new MateriaLogic();
+            ddlMateria.DataSource = materiaLogic.GetAll();
+            ddlMateria.DataTextField = "Descripcion";
+            ddlMateria.DataValueField = "ID";
+            ddlMateria.DataBind();
+            ddlMateria.SelectedIndex = -1;
         }
 
         protected void ddlMateria_SelectedIndexChanged(object sender, EventArgs e)
@@ -50,6 +70,43 @@ namespace UI.Web
                 GridView1.DataSource = inscripcionLogic.GetAllCursoTable(cursoActual.ID);
                 GridView1.DataBind();
             }
+        }
+
+        public void LoadForm(int idinscripcion)
+        {
+            InscripcionLogic inscripcionLogic = new InscripcionLogic();
+            AlumnoInscripcion inscripcionActual = inscripcionLogic.GetOne(idinscripcion);
+            txtNota.Text = inscripcionActual.Nota.ToString();
+            txtCondicion.Text = inscripcionActual.Condicion;
+        }
+
+        public void LoadEntity(AlumnoInscripcion inscripcion)
+        {
+            inscripcion.Condicion = txtCondicion.Text;
+            inscripcion.Nota = int.Parse(txtNota.Text);
+            inscripcion.State = BusinessEntity.States.Modified;
+        }
+
+        protected void btnAceptar_Click(object sender, EventArgs e)
+        {
+            InscripcionLogic inscripcionLogic = new InscripcionLogic();
+            AlumnoInscripcion inscripcionActual = inscripcionLogic.GetOne(SelectedID);
+            LoadEntity(inscripcionActual);
+            inscripcionLogic.Save(inscripcionActual);
+            LoadGrid();
+        }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            PanelEdicion.Visible = false;
+        }
+
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PanelEdicion.Visible = true;
+            SelectedID = (int)GridView1.SelectedValue;
+            
+
         }
     }
 }

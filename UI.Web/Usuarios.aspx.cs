@@ -151,7 +151,6 @@ namespace UI.Web
                 ddlPlan.DataBind();
                 ddlPlan.SelectedIndex = -1;
             }
-
         }
 
         protected void GridView_SelectedIndexChanged(object sender, EventArgs e)
@@ -216,7 +215,6 @@ namespace UI.Web
                 Modo = ModoForm.Baja;
                 EnableForm(false);
                 LoadForm(SelectedID);
-
             }
         }
 
@@ -228,7 +226,6 @@ namespace UI.Web
             Modo = ModoForm.Alta;
             ClearForm();
             EnableForm(true);
-            
         }
 
         protected void btnCancelarLink_Click(object sender, EventArgs e)

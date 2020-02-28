@@ -173,7 +173,7 @@ namespace UI.Web
 
         protected void btnCancelarLink_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/MainMenu.aspx");
+            EnableForm(false);
         }
     }
 }

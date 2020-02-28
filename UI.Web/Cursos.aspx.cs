@@ -13,7 +13,6 @@ namespace UI.Web
     {
         private CursoLogic _CursoLogic;
         private CursoLogic CursoLogic
-
         {
             get
             {
@@ -21,8 +20,46 @@ namespace UI.Web
                 return _CursoLogic;
             }
         }
-        private MateriaLogic MateriaLogic { get; set; }
-        private ComisionLogic ComisionLogic { get; set; }
+
+        private MateriaLogic _MateriaLogic;
+        private MateriaLogic MateriaLogic
+        {
+            get
+            {
+                if (_MateriaLogic == null) _MateriaLogic = new MateriaLogic();
+                return _MateriaLogic;
+            }
+        }
+
+        private ComisionLogic _ComisionLogic;
+        private ComisionLogic ComisionLogic
+        {
+            get
+            {
+                if (_ComisionLogic == null) _ComisionLogic = new ComisionLogic();
+                return _ComisionLogic;
+            }
+        }
+
+        private PlanLogic _PlanLogic;
+        private PlanLogic PlanLogic
+        {
+            get
+            {
+                if (_PlanLogic == null) _PlanLogic = new PlanLogic();
+                return _PlanLogic;
+            }
+        }
+
+        private DocenteCursoLogic _DocenteCursoLogic;
+        private DocenteCursoLogic DocenteCursoLogic
+        {
+            get
+            {
+                if (_DocenteCursoLogic == null) _DocenteCursoLogic = new DocenteCursoLogic();
+                return _DocenteCursoLogic;
+            }
+        }
 
         private Curso CursoActual { get; set; }
       
@@ -45,27 +82,33 @@ namespace UI.Web
         private void LoadForm(int id)
         {
             CursoActual = CursoLogic.GetOne(id);
-            txtdescMateria.Text = MateriaLogic.GetOne(CursoActual.IdMateria).Descripcion;
-            txtdescComision.Text = ComisionLogic.GetOne(CursoActual.IdComision).Descripcion;
+            Materia materia = MateriaLogic.GetOne(CursoActual.IdMateria);
+            ddlPlan.SelectedValue = materia.IdPlan.ToString();
+            ddlMateria.SelectedValue = materia.ID.ToString();
+            ddlComision.SelectedValue = CursoActual.IdComision.ToString();
             txtAnioCalendario.Text = CursoActual.AñoCalendario.ToString();
             txtCupo.Text = CursoActual.Cupo.ToString();
+            ddlDocenteAuxiliar.SelectedValue = DocenteCursoLogic.GetOneCurso(CursoActual, TipoCargo.Auxiliar).ID.ToString();
+            ddlDocenteTitular.SelectedValue = DocenteCursoLogic.GetOneCurso(CursoActual, TipoCargo.Titular).ID.ToString();
         }
 
         private void EnableForm(bool enable)
         {
-            txtdescMateria.Enabled = enable;
-            txtdescComision.Enabled = enable;
+            ddlComision.Enabled = enable;
+            ddlPlan.Enabled = enable;
+            ddlMateria.Enabled = enable;
             txtAnioCalendario.Enabled = enable;
             txtCupo.Enabled = enable;
-
+            ddlDocenteAuxiliar.Enabled = enable;
+            ddlDocenteTitular.Enabled = enable;
         }
 
         private void ClearForm()
         {
-            txtdescComision.Text = string.Empty;
+            ddlMateria.Text = string.Empty;
             txtAnioCalendario.Text = string.Empty;
             txtCupo.Text = string.Empty;
-            txtdescMateria.Text = string.Empty;
+            ddlComision.Text = string.Empty;
         }
 
         private void LoadGrid()
@@ -76,21 +119,45 @@ namespace UI.Web
 
         private void LoadEntity(Curso Curso)
         {
-            //Curso.IdMateria = txtdescMateria.Text;
-            // Curso.IdComision = txtdescComision.Text;
+            Curso.IdMateria = int.Parse(ddlMateria.SelectedValue.ToString());
+            Curso.IdComision = int.Parse(ddlComision.SelectedValue.ToString());
             Curso.AñoCalendario = int.Parse(txtAnioCalendario.Text);
             Curso.Cupo = int.Parse(txtCupo.Text);
- 
         }
 
         private void SaveEntity(Curso Curso)
         {
-          //  CursoLogic.Save(Curso);
+            // CursoLogic.Save(Curso);
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             LoadGrid();
+            if (!IsPostBack)
+            {
+                PlanLogic planLogic = new PlanLogic();
+                ddlPlan.DataSource = planLogic.GetAll();
+                ddlPlan.DataTextField = "Descripcion";
+                ddlPlan.DataValueField = "ID";
+                ddlPlan.DataBind();
+                ddlPlan.SelectedIndex = -1;
+                PersonaLogic personaLogic = new PersonaLogic();
+                ddlDocenteTitular.DataSource = personaLogic.GetAllDocentes();
+                ddlDocenteTitular.DataTextField = "NombreCompleto";
+                ddlDocenteTitular.DataValueField = "ID";
+                ddlDocenteTitular.DataBind();
+                ddlDocenteTitular.SelectedIndex = -1;
+            }
+        }
+
+        protected void ddlPlan_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlPlan.SelectedIndex != -1)
+            {
+                int idplan = int.Parse(ddlPlan.SelectedValue.ToString());
+                ddlMateria.DataSource = MateriaLogic.GetAllPlan(idplan);
+                ddlComision.DataSource = ComisionLogic.GetAllPlan(idplan);
+            }
         }
 
         protected void GridView_SelectedIndexChanged(object sender, EventArgs e)
@@ -171,5 +238,7 @@ namespace UI.Web
         {
             Response.Redirect("~/MainMenu.aspx");
         }
+
+        
     }
 }

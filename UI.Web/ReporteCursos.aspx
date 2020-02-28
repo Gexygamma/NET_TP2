@@ -44,13 +44,14 @@
                 </td>
             </tr>  
         </table>
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" Height="124px" Width="693px" CellPadding="4" ForeColor="#333333" GridLines="None">
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" Height="124px" Width="693px" CellPadding="4" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" DataKeyNames="ID">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:BoundField DataField="alumnoLegajo" HeaderText="Legajo " />
                 <asp:BoundField DataField="alumnoNombre" HeaderText="Nombre" />
                 <asp:BoundField DataField="condicion" HeaderText="Condición" />
                 <asp:BoundField DataField="nota" HeaderText="Nota" />
+                <asp:CommandField ShowSelectButton="True" />
             </Columns>
             <EditRowStyle BackColor="#7C6F57" />
             <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
@@ -81,4 +82,13 @@ var specialElementHandlers = {
 
   doc.save('ReporteCursos.pdf');
 });</script>
+    <asp:Panel ID="PanelEdicion" runat="server" Visible="false">
+        <asp:Label runat="server">Nota</asp:Label>
+        <asp:TextBox ID="txtNota" runat="server"></asp:TextBox>
+        <asp:Label runat="server">Condición</asp:Label>
+        <asp:TextBox ID="txtCondicion" runat="server"></asp:TextBox>
+        <br />
+        <asp:Button ID="btnCancelar" runat="server" OnClick="btnCancelar_Click" Text="Cancelar" />
+        <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" OnClick="btnAceptar_Click"  />
+    </asp:Panel>
 </asp:Content>

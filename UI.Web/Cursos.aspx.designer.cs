@@ -85,22 +85,49 @@ namespace UI.Web {
         protected global::System.Web.UI.WebControls.Panel formPanel;
         
         /// <summary>
-        /// Control txtdescMateria.
+        /// Control ddlPlan.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtdescMateria;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPlan;
         
         /// <summary>
-        /// Control txtdescComision.
+        /// Control ddlMateria.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtdescComision;
+        protected global::System.Web.UI.WebControls.DropDownList ddlMateria;
+        
+        /// <summary>
+        /// Control ddlComision.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlComision;
+        
+        /// <summary>
+        /// Control ddlDocenteTitular.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlDocenteTitular;
+        
+        /// <summary>
+        /// Control ddlDocenteAuxiliar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlDocenteAuxiliar;
         
         /// <summary>
         /// Control txtAnioCalendario.

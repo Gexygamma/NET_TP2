@@ -34,15 +34,36 @@
         <br />
         <table style="width: 100%;">
             <tr>
+                <td class="auto-style1">Plan</td>
+                <td>
+                    <asp:DropDownList ID="ddlPlan" runat="server" OnSelectedIndexChanged="ddlPlan_SelectedIndexChanged" AutoPostBack="true">
+                    </asp:DropDownList>
+                </td>
+            </tr>
+            <tr>
                 <td class="auto-style1">Materia</td>
                 <td>
-                    <asp:TextBox ID="txtdescMateria" runat="server"></asp:TextBox>
+                    <asp:DropDownList ID="ddlMateria" runat="server">
+                    </asp:DropDownList>
                 </td>
             </tr>
             <tr>
                 <td class="auto-style1">Comisión</td>
                 <td>
-                    <asp:TextBox ID="txtdescComision" runat="server"></asp:TextBox>
+                    <asp:DropDownList ID="ddlComision" runat="server">
+                    </asp:DropDownList>
+                </td>
+            </tr>
+            <tr>
+                <td class="auto-style1">Docente Titular</td>
+                <td>
+                    <asp:DropDownList ID="ddlDocenteTitular" runat="server"></asp:DropDownList>
+                </td>
+            </tr>
+            <tr>
+                <td class="auto-style1">Docente Auxiliar</td>
+                <td>
+                    <asp:DropDownList ID="ddlDocenteAuxiliar" runat="server"></asp:DropDownList>
                 </td>
             </tr>
             <tr>
